@@ -1,0 +1,42 @@
+h1 {
+    font-size: 4.5vw;
+    position: fixed;
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+h3 {
+    font-size: 2.5vw;
+    position: fixed;
+    top: 32%;
+    font-family: GothamLight;
+    width: 100%;
+    text-align: center;
+}
+
+#infoText{
+    font-size: 1.5vw;
+    position: fixed;
+    top: 87%;
+    left: 50%;
+    width: 100%;
+    transform: translate(-50%, -50%);
+}
+
+img{
+    position: fixed;
+    top: 67%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 22%;
+}
+
+#mobilePay{
+    position: fixed;
+    top: 91%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 13%;
+}
+

@@ -1,0 +1,31 @@
+{
+    "title": "DocumentScanning",
+    "description": "Scan d'un document",
+    "methods": [
+        {
+            "name": "DocumentScanning",
+            "description": "lecture code barre",
+            "service": "DocumentScanning",
+            "perif": "DocumentScanner",
+            "params": [
+            ]
+        }
+    ],
+    "events": [
+        {
+            "name": "DocumentScanning",
+            "description": "Document Scanne",
+            "dataType": []
+        }
+    ],
+    "serviceUSed": [
+        {
+            "name": "DocumentScanning"
+        }
+    ],
+    "perifUsed": [
+        {
+            "name": "DocumentScanner"
+        }
+    ]
+}

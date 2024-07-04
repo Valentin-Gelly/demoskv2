@@ -1,0 +1,38 @@
+{
+    "title": "BarcodeReading",
+    "description": "lecture d'un code barre",
+    "methods": [
+      {
+        "name": "BarcodeReading",
+        "description": "lecture code barre",
+        "service": "BarcodeReading",
+        "perif": "BarCodeReader",
+        "params": [
+        ]
+      }
+    ],
+    "events": [
+      {
+        "name": "BarcodeReading",
+        "description": "Code barre lu",
+        "dataType": [
+          {
+            "condition": "BarcodeRead",
+            "desciption": "Code barre lu"
+          }
+        ]
+      }
+    ],
+    "serviceUSed": [
+      {
+        "name": "BarcodeReading"
+      }
+      
+    ],
+    "perifUsed": [
+        {
+            "name": "BarcodeReader"
+        }
+    ]
+  }
+

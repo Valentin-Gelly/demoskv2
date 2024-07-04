@@ -1,0 +1,20 @@
+<moov-hop-all-pages></moov-hop-all-pages>
+
+<div>
+    <h1> CREATE YOUR ACCOUNT </h1>
+    <h3>Scan your proof of address!</h3>
+    <section class="retourCamera">
+        <img id="preview" [src]="previewImage" id="capture" class="img-fluid" id="imgScan">
+        <section class="Bottom">
+            <section class="textAdd" id="textAdd">
+                <img src="./assets/MOOVHOP-EK4000-2023-RNTP/Check.png" alt="" id="check">
+                <!--Il faut afficher ce message apre avoir cliqué sur Valider et apres 3 secondes on change de page -->
+                <p class="AddScan" id="ScanAdded">Document included in your file</p>
+            </section>
+            <section class="btnBottom">
+                <div class="nextStep" id="ScanButton" (click)="ngAfterViewInit()">Start again</div>
+                <div class="nextStep" id="ValidateButton" routerLink="/MWC2024/createAccountSubscriptionChoice">Validate</div>
+            </section>
+        </section>
+    </section>
+</div>

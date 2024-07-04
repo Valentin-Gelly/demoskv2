@@ -1,0 +1,110 @@
+#info {
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+
+#photo {
+    width: 86%;
+}
+
+#info {
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    transform: translate(-50%, -50%);
+    top: 60%;
+    left: 50%;
+}
+
+#photo {
+    width: 86%;
+}
+
+h1 {
+    font-size: 4.5vw;
+    position: fixed;
+    top: 15%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+#Subtitle{
+    font-size: 2.5vw;
+    position: fixed;
+    top: 18%;
+    width: 100%;
+    text-align: center;
+    margin-top: 1vw;
+     
+}
+
+
+#imgPromotion {
+    width: 89vh;
+}
+#loQuiero{
+    width: 11%;
+    position: absolute;
+    margin-left: 43%;
+    margin-top: -140px;
+    border-radius: 9px;
+}
+#left {
+    width: 30%;
+}
+#right {
+    width: 50%;
+}
+
+
+.description{
+    font-size: 1em ;
+    color: #000000 ;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+p{
+    text-align: left !important;
+}
+
+.titleDetails{
+    font-size: 1em ;
+    color: #000000;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    font-weight: bold;
+}
+
+.informationList{
+    display: flex;
+    flex-direction: row;
+    margin: 0;
+    padding: 0;
+    gap: 31px;
+    margin-bottom: 20px;
+}
+
+#informations h3{
+    font-family: renogare;
+    font-size: 1.2em;
+    color: #000000;
+    text-align: left;
+    margin-bottom: 5px !important;
+    margin-top: 40px;
+}
+
+.informationList p{
+    width: 100%;
+}
+#informations img{
+    width: 5%;
+}

@@ -1,0 +1,90 @@
+#resultCapture{
+    border: solid black 1px;
+    position: fixed;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 35%;
+    height: 45%;
+}
+
+h1 {
+    font-size: 4.5vw;
+    position: fixed;
+    top: 15%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  span.title{
+    font-family: Renogare;
+    font-size: 4em !important;
+    color: #275278;
+    text-align: center;
+    margin: 0;
+    position: fixed;
+    top: 15%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+  h3{
+    font-size: 2.5vw;
+    position: fixed;
+    top: 22%;
+    font-family: 'GothamLight';
+    width: 100%;
+    text-align: center;
+    margin-top: 1vw;
+  }
+  
+  #validFoto {
+    position: fixed;
+    top: 85%;
+    left: 70%;
+    transform: translate(-50%, -50%);
+    width: 33%;
+  }
+  
+
+#validFoto img{
+    width: 50%;
+    height: 100%;
+}
+
+#retryFoto {
+    position: fixed;
+    top: 85%;
+    left: 47%;
+    transform: translate(-50%, -50%);
+    width: 33%;
+}
+
+#retryFoto img{
+    width: 55%;
+    height: 100%;
+}
+
+
+#loadingSection{
+  display: none;
+  width: 100%;
+  background-color: white;
+  height: 100%;
+  position: fixed;
+  margin: 0;
+  opacity: 0.7;
+}
+
+#loading{
+  display:none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 1 !important;
+}
+
+#btnValidRetry{
+  display: none;
+}

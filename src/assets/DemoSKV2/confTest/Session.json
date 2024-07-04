@@ -1,0 +1,17 @@
+{
+    "title": "Session",
+    "description": "Observation de l'évolution du statu d'une session",
+    
+    "serviceUSed": [
+      {
+        "name": "Session"
+      }
+      
+    ],
+    "perifUsed": [
+        {
+            "name": "Session"
+        }
+    ]
+  }
+

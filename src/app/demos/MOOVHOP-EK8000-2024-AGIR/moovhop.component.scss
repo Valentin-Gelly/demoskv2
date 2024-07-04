@@ -1,0 +1,33 @@
+@font-face {
+    font-family: LemonMilkMedium;
+    src: url(../../../assets/MoovHop/LEMONMILK-Medium.otf);
+  }
+
+  @font-face {
+    font-family: LemonMilkLight;
+    src: url(../../../assets/MOOVHOP-EK4000-2023-RNTP/LEMONMILK-Light.otf);
+  }
+  
+  @font-face {
+    font-family: GothamLight;
+    src: url(../../../assets/MoovHop/Gotham-Light.otf);
+  }
+  
+  @font-face {
+    font-family: Romalian;
+    src: url(../../../assets/MoovHop/Romalian.otf);
+  }
+  
+  h1 {
+    color: #16968d;
+    font-family: 'LemonMilkMedium';
+  }
+  
+  p {
+    font-family: 'LemonMilkMedium';
+  }
+  
+  body{
+    width: fit-content !important;
+  }
+  

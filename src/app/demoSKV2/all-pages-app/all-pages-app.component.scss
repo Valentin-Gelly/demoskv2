@@ -1,0 +1,196 @@
+.body {
+  background-color: #EDEDED;
+}
+
+.containerAllPages {
+  background-color: #ededee;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 8%;
+  top: 0%;
+  background-color: #fff;
+  width: 100%;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  align-items: center;
+}
+
+.logo {
+  width: 4vw;
+}
+
+#displayCurrentView {
+  width: 2vw;
+  border-radius: 5px;
+  transform: translate(-50%, -50%);
+  align-items: center;
+}
+
+/**
+* petit menu qui s'affiche en haut à droite permettant de changer de vue
+*/
+
+.displayViews {
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  border: 1px black;
+  /* new */
+  top: 10%;
+  left: 80%;
+  width: 15%;
+  height: 40%;
+}
+
+/**
+* titre "Changer de vue:"
+*/
+#displayViewsTitle {
+  color: #000;
+  font-family: 'MPlusRoundedBold';
+  font-size: 1vw;
+  font-style: normal;
+  line-height: normal;
+  text-decoration-line: underline;
+  transform: translate(-50%, -50%);
+  left: 80%;
+  position: relative;
+  /* new */
+  top: 32%;
+}
+
+#displayViewsToChoose {
+  display: flex;
+  width: 10%;
+  height: 10%;
+  padding-top: 9.758px;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  flex-shrink: 0;
+  top: 70%;
+  transform: translate(-50%, -50%);
+  left: 80%;
+}
+
+#listViewToChange {
+  position: relative;
+  top: 15%;
+  left: 11%;
+  font-size: 1.2vw;
+  justify-content: center;
+  text-align: center;
+  /* transform: translate(-50%, -50%); */
+}
+
+.searchImage {
+  width: 1.953125vw;
+  height: 1.953125vw;
+  flex-shrink: 0;
+  background: white 50% / cover no-repeat;
+}
+
+.userImage {
+  position: fixed;
+  transform: translate(-50%, -50%);
+  width: 2vw;
+}
+
+.searchBar {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  border-radius: 2vw;
+  height: 3vw;
+  top: 0vw;
+  background-color: #fff;
+  width: 20%;
+  align-items: center;
+}
+
+.demoList {
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 30vw;
+  top: 30vw;
+  background-color: #fff;
+  transform: translate(-50%, -50%);
+  width: 30vw;
+}
+
+.buttonList {
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  height: 8%;
+  top: 90%;
+  width: 100%;
+  align-items: center;
+}
+
+.demoButton,
+.customerExperienceButton,
+.featureButton,
+.testsButton {
+  width: 15%;
+  height: 55%;
+  display: flex;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 2vw;
+  background: #fff;
+  font-family: 'MPlusRoundedBold';
+  font-size: 1vw;
+  align-self: center;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 3s;
+}
+
+.pushed {
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+  transform: translateY(2px);
+  border-color: black; /* Change the border color to black when the button is pushed */
+}
+
+.demoChoice {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 25%;
+  height: 50%;
+  top: 40%;
+  left: 50%;
+  width: 50%;
+  transform: translate(-50%, -50%);
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+
+.labiziChoice img, .moovHop8000Choice img, .moovHop1000Choice img {
+  width: 6vw;
+}
+
+.playButton {
+  width: 2vw;
+}
+
+// .searchImage {
+//   width: 1.953125vw;
+//   height: 1.953125vw;
+//   flex-shrink: 0;
+//   background-image: url('./assets/DemoSKV2/all-pages-icon/search.png'), lightgray 50% / cover no-repeat;
+// }

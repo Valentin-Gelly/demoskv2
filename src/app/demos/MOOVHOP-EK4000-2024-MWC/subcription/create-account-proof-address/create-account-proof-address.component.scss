@@ -1,0 +1,99 @@
+h1 {
+  font-size: 4vw;
+  position: fixed;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+h3{
+  font-size: 2.5vw;
+  position: fixed;
+  top: 27%;
+  font-family: 'GothamLight';
+  width: 100%;
+  text-align: center;
+}
+
+#imgScan {
+  position: fixed;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 17%;
+  height: 40%;
+  background-color: #ffffff ;
+}
+
+.nextStep{
+  background-color: #A6ED8E;
+  height: 100%;
+  width: 10%;
+  
+  font-family: 'GothamLight';
+  top: 90%;
+  border-radius: 0.5vw;
+  text-align: center;
+  line-height: 2.5vw;
+  font-size: 1.2vw;
+  color: #ffffff;
+}
+
+#confirmButton{
+  left: 42.5%;
+}
+
+#restartButton{
+  left: 57.5%;
+}
+
+p{
+  color: rgb(184, 231, 245);
+  font-family: "GothamLight" !important;
+  font-size: 2em;
+  padding: 0;
+  margin: 0;
+  vertical-align: middle;
+  display: flex;
+  
+  align-items: center;
+}
+
+.Bottom{
+  width: 100%;
+  top: 82%;
+  height: 5%;
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  gap: 50%;
+}
+
+
+.btnBottom{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  gap: 50px;
+  justify-content: center;
+}
+
+#check{
+  height: 45px;
+  
+}
+
+.textAdd{
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+
+}
+
+#textAdd{
+  opacity: 0;
+}
+
+#ValidateButton, #ScanButton{
+  opacity: 0;
+}

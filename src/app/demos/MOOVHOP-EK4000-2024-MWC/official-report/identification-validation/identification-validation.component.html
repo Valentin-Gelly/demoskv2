@@ -1,0 +1,34 @@
+<moov-hop-all-pages></moov-hop-all-pages>
+<div>
+    <h1> Identification </h1>
+    <h3>Check the information relating to your report!</h3>
+    <div class="allElement">
+        <form>
+            <div>
+                <section class="labelInput">
+                    <label for="prenom"><b>Minutes Number</b></label>
+                    <input type="text" name="prenom" value="{{QRCodeScaned? '2638402':''}}">
+                </section>
+                <br>
+                <section class="labelInput">
+                    <label for="nom"><b>Minutes Date</b></label>
+                    <input type="date" name="nom" value="{{QRCodeScaned? '2023-07-09':''}}">
+                </section>
+                <br>
+            </div>
+            <section class="emailSection">
+                <i>A confirmation e-mail will be sent to the following address: </i>
+                <div class="labelInput">
+                    <label for="mail"><b>E-mail</b></label>
+                    <input type="mail" name="mail">
+                </div>
+            </section>
+            <br>
+            
+        </form>
+    </div>
+    <div class="nextStep" routerLink="/MWC2024/informationSummary">
+        Next step
+    </div>
+
+</div>

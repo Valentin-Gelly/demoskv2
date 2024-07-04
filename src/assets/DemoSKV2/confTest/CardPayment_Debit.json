@@ -1,0 +1,28 @@
+{
+    "title": "CardPayment_Debit",
+    "description": "Débit de carte bancaire",
+    
+    "events": [
+      {
+       
+      }
+    ],
+    "serviceUSed": [
+      {
+        "name": "CardPayment"
+      },
+      {
+        "name": "ReceiptPrinting"
+      }
+      
+    ],
+    "perifUsed": [
+        {
+            "name": "CardPayment"
+        },
+        {
+            "name": "ReceiptPrinter"
+        }
+    ]
+  }
+

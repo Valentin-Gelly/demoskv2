@@ -1,0 +1,66 @@
+h2{
+  top: 65%;
+  font-size: 2.5vw;
+  width: 28vw;
+  position: absolute;
+  left: 51%;
+  transform: translate(-50%,-50%);
+  text-align: center;
+  justify-content: center;
+  font-family: 'LemonMilkMedium';
+  color: #a9e7f7;
+}
+
+p {
+  top: 70%;
+  width: 36vw;
+  transform: translate(-50%,-50%);
+  left: 52%;
+  text-align: center;
+  justify-content: center;
+  font-family: 'Romalian';
+  color: #a6ed8e;
+  position: absolute;
+  font-size: 4vw;
+}
+
+img{
+  position: fixed;
+  transform: translate(-50%,-50%);
+  top: 50%;
+  left: 57%;
+  width: 35vw;
+}
+
+.moovopCongratsElementsDemoSKV2Container {
+  display: flex;
+  position: absolute;
+  flex-direction: column;
+  flex-wrap: wrap;
+  text-align: center;
+  justify-content: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50%;
+}
+
+.moovopCongratulationsTitle {
+  font-size: 4vw;
+  width: 35%;
+  top: 16%;
+  text-align: center;
+  position: fixed;
+  color: #16968d;
+  left: 51%;
+  transform: translate(-50%, -50%);
+  font-family: 'LemonMilkMedium';
+}
+
+.carte2Image {
+  position: fixed;
+  transform: translate(-50%, -50%);
+  top: 55%;
+  left: 54%;
+  width: 30vw;
+}

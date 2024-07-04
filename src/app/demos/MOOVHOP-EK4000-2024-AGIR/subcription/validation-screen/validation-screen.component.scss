@@ -1,0 +1,50 @@
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 100px
+}
+
+h1 {
+    font-size: 3.5vw;
+    position: fixed;
+    top: 10%;
+    text-align: center;
+    width: 100%;
+    transform: translate(50%, 50%);
+}
+
+h3, p {
+    font-size: 2.5vw;
+    position: fixed;
+    top: 60%;
+    font-family: GothamLight;
+    width: 100%;
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 0;  
+    margin-left: 0;  
+    font-size : 2.2em;
+    font-weight: 100 !important;
+    margin-bottom: 50px;
+    transform: translate(50%, 50%);
+}
+
+
+.pDocumentInfo {
+    text-align: center;
+    position: fixed;
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    gap: 25px;
+    font-size: 125%;
+}
+
+img {
+    width: 10%;
+    position: fixed;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}

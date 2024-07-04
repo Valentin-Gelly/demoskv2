@@ -1,0 +1,41 @@
+ <div class="container">
+
+    <!-- appel entrant-
+    <ng-container [ngSwitch]="state">
+         quand on l'a refusé snif -->
+        <div class="refused" *ngSwitchCase="'refusedCall'">
+            <!-- TODO -->
+            <h2 class="titleRefused"> VOUS AVEZ REFUSE CET APPEL </h2>
+            <div class="returnToMenu">
+                <img src="../../assets/Call/bouton-retour.png" (click)="backToMenu()">
+            </div>
+        </div>
+
+        <div class="call" *ngSwitchDefault>
+            <div class="title">
+                <h2 class="titleCall"> {{title[state]}}</h2>
+            </div>
+            <div class="myVideoContainer">
+                <!-- get the video of the camera -->
+            </div>
+            <div class="buttonCallDiv" *ngIf="state === 'receiveCall'">
+                <ng-container *ngFor="let image of arrayButtonCall">
+                    <img src="../../assets/Call/{{image}}" (click)="onClickImageReceive(image)" class="callBtn">
+                </ng-container>
+            </div>
+
+            <div *ngIf="state === 'onCall'">
+                <div (click)="myVideoClick()" >
+                    <video autoplay controls class="myVideoCall"></video>
+                </div>
+                <div class="buttonCallDiv">
+                    <div *ngFor="let imageOnCall of arrayButtonOnCall; let indexImage = index;"> <!-- ?. interroge si imageOnCall possède la propriété current -->
+                        <img src="../../assets/Call/{{imageOnCall[imageOnCall?.current || 'on']}}" (click)="onClickImageCall(indexImage)"
+                            class="callBtn">
+                    </div>
+                </div>
+            </div>
+        </div>
+  <!--   </ng-container> -->
+
+</div>

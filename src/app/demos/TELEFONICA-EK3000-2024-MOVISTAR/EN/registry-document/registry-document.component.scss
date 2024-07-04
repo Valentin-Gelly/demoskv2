@@ -1,0 +1,53 @@
+.documento{
+    width: 55%;
+}
+
+h1 {
+    font-size: 4.5vw;
+    position: fixed;
+    top: 15%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+h2{
+    font-size: 2.5vw;
+    position: fixed;
+    top: 19%;
+    font-family: 'GothamLight';
+    width: 100%;
+    text-align: center;
+    margin-top: 1vw;
+}
+
+#paisList{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 15%;
+    margin-left: auto;
+    margin-right: auto;
+    position: fixed;
+    top: 32%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#pais{
+    width: 100%;
+}
+
+#documentoList{
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    align-items: center;
+    position: fixed;
+    top: 62%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    
+}
+
+#divDocumento h2{
+    top: 37%;
+}

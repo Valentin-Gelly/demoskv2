@@ -1,0 +1,98 @@
+html{
+    height: 100%;
+  }
+  
+  
+  h1 {
+    font-size: 4.5vw;
+    position: fixed;
+    top: 24%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  h3 {
+    font-size: 2.5vw;
+    position: fixed;
+    top: 30%;
+    font-family: GothamLight;
+    width: 100%;
+    text-align: center;
+  }
+  
+  
+  #helpText {
+    font-size: 1.5vw;
+    position: fixed;
+    top: 85%;
+    font-family: GothamLight;
+    width: 100%;
+    text-align: center;
+    color: #A9E7F7;
+  }
+  
+  .allElement{
+    position: fixed;
+    width: 100%;
+    height: 40%;
+    display: flex;
+    justify-content: center;
+    transform: translate(0%, 90%);
+    align-items: center;
+  }
+  
+  form {
+    position: fixed;
+    height: 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+  
+  }
+  
+  
+  
+  
+  label {
+    font-size: 1.5vw;
+    font-family: GothamLight;
+    color: #A9E7F7;
+    display: inline-block;
+    width: 300px;
+    text-align: right;
+    margin-right: 19px;
+  }
+  
+  input {
+    width: 30vw;
+    height: 0.5vw;
+    border-radius: 0.7vw;
+    border: 0px;
+    font-size: 1.3vw;
+    padding: 1vw;
+    margin-right: 0;
+    -webkit-box-shadow: 0 3px 12.5px 1.5px #dddddd;
+    -moz-box-shadow: 0 3px 12.5px 1.5px #dddddd;
+    box-shadow: 0 3px 12.5px 1.5px #dddddd;
+  }
+  
+  
+  .nextStep {
+    background-color: #A6ED8E;
+    width: 13vw;
+    height: 5%;
+    position: fixed;
+    font-family: GothamLight;
+    top: 85%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 0.5vw;
+    text-align: center;
+    line-height: 2.5vw;
+    font-size: 1.4vw;
+    color: #fff;
+  }
+  
+  
+  
+  

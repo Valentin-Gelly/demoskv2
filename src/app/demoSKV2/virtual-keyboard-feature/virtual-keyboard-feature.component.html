@@ -1,0 +1,87 @@
+<!-- Page de formulaire -->
+
+<div data-role="page" id="page-form" class="page">
+  <header>
+    <h1>Formulaire</h1>
+  </header>
+
+  <main class="mainForm">
+    <form>
+      <h2>clavier en fonction du type de l'input :</h2>
+      <div class="form-item">
+        <label>Prénom</label>
+        <input type="text" name="firstname" />
+      </div>
+      <div class="form-item">
+        <label>Nom</label>
+        <input type="text" name="name" />
+      </div>
+      <div class="form-item">
+        <label>Date de naissance</label>
+        <input type="date" name="date" />
+      </div>
+      <div class="form-item">
+        <label>Email</label>
+        <input type="email" name="email" />
+      </div>
+      <div class="form-item">
+        <label>Mot de passe</label>
+        <input type="password" name="number" />
+      </div>
+      <div class="form-item">
+        <label>Code postal</label>
+        <input type="number" name="password" />
+      </div>
+      <div class="form-item">
+        <label>Time</label>
+        <input type="time" name="time" />
+      </div>
+    </form>
+    <form>
+      <h2>clavier en fonction de sk-input :</h2>
+      <div class="form-item">
+        <label>input text + sk-layout=simpleText</label>
+        <input type="text" sk-layout="simpleText" />
+      </div>
+      <div class="form-item">
+        <label>input text + sk-layout=email</label>
+        <input type="text" name="firstname" sk-layout="email" />
+      </div>
+      <div class="form-item">
+        <label>input text + sk-layout=number</label>
+        <input type="text" name="name" sk-layout="number" />
+      </div>
+      <div class="form-item">
+        <label>input text + sk-layout=tel</label>
+        <input type="text" name="name" sk-layout="tel" />
+      </div>
+      <div class="form-item">
+        <label>input text + sk-layout=date</label>
+        <input type="text" name="name" sk-layout="date" />
+      </div>
+      <div class="form-item">
+        <label>input text + sk-layout=date</label>
+        <input type="text" name="name" sk-layout="date" />
+      </div>
+      <div class="form-item">
+        <label>input text + sk-layout=switch_number</label>
+        <input type="text" name="name" sk-layout="switch_number" />
+      </div>
+      <div class="form-item">
+        <label>input text + sk-layout=switch_symbol</label>
+        <input type="text" name="name" sk-layout="switch_symbol" />
+      </div>
+    </form>
+  </main>
+  <div class="button form-submit" id="formButton">
+    <a routerLink="/demoSKV2AllPagesApp">Confirmer</a>
+  </div>
+
+  <img
+    src="./assets/DemoSKV2/back.png"
+    alt=""
+    routerLink="/demoSKV2AllPagesApp"
+    class="icons"
+    id="backIcon"
+  />
+</div>

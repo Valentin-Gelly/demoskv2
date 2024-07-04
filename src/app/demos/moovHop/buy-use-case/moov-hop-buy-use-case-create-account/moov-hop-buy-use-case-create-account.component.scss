@@ -1,0 +1,40 @@
+h1 {
+  font-size: 4.5vw;
+  position: fixed;
+  top: 25%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+h3 {
+  font-size: 2vw;
+  position: relative;
+  top: 20%;
+  font-family: 'GothamBold';
+}
+
+p {
+  font-size: 1.4vw;
+  top: 12%;
+  position: relative;
+  font-family: 'GothamLight';
+}
+
+.box {
+  position: fixed;
+  top: 70%;
+  transform: translate(-50%, -50%);
+  width: 18vw;
+  height: 18vw;
+  border: 0.5vw solid #A6ED8E;
+  border-radius: 2vw;
+  text-align: center;
+}
+
+#box1 {
+  left: 50%;
+}
+
+#box2 {
+  left: 73%;
+}

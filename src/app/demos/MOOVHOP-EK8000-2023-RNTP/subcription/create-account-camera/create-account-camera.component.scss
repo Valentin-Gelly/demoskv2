@@ -1,0 +1,97 @@
+h1 {
+    font-size: 4.5vw;
+    position: fixed;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  h3{
+    font-size: 2.5vw;
+    position: fixed;
+    top: 26%;
+    font-family: 'GothamLight';
+    width: 100%;
+    text-align: center;
+  }
+  
+  #capture {
+    position: fixed;
+    top: 61%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 35%;
+    height: 45%;
+  }
+  
+  #preview {
+    position: fixed;
+    top: 62%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 39%;
+    clip: rect(2vw, 37vw, 26vw, 2vw);
+  }
+  
+  .nextStep{
+    background-color: #A6ED8E;
+    height: 5%;
+    width: fit-content;
+    padding-left: 1vw;
+    font-family: 'GothamLight';
+    padding-right: 1vw;
+    position: fixed;
+    top: 90%;
+    transform: translate(-50%, -50%);
+    border-radius: 0.5vw;
+    text-align: center;
+    line-height: 2.5vw;
+    font-size: 1.4vw;
+    color: #ffffff;
+  }
+  
+  #confirmButton{
+    left: 42.5%;
+  }
+  
+  #restartButton{
+    left: 57.5%;
+  }
+  
+  #countdownAnimation{
+    display: block;
+    position: absolute;
+    width: 100px;
+    z-index: 1;
+  }
+  
+  #countdown{
+    position: absolute;
+    font-size: 5vh;
+    z-index: 2;
+    font-family: LemonMilkMedium;
+    width: 100%;
+    margin: 0;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .countdownSection{
+    
+    left: 22.5%;
+    top: 54%;
+    position: fixed;
+  
+    width: 100px;
+    height: 100px;
+  }
+  
+  .identytiCard{
+    clip:rect(50%, 0, 0,0)
+  }
+    
+  body{
+    width: fit-content !important;
+  }

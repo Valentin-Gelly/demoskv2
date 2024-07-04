@@ -1,0 +1,9 @@
+<moov-hop-all-pages></moov-hop-all-pages>
+<div>
+  <h1> CRÉER UN COMPTE </h1>
+  <h3>Déposez votre carte d'identité/passeport sur le scanner.</h3>
+    <img id="preview" [src]="previewImage" class="img-fluid" />
+  <img *ngIf="countdown > 0" src="./assets/MoovHop/countdown.gif" alt="countdown">
+  <h2 *ngIf="countdown > 0">{{ countdown }}</h2>
+</div>
+

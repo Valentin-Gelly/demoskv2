@@ -1,0 +1,52 @@
+h1 {
+    font-size: 4.5vw;
+    position: fixed;
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+h2{
+    color: #A6ED8E;
+    font-family: 'LemonMilkMedium';
+}
+
+.ticketContainer {
+    border: 1px solid black;
+    position: fixed;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 20%;
+    height: 25%;
+}
+
+.recapText{
+    margin-bottom: 2vw;
+    text-align: center;
+    margin-top: 2vw;
+    font-family: 'GothamLight';
+    padding-right: 2vw;
+}
+
+.detailText{
+    padding-left: 15vw;
+    margin-bottom: 1.7vw;
+    transform: translate(0%, -560%);
+}
+
+.nextStep{
+    background-color: #A6ED8E;
+    width: 15vw;
+    height: 5%;
+    position: fixed;
+    top: 80%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 0.5vw;
+    font-family: 'GothamLight';
+    text-align: center;
+    line-height: 2.5vw;
+    font-size: 1.4vw;
+    color: #000;
+}

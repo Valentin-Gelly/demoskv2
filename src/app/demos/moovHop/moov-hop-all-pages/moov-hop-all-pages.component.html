@@ -1,0 +1,21 @@
+<div class="moovHopDivBody">
+
+  <!-- bouton skip -->
+  <div class="moovHopSkip" [routerLink]="'..' + moovHopNavigateTo">
+    Skip
+  </div>
+
+  <div class="restart" id="restartZone" (click)="restartPopup()"></div>
+
+  <!-- logo Moovop -->
+  <div class="moovHopLogo" routerLink="/moovHopHomepage"> </div>
+
+  <!-- affichage services en status critical -->
+  <div class="moovHopCriticalService">
+    <label> {{ stringServiceStatusCritical }} </label>
+  </div>
+  <label id="moovHopTempUnavailableService"> {{ arrayServiceStatusTempUnavailable }}</label>
+  <label class="moovHopWarningServices"> {{ messageBarcode }} </label>
+  <label class="moovHopWarningServices" id="cardDispenserMessage"> {{ messageCardDispenser }} </label>
+
+</div>

@@ -1,0 +1,60 @@
+h1 {
+  font-size: 4.5vw;
+  position: fixed;
+  top: 25%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+h3{
+  font-size: 2.5vw;
+  position: fixed;
+  top: 32%;
+  font-family: 'GothamLight';
+  width: 100%;
+  text-align: center;
+}
+
+
+.nextStep{
+  background-color: #A6ED8E;
+  height: 5%;
+  width: fit-content;
+  padding-left: 1vw;
+  font-family: 'GothamLight';
+  padding-right: 1vw;
+  position: fixed;
+  top: 90%;
+  transform: translate(-50%, -50%);
+  border-radius: 0.5vw;
+  text-align: center;
+  line-height: 2.5vw;
+  font-size: 1.4vw;
+  color: #ffffff;
+}
+
+#confirmButton{
+  left: 42.5%;
+}
+
+#restartButton{
+  left: 57.5%;
+}
+
+#capture {
+  position: fixed;
+  top: 65%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 30%;
+  height: 40%;
+}
+
+#preview {
+  position: fixed;
+  top: 45%;
+  left: 50%;
+  transform: translate(-75%, -75%);
+  height: 145%;
+  clip: rect(1170px,auto,auto,600px);
+}

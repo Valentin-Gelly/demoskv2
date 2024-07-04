@@ -1,0 +1,80 @@
+main{
+    position: fixed;
+    display: flex;
+    flex-direction: row;
+    width: 75%;
+    margin-left: auto;
+    margin-right: auto;
+    gap: 50px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+h1 {
+    font-size: 4.5vw;
+    position: fixed;
+    top: 15%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+h3{
+    font-size: 2.5vw;
+    position: fixed;
+    top: 22%;
+    font-family: 'GothamLight';
+    width: 100%;
+    text-align: center;
+    margin-top: 1vw;
+}
+
+#left{
+    width: 45%;
+}
+
+#left p {
+    text-align: justify;
+    font-size: 2em;
+}
+
+#continuarSection{
+    position: fixed;
+    width: 25%;
+    text-align: center;
+    top: 75%;
+    transform: translate(-50%, -50%);
+    left: 50%;
+}
+
+#continuarSection img{
+    width: 60%;
+    margin-top: 150px;
+    
+}
+
+#right{
+    width: 50%;
+}
+
+#right img {
+    width: 65%;
+    margin-top: 20px;
+    margin-left: 50px;
+}
+
+label {
+    font-family: GothamLight;
+    font-size: 1.5em;
+}
+
+input{
+    width: 25px;
+    height: 25px;
+
+}
+
+#condition{
+    display: flex;
+    align-items: center;
+}

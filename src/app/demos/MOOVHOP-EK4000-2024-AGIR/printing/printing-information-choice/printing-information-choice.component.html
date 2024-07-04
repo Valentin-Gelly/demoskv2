@@ -1,0 +1,33 @@
+<moov-hop-all-pages></moov-hop-all-pages>
+
+<h1>ITINÉRAIRE</h1>
+<h3>Sélectionnez votre trajet et la période</h3>
+
+<div class="container-radio">
+  
+  <img src='./assets/MOOVHOP-EK4000-2023-RNTP/itinerary.png' alt="" loading="lazy">
+  <div class="allInput">
+    <div *ngFor="let number of [1,2,3,4,5,6,7,8,9,10]">
+      <div class="radio-box">
+        <input class="radio" type="checkbox" id="radio{{number}}" name="radio" [value]="number" (change)="limitSelection($event)">
+        <label for="radio{{number}}"></label>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <img id="period-header" class="headers" src="./assets/MOOVHOP-EK4000-2023-RNTP/period-header.png" alt="header" loading="lazy">
+  <div class="button-container">
+    
+    
+      <button id="week-button" [className]="selected ? 'selected' : 'buttonPeriod'" (click)="Selected($event)" >Semaine</button>
+      <button id="week-end-button" [className]="selected2 ? 'selected' : 'buttonPeriod'" (click)="Selected($event)">Week-End</button>
+      <button id="holydays-button" [className]="selected3 ? 'selected' : 'buttonPeriod'" (click)="Selected($event)" >Vacances</button>
+  </div>
+
+  
+  <button id="next-button" class="NextStep" id="NextStep"  routerLink="/printingMethodsGettingTimetable"  >Suivant</button>
+  <button id="next-button" class="NextStep" id="NextStepFalse" >Suivant</button>  
+
+</div>

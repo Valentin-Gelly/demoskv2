@@ -1,0 +1,31 @@
+<app-all-page-movistar></app-all-page-movistar>
+<h1>Consentimiento</h1>
+<main>
+    <p>
+        Antes de continuar, ¿nos das tu consentimiento para almacenar tu selfi?<br>
+        Así, en cuanto tengamos disponible la autenticación biométrica, podremos validar
+        automaticamente que el rostro que solicita la gestión es el tuyo, que eres el titular.
+    </p>
+
+    <form action="">
+        <div>
+            <input type="radio" id="outline" class="custom-radio" name="consent" value="yes" style="height:40px; width:40px; vertical-align: middle;" > Sí, consiento<br>
+        </div>
+        <div>
+            <input type="radio" id="outline" class="custom-radio" name="consent" value="no" style="height:40px; width:40px; vertical-align: middle;"> No, gracias<br>
+        </div>
+    </form>
+
+    <p>
+        Permitir el uso de datos biométricos
+    </p>
+
+    <div id="continuarSection" (click)="saveData()">
+        <img src="./assets/TELEFONICA-EK3000-2024-MOVISTAR/Bouton-continuar.png" alt="" id="continuar" loading="lazy">
+    </div>
+</main>
+
+<div id="loadingSection">
+
+</div>
+<img src="./assets/TELEFONICA-EK3000-2024-MOVISTAR/countdown.gif" alt=""  loading="lazy" id="loading">

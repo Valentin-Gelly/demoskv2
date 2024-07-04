@@ -1,0 +1,131 @@
+html{
+    height: 100%;
+  }
+  
+  p, i{
+    font-family: GothamLight !important;
+  }
+  h1 {
+    font-size: 4vw;
+    position: fixed;
+    top: 24%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  h3 {
+    font-size: 2.5vw;
+    position: fixed;
+    top: 30%;
+    font-family: GothamLight;
+    width: 100%;
+    text-align: center;
+  }
+  
+  h4 {
+    font-size: 2.5vw;
+    font-family: LemonMilkMedium;
+    width: 26%;
+    text-align: center;
+    color: #A9E7F7;
+    position: absolute;
+  }
+  
+  
+  .allElement {
+    position: fixed;
+    display: flex;
+    transform: translate(-50%, -50%);
+    top: 66%;
+    left: 50%;
+    width: 55%;
+    justify-content: space-between;
+    height: 408.312px;
+  }
+  
+  .price{
+    box-shadow: 0 3px 12.5px 1.5px #dddddd;
+    width: 200%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    border-radius: 20px;
+    height: 55%;
+  }
+  
+  .price p{
+    text-align: center;
+    bottom: 25px;
+    top: -25px;
+    /* display: block; */
+    margin-top: -91px;
+    font-size: 1.5em;
+    margin-right: 5px;
+  }
+  
+  #totalPrice{
+    margin-top: 20px;
+    margin-bottom: 5px;
+    width: 390.438px;
+    font-size: 5rem;
+  }
+  
+    
+  .nextStep {
+    background-color: #A6ED8E;
+    width: 13vw;
+    height: 12%;
+    position: fixed;
+    font-family: GothamLight;
+    top: 72%;
+    left: 19%;
+    transform: translate(-50%, -50%);
+    border-radius: 0.5vw;
+    text-align: center;
+    line-height: 2.5vw;
+    font-size: 1.4vw;
+    color: #fff;
+  }
+  
+  .right{
+    margin-left: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+  }
+  
+  .personalInfo>div, .PVInfo>div{
+    display: flex;
+    gap: 17px;
+  }
+  
+  
+  .info {
+    font-weight: bold;
+    font-size: 1.2vw;
+    font-family: GothamLight;
+    color: #A9E7F7;
+    display: inline-block;
+    margin-right: 19px;
+  }
+  
+  .description {
+    font-weight: bold;
+    font-size: 1.2vw;
+    font-family: GothamLight;
+  
+    display: inline-block;
+    margin-right: 19px;
+  }
+  
+  .personalInfo{
+   display: flex;
+   flex-direction: column;
+  
+  }
+  
+  .personalInfo p, .PVInfo p{
+    margin: 0;
+    margin-top: 10px;
+  }

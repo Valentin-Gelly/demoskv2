@@ -1,0 +1,27 @@
+<div>
+  <h1> Tests du lecteur de code bar : </h1>
+
+  <button (click)="testBarcode()"> Lancer la lecture </button>
+  <button (click)="stopBarcodeTest()"> Arrêter </button>
+
+  <div>
+    <div>
+      <label> State du barcodeReader </label>
+      <p> {{barcodeReadingStateValue}} </p>
+    </div>
+    <div>
+      <label> Status du barcodeReader </label>
+      <p> {{barcodeReadingStatusValue}} </p>
+    </div>
+    <div *ngIf="barcodeReadInfo !== ''"> {{barcodeReadInfo}} </div>
+  </div>
+
+  <div>
+    <label for="continousReading"> Enchaîner les lectures </label>
+    <input type="checkbox" value="continousReading" id="continousReading" (change)="continousReading($event)">
+  </div>
+  <div *ngIf="isContinuousReading">
+    <p> Appuyez maitenant sur Lancer la lecture </p>
+  </div>
+
+</div>

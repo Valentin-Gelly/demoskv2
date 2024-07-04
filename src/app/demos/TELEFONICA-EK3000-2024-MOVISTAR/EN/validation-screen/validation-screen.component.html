@@ -1,0 +1,30 @@
+<en-app-all-page-movistar></en-app-all-page-movistar>
+
+<main>
+    <h1 class="goodDocumentoCapture" *ngIf="!errorScanId && (scanVisited==3 || scanVisited==2)">Identity verification completed</h1>
+    <h1 class="badDocumentoCapture" *ngIf="errorScanId && (scanVisited==3 || scanVisited==2)">Identity verification failed</h1>
+    <h1 class="goodFaceCapture" *ngIf="!errorFace && scanVisited==1">Compliant photo </h1>
+    <h1 class="badFaceCapture" *ngIf="errorFace && scanVisited==1">The image is not valid</h1>
+    <img *ngIf="(!errorFace && scanVisited==1) || (!errorScanId && (scanVisited==3 || scanVisited==2))"
+        src="./assets/TELEFONICA-EK3000-2024-MOVISTAR/Check.png" alt=""  loading="lazy" class="goodCapture">
+
+    <img *ngIf="(errorFace && scanVisited==1) || (errorScanId && (scanVisited==3 || scanVisited==2))"
+        src="./assets/TELEFONICA-EK3000-2024-MOVISTAR/ko.png" alt=""  loading="lazy" class="badCapture">
+    <section>
+        <div>
+            <p class="goodDocumentoCapture" *ngIf="!errorScanId && (scanVisited==3 || scanVisited==2)">We will guide you through the following steps</p>
+        </div>
+        <div>
+            <p class="badDocumentoCapture" *ngIf="errorScanId && (scanVisited==3 || scanVisited==2)">Please repeat the procedure.</p>
+        </div>
+
+        <div>
+            <p class="badFaceCapture" *ngIf="errorFace && scanVisited==1">Please repeat the procedure.</p>
+        </div>
+    </section>
+
+</main>
+
+<section id="whiteHide">
+    
+</section>

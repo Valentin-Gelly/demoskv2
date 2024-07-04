@@ -1,0 +1,42 @@
+h1{
+    top:23%;
+    font-size: 4vw;
+    width: 100%;
+    text-align: center;
+}
+h2{
+    top:32%;
+    font-size: 3vw;
+}
+
+.firstChoice{
+    position: fixed;
+    background-color: #ccf5f5;
+    font-family: 'FreshFruit';
+    text-align: center;
+    line-height: 10vw;
+    font-size: 3vw;
+    color: #080C71;
+    width: 25vw;
+    height: 10vw;
+    top: 60%;
+    left: 35%;
+    border-radius: 1vw;
+    transform: translate(-50%, -50%);
+}
+
+.secondChoice{
+    position: fixed;
+    background-color: #080C71;
+    font-family: 'FreshFruit';
+    text-align: center;
+    line-height: 10vw;
+    font-size: 3vw;
+    color: #ccf5f5;
+    width: 25vw;
+    height: 10vw;
+    top: 60%;
+    right: 10%;
+    border-radius: 1vw;
+    transform: translate(-50%, -50%);
+}

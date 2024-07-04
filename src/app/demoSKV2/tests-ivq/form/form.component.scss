@@ -1,0 +1,86 @@
+.body {
+    background-color: white;
+}
+
+.formDiv {
+    overflow: hidden;
+    position: absolute;
+    left: 50%;
+    top: 50%; 
+    flex: 1;
+    border: solid #ee3637;
+    transform: translate(-50%, -50%);
+    border-width: medium;
+    border-radius: 1vw;
+    text-align: left;
+    border: solid;
+    flex-shrink: 2;
+    padding-top: 2vw;
+    padding-bottom: 2vw;
+    padding-left: 2vw;
+    padding-right: 2vw;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.leftdiv {
+    background-color: #a1edcc;
+}
+
+.middle {
+    background-color: #a0e9ed; 
+    width: 35vw;
+    height: 18vw;
+}
+
+.right {
+    background-color: burlywood;
+}
+
+.printing {
+    background-color: beige; 
+}
+
+#logo4 {
+    width: 10%;
+    display: block;
+    top: 10%;
+    left: 50%;
+    position: absolute;
+    transition: all 0.7s ease-in-out;
+    transform: translate(-50%, -50%);
+    z-index: 3;
+}
+
+.legend-1 {
+    text-align: center;
+    display: flex;
+    position: absolute;
+    justify-content: center;
+    justify-items: end;
+}
+
+a {
+    font-size: 1vw;
+    color: #ee3637;
+    top: 95%;
+    left: 50%;
+    position: absolute;
+    transition: all 0.7s ease-in-out;
+    transform: translate(-50%, -50%);
+}
+
+button {
+    position: absolute;
+    top: 88%;
+    left: 75%;
+    background-color: #ee3637;
+    border-radius: 11px;
+}
+
+.printing[container] {
+
+    display: block;
+    overflow: visible;
+
+}

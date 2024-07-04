@@ -1,0 +1,120 @@
+.title {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    top: 5%; 
+    justify-content: space-evenly;
+    flex-shrink: 1;
+    flex-direction: row;
+    flex-shrink: 1;
+    height: 5vh; 
+    width: 100%; 
+} 
+
+
+
+.titleCall {
+    display: flex;
+    justify-content: center;
+    flex-shrink: 1;
+    flex-direction: row;
+    width: 50vw; 
+    height: 50vh;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
+.myVideoContainer {
+    display: block;
+    position: absolute; 
+    width: 70%;
+    height: 80%; 
+    transform: translate(-50%, -50%);
+    top: 55%; 
+    left: 50%; 
+    border: 1px solid black; 
+}
+ 
+.buttonCallDiv {
+    display: flex;
+    height: 10vw;
+    width: 100%; 
+    position: absolute; 
+    justify-content: space-evenly;
+    flex-direction: row;
+    flex-shrink: 1;
+    top: 78%; 
+
+}
+
+.callBtn {
+    height: 10vh; 
+    width: 10vh; 
+}
+
+
+
+// écran lorsque l'appel est en cours 
+#onCall {
+    display: flex;
+    height: auto;
+    position: absolute; 
+    justify-content: space-evenly;
+    flex-direction: row;
+    flex-shrink: 1;
+    top: 78%; 
+    height: 50%;
+    width: 100%;
+}
+
+.onCallButtonContainer {
+    display:flex;
+    position: absolute; 
+    justify-content: space-evenly   ;
+    width: 70%;
+    height: 30%; 
+    transform: translate(-50%, -50%);
+    top: 78%; 
+    left: 50%; 
+}
+
+
+.myVideoCall {
+    display: flex;
+    position: absolute;
+    border: 1px solid black;
+    height: 17vh; 
+    width: 18vh; 
+    transform: translate(-50%, -50%);
+    left: 70%; 
+    top: 28%; 
+}
+
+
+// écran après refus de l'appel 
+.titleRefused {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    top: 40%; 
+    justify-content: space-evenly;
+    flex-shrink: 1;
+    flex-direction: row;
+    flex-shrink: 1;
+    height: 10vh; 
+    width: 100%; 
+}
+
+.returnToMenu {
+    display: flex; 
+    height: 10vw;
+    width: 100%; 
+    position: absolute; 
+    justify-content: space-evenly;
+    flex-direction: row;
+    flex-shrink: 1;
+    top: 70%; 
+}

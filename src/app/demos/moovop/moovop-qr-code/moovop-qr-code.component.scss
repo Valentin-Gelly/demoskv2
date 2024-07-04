@@ -1,0 +1,32 @@
+.descriptionTitle {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 58%;
+  transform: translate(-50%,-50%);
+  left: 71%;
+  width: fit-content;
+  text-align: start;
+  font-size: 2vw;
+  font-family: 'LemonMilkMedium';
+  color: #a6ed8e;
+}
+
+.moovopKioskScanImage {
+  position: fixed;
+  transform: translate(-50%,-50%);
+  top: 65%;
+  left: 40%;
+  width: 26vw;
+  height: 60%;
+}
+
+.moovopQrCodeTitle {
+  top: 19%;
+  font-size: 4vw;
+  position: fixed;
+  color: #16968d;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: 'LemonMilkMedium';
+}

@@ -1,0 +1,21 @@
+<app-all-page-movistar></app-all-page-movistar>
+<main *ngIf="identityValidate">
+    <h1>Verificación de identidad completada</h1>
+    <img src="./assets/TELEFONICA-EK3000-2024-MOVISTAR/Check.png" alt="" loading="lazy">
+    <div>
+        <p>Te guiaremos en los siguientes pasos</p>
+    </div>
+    
+</main>
+<main *ngIf="!identityValidate">
+    <h1>La imagen no es válida</h1>
+    <img src="./assets/TELEFONICA-EK3000-2024-MOVISTAR/ko.png" alt="" loading="lazy">
+    <div>
+        <p>Por favor, repite la operación</p>
+    </div>
+    
+</main>
+
+<section id="whiteHide">
+    
+</section>

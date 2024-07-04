@@ -1,0 +1,16 @@
+<app-all-page-movistar></app-all-page-movistar>
+<h1>Elige un documento</h1>
+<h2>Selecciona el país o región de emisión:</h2>
+<div id="paisList">
+    <img src="./assets/TELEFONICA-EK3000-2024-MOVISTAR/Bouton-Espana.png" alt=""  loading="lazy" id="pais">
+</div>
+<div id="divDocumento">
+    <h2>Selecciona el tipo de documento que deseas usar:</h2>
+    <div id="documentoList">
+        <img src="./assets/TELEFONICA-EK3000-2024-MOVISTAR/Bouton-pasaporte.png" alt="" class="documento" (click)="selectDocument('pasaporte')" loading="lazy">
+        <img src="./assets/TELEFONICA-EK3000-2024-MOVISTAR/Bouton-permiso-conducir.png" alt="" class="documento" (click)="selectDocument('permisoDeConducir')" loading="lazy">
+        <img src="./assets/TELEFONICA-EK3000-2024-MOVISTAR/Bouton-documento-ID.png" alt="" class="documento" (click)="selectDocument('documentoDeIdentidad')" loading="lazy">
+    </div>
+</div>
+
+

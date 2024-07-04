@@ -1,0 +1,55 @@
+h1 {
+    font-size: 4.5vw;
+    position: fixed;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  h3 {
+    font-size: 2.5vw;
+    position: fixed;
+    top:28%;
+    font-family: 'GothamLight';
+    width: 100%;
+    text-align: center;
+  }
+  
+  #helpText{
+    font-size: 1.5vw;
+    position: fixed;
+    top: 80%;
+    left: 50%;
+    width: 100%;
+    transform: translate(-50%, -50%);
+  }
+  
+  .helpText{
+    font-size: 2vw;
+    position: fixed;
+    width: fit-content;
+    transform: translate(-50%, -50%);
+    color: #A9E7F7;
+  }
+  
+  #helpText1{
+    left: 50%;
+    top: 81%;
+  }
+  
+  #helpText2{
+    left: 50%;
+    top: 86%;
+  }
+  
+  img{
+    position: fixed;
+    top: 63%;
+    left: 53%;
+    transform: translate(-50%, -50%);
+    width: 25%;
+  }
+    
+  body{
+    width: fit-content !important;
+  }

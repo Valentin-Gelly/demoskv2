@@ -1,0 +1,64 @@
+<div class="containerAllPages">
+  <header> <!-- première div pour la barre en haut des pages -->
+    <div *ngIf="currentView != ''">
+      <img src="./assets/DemoSKV2/logoIPM.png" class="logo" routerLink="/demoSKV2ChooseView">
+    </div>
+    <div *ngIf="currentView != ''" class="searchBar">
+      <form>
+        <input type="text" placeholder="Rechercher une démo " style="font-family: 'MPlusRoundedBold';
+        font-size: 1vw; border-radius:2vw; display: flex; text-align: center;">
+      </form>
+    </div>
+    <div>
+      <div *ngIf="!isMenuChecked" id="displayCurrentView" (click)="clickViewMenu()">
+        <img [src]="currentViewImage" class="userImage">
+      </div>
+      <div *ngIf="isMenuChecked" class="displayViews" (click)="clickViewMenu()">
+        <h5 id="displayViewsTitle"> Changer de vue: </h5> <br>
+        <div id="listViewToChange">
+          <p [ngStyle]="{'background-color': this.currentView === 'user' ? 'grey' : 'white'}" id="user"
+            (click)="changeCurrentView('user')"> Utilisateur </p>
+          <p [ngStyle]="{'background-color': this.currentView === 'marketing' ? 'grey' : 'white'}" id="marketing"
+            (click)="changeCurrentView('marketing')"> Marketing </p>
+          <p [ngStyle]="{'background-color': this.currentView === 'tech' ? 'grey' : 'white'}" id="tech"
+            (click)="changeCurrentView('tech')"> Technique </p>
+          <p [ngStyle]="{'background-color': this.currentView === 'advancedTech' ? 'grey' : 'white'}" id="advancedTech"
+            (click)="changeCurrentView('advancedTech')"> Technique avancée</p>
+          <p [ngStyle]="{'background-color': this.currentView === 'ivq' ? 'grey' : 'white'}" id="ivq"
+            (click)="changeCurrentView('ivq')"> IVQ </p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  
+
+  <app-option-list> </app-option-list>
+
+  <div class="buttonList">
+    <!-- pour les démos  -->
+    <button *ngIf="currentView === 'ivq' || currentView === 'tech' || currentView === 'advancedTech'" class="demoButton"
+      (click)="changeCurrentMenuButtonList('demo', 'demoButton')"> Démos
+    </button>
+
+    <!-- pour les parcours clients  -->
+    <button *ngIf="currentView === 'ivq' || currentView === 'tech' || currentView === 'advancedTech'"
+      class="customerExperienceButton"
+      (click)="changeCurrentMenuButtonList('parcoursClient', 'customerExperienceButton')">
+      Parcours clients
+    </button>
+
+    <!-- pour les fonctionnalités  -->
+    <button *ngIf="currentView === 'ivq' || currentView === 'tech' || currentView === 'advancedTech'"
+      class="featureButton" (click)="changeCurrentMenuButtonList('fonctionnalites', 'featureButton')">
+      Fonctionnalités
+    </button>
+
+    <!-- pour les tests  -->
+    <button *ngIf="currentView === 'ivq'" class="testsButton"
+      (click)="changeCurrentMenuButtonList('tests', 'testsButton')">
+      Tests
+    </button>
+  </div>
+
+</div>

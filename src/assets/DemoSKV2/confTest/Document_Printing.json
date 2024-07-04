@@ -1,0 +1,33 @@
+{
+    "title": "DocumentPrinting",
+    "description": "Impression d'un fichier sous format HTML",
+    "methods": [
+      {
+        "name": "DocumentPrinting",
+        "description": "Impression d'un fichier sous format HTML",
+        "service": "DocumentPrinting",
+        "perif": "DocumentPrinter",
+        "params": [
+        ]
+      }
+    ],
+    "events": [
+      {
+        "name": "DocumentPrinting",
+        "description": "Document imprimé",
+        "dataType": []
+      }
+    ],
+    "serviceUSed": [
+      {
+        "name": "DocumentPrinting"
+      }
+      
+    ],
+    "perifUsed": [
+        {
+            "name": "DocumentPrinter"
+        }
+    ]
+  }
+

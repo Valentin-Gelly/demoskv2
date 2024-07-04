@@ -1,0 +1,35 @@
+h1 {
+  font-size: 4vw;
+  position: fixed;
+  top: 25%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 40%;
+  height: fit-content;
+  
+}
+
+.row{
+  position: fixed;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  width: 70%;
+  gap: 5px;
+  transform: translate(-50%, -50%);
+  top: 60%;
+  left: 50%;
+}
+
+img{
+  width: 100%;
+}

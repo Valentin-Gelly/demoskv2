@@ -1,0 +1,77 @@
+h1 {
+    font-size: 4vw;
+    position: fixed;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  h3{
+    font-size: 2.5vw;
+    position: fixed;
+    top: 27%;
+    font-family: 'GothamLight';
+    width: 100%;
+    text-align: center;
+  }
+  
+  p{
+    font-size: 1.5vw;
+    top: 35%;
+    font-family: 'GothamLight' !important ;
+    width: 100%;
+    text-align: center;
+    
+  }
+  
+  .textPage{
+    width: 44%;
+    position: fixed;
+    top: 45%;
+    left: 10%;
+    z-index: 2;
+  }
+  
+  #bold{
+    font-weight: bold;
+    width: 56%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  
+  #borne{
+    position: fixed;
+    width: 20%;
+    top: 40%;
+    z-index: 0;
+    right: 25%;
+  }
+  
+  .textAdd{
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    opacity: 0;
+  }
+  
+  
+  .textAdd p{
+    color: rgb(184, 231, 245);
+    font-family: "GothamLight" !important;
+    font-size: 2em;
+    padding: 0;
+    margin: 0;
+    vertical-align: middle;
+    display: flex;
+    
+    align-items: center;
+  }
+  
+  #check{
+    height: 45px;
+  }
+

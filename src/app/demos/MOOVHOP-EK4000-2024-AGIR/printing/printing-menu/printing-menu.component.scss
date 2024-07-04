@@ -1,0 +1,101 @@
+h1 {
+  font-size: 4vw;
+  position: fixed;
+  top: 25%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+h3 {
+  font-size: 2.5vw;
+  position: fixed;
+  top: 30%;
+  font-family: GothamLight;
+  width: 100%;
+  text-align: center;
+}
+
+
+.container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 40%;
+  height: fit-content;
+  
+}
+
+.moovHopLogo {
+  position: fixed;
+  margin-left: 10%;
+  margin-top: 7%;
+  background-color: transparent;
+  opacity: 50%;
+  border-radius: 5vw;
+  transform: translate(-50%, -50%);
+  width: 15vw;
+  height: 10vw;
+  z-index: 500;
+}
+
+
+.IPMcatalog {
+  position: fixed;
+  right: 0;
+  width: 13%;
+  height: 22%;
+}
+
+
+.row{
+  position: fixed;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  width: 70%;
+  gap: 5px;
+  transform: translate(-50%, -50%);
+  top: 60%;
+  left: 50%;
+}
+
+img{
+  width: 100%;
+}
+.unSelectable{
+  opacity: 0.5;
+}
+
+iframe {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  border: none;
+}
+
+.home {
+  background-image: none !important;
+}
+
+#texte_verif,#in_progress{
+  display: none;
+}
+
+
+
+.moovHopLogo{
+  position: fixed !important;
+  opacity: 50% !important;
+  width: 19vw !important;
+  height: 11.5vh !important;
+  z-index: 500 !important;
+  margin-left: 0 !important;
+  margin-top: 0 !important;
+  background-color: transparent !important;
+  opacity: 0% !important;
+  border-radius: 0 !important;
+  transform:none !important;
+}

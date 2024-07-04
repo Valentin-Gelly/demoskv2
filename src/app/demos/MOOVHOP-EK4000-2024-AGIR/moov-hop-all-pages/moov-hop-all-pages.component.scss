@@ -1,0 +1,223 @@
+.moovHopDivBody {
+  position: fixed;
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+  background-image: url('../../../../assets/MOOVHOP-EK4000-2023-RNTP/bg.png');
+  z-index: 0;
+}
+
+.moovHopSkip {
+  position: fixed;
+  background-color: #A6ED8E;
+  font-family: 'GothamLight';
+  text-align: center;
+  z-index: 0;
+  line-height: 2.2vw;
+  font-size: 1.4vw;
+  color: #fff;
+  height: 2.2vw;
+  width: 6.5vw;
+  bottom: 0;
+  right: 0;
+  margin: 0.5vw;
+  border-radius: 0.5vw;
+  transform: translate(-50%, -50%);
+}
+
+.moovHopLogo {
+  position: fixed;
+  margin-left: 10%;
+  margin-top: 7%;
+  background-color: transparent;
+  opacity: 50%;
+  border-radius: 5vw;
+  transform: translate(-50%, -50%);
+  width: 15vw;
+  height: 10vw;
+  z-index: 500;
+}
+
+.moovHopCriticalService {
+  position: fixed;
+  display: flex;
+
+  label {
+    color: red;
+    font-family: 'GothamLight';
+  }
+
+  left: 5%;
+  top: 90%;
+  text-align: center;
+  width: 45%;
+  height: 5%;
+}
+
+#moovHopUndefinedServices {
+
+  display: flex;
+  color: red;
+  top: 80%;
+  left: 5%;
+  width: 45%;
+  height: 5%;
+}
+
+#moovHopTempUnavailableService {
+
+  display: flex;
+  color: violet;
+  top: 85%;
+  left: 5%;
+  width: 45%;
+  height: 5%;
+}
+
+.moovHopWarningServices {
+  display: flex;
+  color: orange;
+  top: 75%;
+  left: 5%;
+  width: 45%;
+  height: 5%;
+  width: 100%;
+}
+
+#cardDispenserMessage {
+  width: 100%;
+}
+
+.botBox {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: center;
+  position: fixed;
+  bottom: 0;
+  width: 40%;
+  margin-left: 22vw;
+  z-index: 10;
+}
+
+#botText {
+  font-family: 'LemonMilkLight';
+  font-size: 1.1vw;
+  color: #A6ED8E;
+}
+
+#time {
+  position: fixed;
+  top: 0;
+  left: 51%;
+  margin: 0.5vw;
+  margin-right: 34vw;
+  margin-top: 2.6vw;
+  font-family: 'LemonMilkLight';
+  font-size: 1.1vw;
+  color: #A6ED8E;
+}
+
+.botBox img {
+  width: 17%;
+}
+
+
+.IPMcatalog {
+  position: fixed;
+  right: 0;
+  width: 13%;
+  height: 22%;
+}
+
+.PopUpError {
+  position: fixed;
+  left: 0;
+  top: 95%;
+  width: 5%;
+  height: 15%;
+}
+
+
+.moovHopCriticalService {
+  position: absolute;
+  width: 15%;
+  background: white;
+  height: 40%;
+  top: 79%;
+  display: none;
+  justify-content: center;
+  flex-direction: column;
+  transform: translate(0, -50%);
+  bottom: 0;
+  left: 0;
+  box-shadow: 0 3px 12.5px 1.5px #dddddd;
+  border-radius: 15px;
+
+}
+
+#Error {
+  width: 100%;
+  height: 70%;
+  background-color: rgb(205, 205, 205);
+
+}
+
+#PopUpAlertRestart {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+}
+
+
+
+#PopUpAlertRestart button {
+  margin-top: 25px;
+}
+
+#closeBTN {
+  width: fit-content;
+  height: fit-content;
+  right: 5px;
+  position: absolute;
+  top: 5px;
+}
+
+ul {
+  list-style-type: none;
+  margin-left: 0;
+  padding: 0;
+}
+
+li:before {
+  content: '-';
+
+}
+
+li {
+  display: flex;
+}
+
+.white {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw; 
+  height: 100vh; 
+  background-color: white;
+  margin: 0;
+  z-index: 10000000000;
+  opacity: 100;
+  transition: 0.5s;
+}
+
+.removeWhite{
+  transition: 0.5s;
+  opacity: 0;
+  pointer-events: none;
+}
+
+

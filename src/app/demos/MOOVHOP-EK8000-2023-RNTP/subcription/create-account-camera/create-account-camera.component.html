@@ -1,0 +1,16 @@
+<moov-hop-all-pages></moov-hop-all-pages>
+
+<div>
+    <h1> CRÉER UN COMPTE </h1>
+    <h3>{{isScanFinished?  "Déposez votre document d'identité sur le scanner" :"Positionnez-vous devant la caméra" }}</h3>
+
+    <section class="retourCamera">
+        <section class="countdownSection" id="countdownSection">
+            <img src="./assets/MOOVHOP-EK4000-2023-RNTP/countdown.gif" alt="countdown" id="countdownAnimation">
+            <p id="countdown">5</p>
+        </section>
+        
+        <img *ngIf="isScanFinished" id="preview" [src]="previewImageScanId" class="identytiCard">
+        <img *ngIf="!isScanFinished" id="capture" [src]="previewImageProfile" class="profileImg">
+    </section>
+  </div>

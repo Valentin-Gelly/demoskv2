@@ -1,0 +1,21 @@
+<en-app-all-page-movistar></en-app-all-page-movistar>
+
+<h1 *ngIf="scanVisited==2">Take a photo of the front side of your document.</h1>
+<h1 *ngIf="scanVisited==3">Take a photo of the reverse (back) side of your document.</h1>
+
+<section>
+    <section id="countdownSection">
+        <p id="countdown">{{countdown}}</p>
+        <img src="./assets/TELEFONICA-EK3000-2024-MOVISTAR/countdown.gif" alt="" loading="lazy">
+    </section>
+    <img *ngIf="scanVisited==2" src="{{previewImageScanIdA}}" alt="" loading="lazy" id="resultCapture">
+    <img *ngIf="scanVisited==3" src="{{previewImageScanIdB}}" alt="" loading="lazy" id="resultCapture">
+</section>
+
+<div id="btnValidRetry">
+    <p>Place the document on the scanner glass</p>
+</div>
+
+<section id="whiteHide">
+    
+</section>

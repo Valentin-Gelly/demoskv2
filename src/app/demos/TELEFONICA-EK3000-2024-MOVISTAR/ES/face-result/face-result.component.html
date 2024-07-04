@@ -1,0 +1,49 @@
+<app-all-page-movistar></app-all-page-movistar>
+<span class="title" *ngIf="scanVisited==1">¿Todo correcto?</span>
+<h1 *ngIf="scanVisited==2">Anverso del documento capturado</h1>
+<h1 *ngIf="scanVisited==3">Reverso del documento capturado</h1>
+<h3 *ngIf="scanVisited==1">Comprueba que la foto está nítida</h3>
+<h3 *ngIf="scanVisited==2 || scanVisited==3 ">¿Continuar o repetir?</h3>
+<h3 style="color: red; display: none; z-index: 5;" id="error" class="erreur">Error en la captura del {{documentName}}. Por favor, inténtalo de nuevo</h3>
+<h3 style="color: red; display: none; z-index: 5;" id="too_far" class="erreur">Error: La foto no es válida</h3>
+
+<img *ngIf="scanVisited==1" src="{{ profileImage }}" alt=""  loading="lazy" id="resultCapture">
+<img *ngIf="scanVisited==2" src="{{ imgScanIdA }}" alt=""  loading="lazy" id="resultCapture">
+<img *ngIf="scanVisited==3" src="{{ imgScanIdB }}" alt=""  loading="lazy" id="resultCapture">
+
+
+
+<div id="btnValidRetry" *ngIf="scanVisited==1">
+    <div (click)="resetScan()" id="retryFoto">
+        <img src="./assets/TELEFONICA-EK3000-2024-MOVISTAR/Bouton-volver-foto.png" alt=""  loading="lazy">
+    </div>
+
+    <div (click)="nextStep()" id="validFoto">
+        <img src="./assets/TELEFONICA-EK3000-2024-MOVISTAR/Bouton-Foto-bien.png" alt=""  loading="lazy">
+    </div>
+</div>
+
+<div id="btnValidRetry" *ngIf="scanVisited==2">
+    <div  (click)="resetScan()" id="retryFoto">
+        <img src="./assets/TELEFONICA-EK3000-2024-MOVISTAR/Bouton-Repetir.png" alt=""  loading="lazy">
+    </div>
+
+    <div (click)="nextStep()" id="validFoto">
+        <img src="./assets/TELEFONICA-EK3000-2024-MOVISTAR/Bouton-continuar.png" alt=""  loading="lazy">
+    </div>
+</div>
+
+<div id="btnValidRetry" *ngIf="scanVisited==3">
+    <div  (click)="resetScan()" id="retryFoto">
+        <img src="./assets/TELEFONICA-EK3000-2024-MOVISTAR/Bouton-Repetir.png" alt=""  loading="lazy">
+    </div>
+
+    <div  (click)="nextStep()" id="validFoto">
+        <img src="./assets/TELEFONICA-EK3000-2024-MOVISTAR/Bouton-continuar.png" alt=""  loading="lazy">
+    </div>
+</div>
+
+<div id="loadingSection">
+
+</div>
+<img src="./assets/TELEFONICA-EK3000-2024-MOVISTAR/countdown.gif" alt=""  loading="lazy" id="loading">

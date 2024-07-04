@@ -1,0 +1,31 @@
+<moov-hop-all-pages></moov-hop-all-pages>
+<main>
+    <h1 class="goodDocumentoCapture" *ngIf="identityValidate && (scanVisited==3)">Verification d'identité terminé</h1>
+    <h1 class="badDocumentoCapture" *ngIf="!identityValidate && (scanVisited==3)">Identité non validé</h1>
+
+
+    <h1 class="badFaceCapture" *ngIf="errorSaveIdCard && scanVisited==2" >Documents mal enregistrés</h1>
+    <h1 class="goodFaceCapture" *ngIf="!errorSaveIdCard && scanVisited==2" >Documents bien enregistrés</h1>
+
+    <h3 class="goodFaceCapture" *ngIf="!errorFace && scanVisited==3">Photo conforme </h3>
+    <h3 class="badFaceCapture" *ngIf="errorFace && scanVisited==3">La photo n'est pas conforme</h3>
+
+
+
+    <img *ngIf="(!errorSaveIdCard && scanVisited==2) || (identityValidate && scanVisited==3)"
+        src="./assets/TELEFONICA-EK3000-2024-MOVISTAR/Check.png" alt="" class="goodCapture" loading="lazy">
+
+    <img *ngIf="(errorSaveIdCard && scanVisited==2) || (!identityValidate && (scanVisited==3))"
+        src="./assets/TELEFONICA-EK3000-2024-MOVISTAR/ko.png" alt="" class="badCapture" loading="lazy">
+    <section>
+        <div>
+            <p class="pDocumentInfo goodDocumentoCapture" *ngIf="identityValidate && (scanVisited==3)">Vous allez passée au étapes suivante</p>
+        </div>
+        <div>
+            <p class="pDocumentInfo badDocumentoCapture" *ngIf="errorSaveIdCard && scanVisited==2">Veuillez répéter les étapes précédentes</p>
+        </div>
+        <div>
+            <p class="pDocumentInfo badDocumentoCapture" *ngIf="!errorFace && (scanVisited==3)">Veuillez reprendre la photo</p>
+        </div>
+    </section>
+</main>

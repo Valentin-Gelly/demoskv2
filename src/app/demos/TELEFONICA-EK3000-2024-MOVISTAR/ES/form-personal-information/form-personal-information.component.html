@@ -1,0 +1,97 @@
+<app-all-page-movistar></app-all-page-movistar>
+<h1>Rellena tus datos personales</h1>
+<form>
+    <section id="left">
+        <section id="DatosPersonales">
+            <section id="lineOne">
+                <section id="nombre">
+                    <label for="nombre">Nombre</label>
+                    <input type="text" name="nombre" id="nombre" [(ngModel)]="nombre" >
+                </section>
+                <section id="primerapellido">
+                    <label for="apellido">Primer Apellido</label>
+                    <input type="text" name="apellido" id="apellido" [(ngModel)]="apellido" >
+                </section>
+                <section id="segundoapellido">
+                    <label for="segundoapellido">Segundo Apellido</label>
+                    <input type="text" name="segundoapellido" id="segundoapellidoInput" [(ngModel)]="segundoApellido" >
+                </section>
+                <section id="tipoDocumento">
+                    <label for="tipoDocumento">Tipo de documento</label>
+                    <select type="text" name="tipoDocumento" id="tipoDocumentoInput" [(ngModel)]="typeDocumentNum">
+                        <option value="pasaporte" >Pasaporte</option>
+                        <option value="permisoDeConducir" >Permiso de conducir</option>
+                        <option value="documentoDeIdentidad" >Documento de identidad</option>
+                    </select>
+                </section>
+                <section id="NumDoc">
+                    <label for="numDocInput">N° de documento</label>
+                    <input type="text" name="numDocInput" id="numDocInput" [(ngModel)]="numDocument" >
+                </section>
+            </section>
+            <section id="lineTwo">
+                <section id="Nacionalidad">
+                    <label for="NacionalidadInput">Nacionalidad</label>
+                    <input type="text" name="NacionalidadInput" id="NacionalidadInput" [(ngModel)]="nationality" >
+                </section>
+            </section>
+            <section id="lineThree">
+                <section id="movilContacto">
+                    <label for="movilContactoInput">Móvil de contacto</label>
+                    <input type="tel" name="movilContactoInput" id="movilContactoInput">
+                </section>
+                <section id="email">
+                    <label for="emailInput">Email</label>
+                    <input type="email" name="emailInput" id="emailInput">
+                </section>
+            </section>
+
+        </section>
+        <section id="direccion">
+            <section id="lineOneDireccion">
+                <section id="provincia">
+                    <label for="provinciaInput">Provincia</label>
+                    <input type="text" name="provinciaInput" id="provinciaInput">
+                </section>
+                <section id="codigoPostal">
+                    <label for="codigoPostalInput">Código postal</label>
+                    <input type="text" name="codigoPostalInput" id="codigoPostalInput" [(ngModel)]="postalCode">
+                </section>
+
+            </section>
+            <section id="direccionCompleta">
+                <label for="direccionInput">Dirección completa</label>
+                <input type="text" name="direccionInput" id="direccionInput" [(ngModel)]="direccion">
+            </section>
+        </section>
+    </section>
+    <section id="right">
+        <section id="tipoSim">
+            <section id='fisicaSection'>
+                <input type="radio" [(ngModel)]="eSIM" name="sim" value="fisica"  id="outline" class="custom-radio">
+                <label for="simFisica" id="fisicaLabel"><b>SIM fisica</b><img src="./assets/TELEFONICA-EK3000-2024-MOVISTAR/SIM.png"alt="" loading="lazy"> </label>
+            </section>
+            <section id="eSimSection">
+                <input type="radio"  [(ngModel)]="eSIM" name="sim" value="eSIM"  id="outline" class="custom-radio">
+                <label for="eSIM">
+                    <b>eSIM </b>
+                    
+                </label>
+                
+            </section>
+            <section id="descritpionCertif">
+                <p>Este tipo de SIM sólo puede instalarse en dispositivo compatibles. </p>
+                <img id="certifIMG" src="./assets/TELEFONICA-EK3000-2024-MOVISTAR/eSIM.png" alt="" loading="lazy">
+            </section>
+        </section>
+        <section id="resumen">
+            <img src="./assets/TELEFONICA-EK3000-2024-MOVISTAR/Resumen-compra-slide14.png" alt="" loading="lazy">
+            <section id="continuarSection" >
+                <img src="./assets/TELEFONICA-EK3000-2024-MOVISTAR/Bouton-continuar.png" alt="" id="btnContinuar" loading="lazy">
+            </section>
+            <section id="continuarSection2" (click)="saveValue()">
+                <img src="./assets/TELEFONICA-EK3000-2024-MOVISTAR/Bouton-continuar.png" alt="" id="btnContinuar2" loading="lazy">
+            </section>
+        </section>
+    </section>
+</form>

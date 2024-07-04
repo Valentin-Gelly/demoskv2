@@ -1,0 +1,84 @@
+{
+    "title": "CardPayment Debit Cancel",
+    "description": "Test de débit de carte bancaire avec annulation (choix du moment de l'arret possible )",
+    "methods": [
+        {
+            "cardDebit": {
+                "description": "Débit de carte bancaire",
+                "service": "CardPayment",
+                "perif": "",
+                "params": [
+                    {
+                        "name": "ammountInCents",
+                        "description": "Débit total",
+                        "typeParam": "input",
+                        "type": "number",
+                        "value": 5
+                    },
+                    {
+                        "name": "refTransaction",
+                        "description": "Référence de la transaction",
+                        "typeParam": "input",
+                        "type": "text",
+                        "value": "ref-deb-0000"
+                    },
+                    {
+                        "name": "refShoppingCart",
+                        "description": "Référence du panier",
+                        "typeParam": "input",
+                        "type": "text",
+                        "value": "ticket-1234"
+                    }
+                ]
+            },
+            "cancelDebit": {
+                "description": "Annulation du débit de carte bancaire",
+                "service": "CardPayment",
+                "perif": "",
+                "params": []
+            }
+        }
+    ],
+    "events": [
+        {
+            "name": "cardDebit",
+            "description": "Code barre lu",
+            "dataType": [
+                {
+                    "condition": "CardAcquired",
+                    "desciption": "Carte acquise"
+                },
+                {
+                    "condition": "TransactionAuthorized",
+                    "desciption": "Transaction autorisée"
+                },
+                {
+                    "condition": "CardDebited",
+                    "desciption": "Carte débitée"
+                },
+                {
+                    "condition": "CardDebitError",
+                    "desciption": "Erreur de débit de carte"
+                }
+            ]
+        },
+        {
+            "name": "BarcodeReading",
+            "description": "Code barre lu",
+            "dataType": [
+                {
+                    "condition": "BarcodeRead",
+                    "desciption": "Code barre lu"
+                }
+            ]
+        }
+    ],
+    "perifUsed": [
+        {
+            "name": "CardPayment"
+        },
+        {
+            "name": "ReceiptPrinting"
+        }
+    ]
+}

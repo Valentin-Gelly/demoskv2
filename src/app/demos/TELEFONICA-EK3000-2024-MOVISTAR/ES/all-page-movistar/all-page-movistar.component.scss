@@ -1,0 +1,42 @@
+#back{
+    position: fixed;
+    width: 119px;
+    height: 120px;
+    bottom: 28px;
+    left: 41px;
+    border-top-right-radius: 100%;
+}
+
+#movistarAllPageMain{
+    position: fixed;
+    background-size: cover;
+    height: 100%;
+    width: 100%;
+    background-image: url('../../../../../assets/TELEFONICA-EK3000-2024-MOVISTAR/Background-ES.png');
+    z-index: -2;
+    top: 0;
+    left: 0;
+}
+#goHome{
+    width: 450px;
+    height: 150px;
+    position: fixed;
+}
+.white {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw; 
+    height: 100vh; 
+    background-color: white;
+    margin: 0;
+    z-index: 10000000000;
+    opacity: 100;
+    transition: 0.5s;
+  }
+  
+  .removeWhite{
+    transition: 0.5s;
+    opacity: 0;
+    pointer-events: none;
+  }

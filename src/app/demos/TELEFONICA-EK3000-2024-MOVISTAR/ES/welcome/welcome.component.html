@@ -1,0 +1,12 @@
+<app-all-page-movistar></app-all-page-movistar>
+<h1>¡Bienvenido a Movistar!</h1>
+<main>
+    <h2><span *ngIf="eSIM=='fisica'">Puedes encontrar tu tarjeta SIM en el cajón inferior.</span>
+        <span *ngIf="eSIM!=='fisica'">Aquí tienes el ticket para escanear el código QR y obtener tu eSIM.</span></h2>
+
+    <p id="firstP">Si tienes algún problema con tu línea, ponte en contacto con el 1004 o con el punto de venta más cercano. </p>
+    <p id="secondP">Te hemos enviado los detalles de la compra a tu dirección de correo electrónico. </p>
+    <section id="continuar" routerLink="/ES/homePageTelefonica">
+        <img src="./assets/TELEFONICA-EK3000-2024-MOVISTAR/Bouton-volver-pagina-inicio.png" alt="" loading="lazy">
+    </section>
+</main>

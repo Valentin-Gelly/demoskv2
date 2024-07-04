@@ -1,0 +1,14 @@
+<moov-hop-all-pages></moov-hop-all-pages>
+<div>
+  <h1> CRÉER UN COMPTE </h1>
+  <h3>{{isScanFinished? "Scan finalisé" : "Photo prise"}}</h3>
+    <img *ngIf="isScanFinished" id="preview"  class="img-fluid" [src]="previewImageScanId" />
+    <img *ngIf="!isScanFinished" id="capture"  class="img-fluid" [src]="previewImageProfile" />
+  <div class="nextStep" id="restartButton" (click)="resetVisits()">
+    Recommencer
+  </div>
+  <div class="nextStep" id="confirmButton"routerLink= "{{isScanFinished?  '/RNTP2023/createAccountInformationValidation' : '/RNTP2023/createAccountHello8000'}}" >
+    {{isScanFinished? "Confirmer" : "Etape suivante"}} 
+  </div>
+  
+</div>

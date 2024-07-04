@@ -1,0 +1,57 @@
+@font-face {
+  font-family: FreshFruit;
+  src: url(../../../assets/Labizi/Fresh_Fruit.ttf);
+}
+
+@font-face {
+  font-family: AntipastoProThin;
+  src: url(../../../assets/Labizi/AntipastoPro-Thin.ttf);
+}
+
+@font-face {
+  font-family: AntipastoProMedium;
+  src: url(../../../assets/Labizi/AntipastoPro-Medium.ttf);
+}
+
+@font-face {
+  font-family: AntipastoPro-Bold;
+  src: url(../../../assets/labizi/AntipastoPro-Bold_trial.ttf);
+}
+
+h1 {
+  position: fixed;
+  font-family: 'FreshFruit';
+  color: #080C71;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+h2 {
+  position: fixed;
+  font-family: 'AntipastoProThin';
+  color: #080C71;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.nextStep {
+  position: fixed;
+  background-color: #1fd1d1;
+  font-family: 'AntipastoProMedium';
+  text-align: center;
+  line-height: 2.2vw;
+  font-size: 1.4vw;
+  color: #fff;
+  width: 10vw;
+  height: 2vw;
+  left: 50%;
+  border-radius: 1vw;
+  transform: translate(-50%, -50%);
+}
+
+.nextStepContainer {
+  position: absolute;
+  width: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

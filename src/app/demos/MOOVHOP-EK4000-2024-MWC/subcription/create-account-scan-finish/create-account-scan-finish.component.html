@@ -1,0 +1,14 @@
+<moov-hop-all-pages></moov-hop-all-pages>
+<div>
+  <h1> CREATE YOUR ACCOUNT </h1>
+  <h3>{{isScanFinished? "Finalised Scan" : "Photo taken"}}</h3>
+    <img *ngIf="isScanFinished" id="preview"  class="img-fluid" [src]="previewImageScanId" />
+    <img *ngIf="!isScanFinished" id="capture"  class="img-fluid" [src]="previewImageProfile" />
+  <div class="nextStep" id="restartButton" routerLink="/MWC2024/createAccountCamera" (click)="resetVisits()">
+    Start Again
+  </div>
+  <div class="nextStep" id="confirmButton" routerLink="{{isScanFinished? '/MWC2024/createAccountPersonalInformations' : '/MWC2024/createAccountHello'}}" >
+    {{isScanFinished? "Continue" : "Next Step"}} 
+  </div>
+  
+</div>

@@ -1,0 +1,13 @@
+<en-app-all-page-movistar></en-app-all-page-movistar>
+
+<h1>Welcome to Movistar!</h1>
+<main>
+    <h2><span *ngIf="eSIM=='fisica'">You can find your SIM card in the box below.</span>
+        <span *ngIf="eSIM!=='fisica'">Pick up your ticket and scan the QR code to get your eSIM.</span></h2>
+
+    <p id="firstP">If there are any problems with your line, please contact 1004 or your nearest point of sale. </p>
+    <p id="secondP">We have sent you the details of your purchase to your email address. </p>
+    <section id="continuar" routerLink="/ES/homePageTelefonica">
+        <img src="./assets/TELEFONICA-EK3000-2024-MOVISTAR/EN/Bouton-back-to-top.png" alt=""  loading="lazy">
+    </section>
+</main>

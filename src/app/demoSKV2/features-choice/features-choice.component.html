@@ -1,0 +1,21 @@
+<div class="featuresChoice featureSettings scrollable-container">
+  <p *ngIf="missing.length != 0">
+    Les features suivante n'ont pas été trouvés :
+    <span id="notVerifiedElement">{{missing_text}}</span>
+  </p>
+  <div *ngFor="let item of verifiedFeatureList" class="containDemo testChoice" (click)="ChooseScript(item)">
+    <img src="./assets/DemoSKV2/all-pages-icon/codeIcons.png" class="demoImage" />
+    <div class="description">
+      <h3>{{ item }}</h3>
+    </div>
+    <img class="playButton" src="./assets/DemoSKV2/all-pages-icon/play-button-arrowhead.png" />
+  </div>
+
+  <div class="containerDemo testChoice" routerLink="/virtualKeyboardFeature">
+    <img src="./assets/DemoSKV2/all-pages-icon/keyboard.png" class="demoImage" />
+    <div class="description">
+      <h3>Virtual_Keyboard</h3>
+    </div>
+    <img class="playButton" src="./assets/DemoSKV2/all-pages-icon/play-button-arrowhead.png" />
+  </div>
+</div>

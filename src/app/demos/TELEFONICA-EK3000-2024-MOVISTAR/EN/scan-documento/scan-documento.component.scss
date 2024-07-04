@@ -1,0 +1,72 @@
+p{
+    font-style: italic;
+}
+
+h1 {
+    font-size: 2.7vw !important;
+    position: fixed;
+    top: 15%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  h3{
+    font-size: 2.5vw;
+    position: fixed;
+    top: 19% !important;
+    font-family: 'Renogare' !important;
+    width: 100%;
+    text-align: center;
+    margin-top: 1vw;
+    margin: 0 !important;
+  }
+
+#countdownSection{
+    display: flex;
+    position: fixed;
+    top: 50%;
+    left: 20%;
+    transform: translate(-50%, -50%);
+}
+
+#countdown{
+    font-size: 4em;
+    font-style: normal;
+    position: fixed;
+    width: 85px;
+    height: 85px;
+    text-align: center;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 27%;
+    margin: 0 !important;
+}
+
+#countdownSection img{
+    width: 55%;
+}
+
+#noReverso>img{
+    width: 13%;
+    right: 19%;
+    position: fixed;
+    top: 69%;
+}
+
+#btnValidRetry{
+    position:fixed;
+    top: 82%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+
+#whiteHide{
+    position: fixed;
+    width: 140px;
+    height: 125px;
+    bottom: 28px;
+    left: 35px;
+    border-radius: 0 !important;
+    background-color: white;
+}

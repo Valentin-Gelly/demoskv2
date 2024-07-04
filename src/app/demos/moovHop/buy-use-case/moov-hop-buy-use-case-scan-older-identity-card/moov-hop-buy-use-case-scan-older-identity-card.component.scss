@@ -1,0 +1,50 @@
+h1 {
+  font-size: 4.5vw;
+  position: fixed;
+  top: 25%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+h2{
+  color: #000;
+  font-family: 'LemonMilkMedium';
+  font-size: 3vw;
+  position: fixed;
+  top: 65%;
+  left: 25%;
+  transform: translate(-50%, -50%);
+}
+
+h3{
+  font-size: 2.5vw;
+  position: fixed;
+  top: 32%;
+  font-family: 'GothamLight';
+  width: 100%;
+  text-align: center;
+}
+
+img {
+  position: fixed;
+  top: 70%;
+  left: 25%;
+  transform: translate(-50%, -50%);
+  width: 7%;
+}
+
+#preview {
+  left: 50%;
+  width: 35%;
+  height: 35%;
+}
+
+.box{
+  position: fixed;
+  top: 65%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 35%;
+  height: 35%;
+  border: 1px solid black;
+}

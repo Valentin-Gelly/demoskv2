@@ -1,0 +1,17 @@
+ <div id="sketchpadapp">
+        <canvas #sketchpad (mousedown)="sketchpad_mouseDown($event)" (mouseup)="sketchpad_mouseUp()" (mousemove)="sketchpad_mouseMove($event)" (touchstart)="sketchpad_touchStart($event)" (touchend)="sketchpad_touchEnd()" (touchmove)="sketchpad_touchMove($event)" >
+        </canvas>
+    </div>
+
+    <div id="container">
+      <!--   <span id="text1" [ngStyle]="textStyle1"> {{texts[textIndex % texts.length]}}</span>
+        <span id="text2" [ngStyle]="textStyle2"> {{texts[(textIndex + 1) % texts.length]}}</span> -->
+    </div>
+
+    <input type="range" id="size" name="size" min="1" max="100" step="1" value = "25" (input)="valueChanged($event)"/>
+    <input type="color" id="color" name="color" (input)="colorChanged($event)"/>
+
+
+    <div id="footer">
+        <input type="submit" value="Effacer le tableau" id="clearbutton" (click)="clearCanvas()">
+    </div>

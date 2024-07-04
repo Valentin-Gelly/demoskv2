@@ -1,0 +1,50 @@
+<div id="loading" class="white">
+</div>
+<div class="moovHopDivBody">
+
+  <h4 id="time"></h4>
+
+  <div class="botBox">
+    <img (click)="changeChatBotState()" src="{{chatBotLink}}" alt="bot">
+    <p id="botText"></p>
+  </div>
+
+  <!-- bouton skip -->
+  <div class="moovHopSkip" routerLink='{{moovHopNavigateTo}}'>
+    Skip
+  </div>
+
+  <!-- logo Moovop -->
+  <div class="moovHopLogo" routerLink="/AGIR2024/homepage"> </div>
+
+  <!-- Diapo catalogue IPM-->
+  <a class="IPMcatalog" (click)="navigateToError()"></a>
+
+<!--
+  <div class="PopUpError" (click)="showPopUp()"></div>
+   affichage services en status critical 
+  <div class="moovHopCriticalService" id="moovHopCriticalService">
+    <h3>Erreur : </h3>
+    <button id="closeBTN" (click)="closePopUp()">Fermer</button>
+
+    <div id="PopUpAlertRestart">
+       affichage services en status critical 
+      <div id="Error">
+        <ul>
+          <li *ngIf="stringServiceStatusCritical"><label class="moovHopWarningServices"> {{stringServiceStatusCritical}}</label></li>
+          <li *ngIf="arrayServiceStatusTempUnavailable"><label class="moovHopWarningServices" id="moovHopTempUnavailableService"> {{arrayServiceStatusTempUnavailable}}</label></li>
+          <li *ngIf="messageBarcodeReading"><label class="moovHopWarningServices"> {{messageBarcodeReading}} </label></li>
+          <li *ngIf="messageReceiptPrinter"><label class="moovHopWarningServices" id="cardDispenserMessage"> {{messageReceiptPrinter}} </label></li>
+          <li *ngIf="messagePrinter"><label class="moovHopWarningServices" id="messagePrinter"> {{messagePrinter}} </label></li>
+          <li *ngIf="messageCameraShooting"><label class="moovHopWarningServices" id="cardDispenserMessage"> {{messageCameraShooting}} </label></li>
+          <li *ngIf="messageDocumentScanning"><label class="moovHopWarningServices" id="cardDispenserMessage"> {{messageDocumentScanning}} </label></li>
+        </ul>
+      </div>
+      <button (click)="restart()">Redémarrer</button>
+    </div>
+  </div>
+-->
+
+
+
+</div>

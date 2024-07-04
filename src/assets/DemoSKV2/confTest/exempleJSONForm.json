@@ -1,0 +1,77 @@
+[
+                {
+                    "type": "textfield",
+                    "key": "text",
+                    "label": "Champ de texte",
+                    "id": "text1",
+                    "placeholder": "Entrez votre texte ici"
+                },
+                {
+                    "type": "textarea",
+                    "key": "textarea",
+                    "label": "Zone de texte",
+                    "placeholder": "Entrez votre texte ici"
+                },
+                {
+                    "type": "number",
+                    "key": "number",
+                    "label": "Nombre",
+                    "placeholder": "Entrez un nombre"
+                },
+                {
+                    "type": "tel",
+                    "key": "tel",
+                    "label": "tel",
+                    "placeholder": "Entrez un tel"
+                },
+                {
+                    "type": "email",
+                    "key": "email",
+                    "label": "Email",
+                    "placeholder": "Entrez votre adresse email"
+                },
+                {
+                    "type": "password",
+                    "key": "password",
+                    "label": "Mot de passe",
+                    "placeholder": "Entrez votre mot de passe"
+                },
+                {
+                    "type": "checkbox",
+                    "key": "checkbox",
+                    "label": "Case à cocher",
+                    "defaultValue": false
+                },
+                {
+                    "type": "radio",
+                    "key": "radio",
+                    "label": "Bouton radio",
+                    "values": [
+                        {
+                            "value": "option1",
+                            "label": "Option 1"
+                        },
+                        {
+                            "value": "option2",
+                            "label": "Option 2"
+                        }
+                    ]
+                },
+                {
+                    "type": "select",
+                    "key": "select",
+                    "label": "Sélection",
+                    "data": {
+                        "values": [
+                            {
+                                "value": "option1",
+                                "label": "Option 1"
+                            },
+                            {
+                                "value": "option2",
+                                "label": "Option 2"
+                            }
+                        ]
+                    }
+                }
+            ]

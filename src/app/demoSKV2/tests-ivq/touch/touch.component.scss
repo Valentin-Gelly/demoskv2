@@ -1,0 +1,91 @@
+/** TOUCH PAGE */
+
+h1 {
+	color: black;
+}
+
+.containerTouch {
+	background-color: #fff;
+}
+
+#paper{
+	width: 25vw;
+	transition: all 1s ease-in-out;
+	position: absolute;
+	top: 35%;
+    left: 37%;
+}
+.paperButton{
+	background: transparent;
+	border: transparent;
+}
+
+
+#paperBall{
+	width: 1vw;
+	display: none;
+	transition: all 1s ease-in-out;
+	position:absolute;
+	top: 35%;
+    left: 37%;
+	z-index: 5;
+}
+
+#arrow{
+	width: 25vw;
+	display: none;
+	z-index: -2;
+	top:25%;
+	left: 37%;
+	position: absolute;
+}
+#invertedArrow{
+	width: 25vw;
+	display: none;
+	z-index: -2;
+	top:25%;
+	left: 37%;
+	position: absolute;
+}
+#pinchArrow1{
+	width: 10vw;
+	display: none;
+	z-index: -2;
+	top:25%;
+	left: 58%;
+	position: absolute;
+}
+#pinchArrow2{
+	width: 10vw;
+	display: none;
+	z-index: -2;
+	top:78%;
+	left: 32%;
+	position: absolute;
+}
+#emptyBin{
+	width: 25vw;
+	display: none;
+	position: absolute;
+    right: 10%;
+	top:40%;
+	z-index: 1;
+}
+#littleBin1{
+	width: 25vw;
+	transition: all 1s ease-in-out;
+	display: none;
+	position: absolute;
+    right: 10%;
+	top:40%;
+	z-index: 1;
+}
+#littleBin2{
+	width: 25vw;
+	transition: all 1s ease-in-out;
+	display: none;
+	position: absolute;
+    left: 10%;
+	top:40%;
+	z-index: 1;
+}

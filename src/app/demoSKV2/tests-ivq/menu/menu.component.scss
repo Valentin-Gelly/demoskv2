@@ -1,0 +1,144 @@
+*
+{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body 
+{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: #fff;
+  overflow: hidden;
+}
+.menu 
+{
+  position: absolute;
+  width: 60vw;
+  height: 60vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.menu .toggle 
+{
+  position: absolute;
+  width: 15vw;
+  height: 15vw;
+  background: #000;
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 6vw;
+  cursor: pointer;
+  transition: 0.5s;
+}
+.menu .toggle.active 
+{
+  transform: rotate(315deg);
+  box-shadow: 0 0 0 11vw #000;
+  background: #fff;
+  color: #000;
+}
+.menu li 
+{
+  position: absolute;
+  left: 2vw;
+  list-style: none;
+  transform: rotate(calc(360deg / 8 * var(--i))) translateX(8vw);
+  transform-origin: 28vw;
+  visibility: hidden;
+  opacity: 0;
+  transition: 0.5s;
+  z-index: 10;
+}
+.menu.active li 
+{
+  visibility: visible;
+  opacity: 1;
+}
+.menu li a 
+{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 11vw;
+  height: 11vw;
+  font-size: 4vw;
+  color: #fff;
+  transform: rotate(calc(360deg / -8 * var(--i))); 
+  border-radius: 50%;
+}
+.menu.active li.active 
+{
+  transform: rotate(calc(360deg / 8 * var(--i))) translateX(2.4vw);
+} 
+.indicator 
+{
+  position: absolute;
+  left: calc(50% + 5px);
+  transform-origin: right;
+  width: 20vw;
+  height: 0vw;
+  background: transparent;
+  pointer-events: none;
+  transition: 0.5s;
+}
+.indicator::before 
+{
+  content: '';
+  position: absolute;
+  top: -5.5vw;
+  left: 14.4vw;
+  width: 11vw;
+  height: 11vw;
+  background: #fff;
+  box-shadow: 0 0 0 1.2vw #ee3637;
+  border-radius: 50%;
+  transition: 0.5s;
+  opacity: 0;
+}
+.menu.active .indicator::before 
+{
+  opacity: 1;
+  top: -5.5vw;
+  left: -5.5vw;
+  background: #ee3637;
+  box-shadow: 0 0 0 1.2vw #fff;
+}
+.menu li:nth-child(2).active ~ .indicator 
+{
+  transform: translateX(-20.6vw) rotate(0deg);
+}
+.menu li:nth-child(3).active ~ .indicator 
+{
+  transform: translateX(-20.6vw) rotate(45deg);
+}
+.menu li:nth-child(4).active ~ .indicator 
+{
+  transform: translateX(-20.6vw) rotate(90deg);
+}
+.menu li:nth-child(5).active ~ .indicator 
+{
+  transform: translateX(-20.6vw) rotate(135deg);
+}
+.menu li:nth-child(6).active ~ .indicator 
+{
+  transform: translateX(-20.6vw) rotate(180deg);
+}
+.menu li:nth-child(7).active ~ .indicator 
+{
+  transform: translateX(-20.6vw) rotate(225deg);
+}
+.menu li:nth-child(8).active ~ .indicator 
+{
+  transform: translateX(-20.6vw) rotate(270deg);
+}
+.menu li:nth-child(9).active ~ .indicator 
+{
+  transform: translateX(-20.6vw) rotate(315deg);
+}

@@ -1,0 +1,66 @@
+<div class="divBody">
+
+  <!-- bouton skip
+  <div  id="skipContainer"> </div> -->
+  <div class="skip" [routerLink]="'..' + navigateTo">
+    Skip
+  </div>
+
+  <!-- logo IPM -->
+  <div class="labiziLogo" [routerLink]="'../labiziHomepage'"></div>
+  <!-- <div id="labiziLogoContainer" > </div> -->
+
+  <!-- <div class="criticalComponent"
+    *ngIf="appService.currentView === 'tech' || appService.currentView === 'advancedTech' || appService.currentView === 'ivq'">
+    <ng-container *ngFor="let service of appService.statusServ | keyvalue">
+      <label *ngIf="service.value != 'Ok'"> {{ service.key }} </label>
+    </ng-container>
+  </div> -->
+  <!--
+  <div class="previousSkip" *ngIf="appService.currentView === 'marketing' && currentUrl != '/labiziHomepage'"
+    [routerLink]="'..'" + navigateToPrevious>
+    Previous
+  </div> -->
+
+  <!-- affichage des services avec status Critical -->
+  <div class="criticalService">
+    <label> {{ stringServiceStatusCritical }} </label>
+  </div>
+
+  <!-- <div class="select-settings">
+    <div class="select-container">
+      <select class="file-select">
+        <optgroup label="Scénarios IPM">
+          <option value="ipm*[IPM]_BarcodeReading_Manual.json">BarcodeReading_Manual</option>
+          <option value="ipm*[IPM]_CardPayment_Debit.json">CardPayment_Debit</option>
+          <option value="ipm*[IPM]_ReceiptPrinting.json">ReceiptPrinting</option>
+          <option value="ipm*[IPM]_status_CardPayment.json">status_CardPayment</option>
+          <option value="ipm*[IPM]_VitaleCardReading.json">VitaleCardReading</option>
+          <option value="ipm*[IPM]_VitaleCardReading_Presence.json">VitaleCardReading_Presence</option>
+        </optgroup>
+      </select>
+    </div>
+  </div> -->
+
+  <!-- gestion des erreurs profil tech/advancedTech + ivq -->
+  <!-- <div class="criticalService"
+    *ngIf="appService.currentView === 'tech' || appService.currentView === 'advancedTech' || appService.currentView === 'ivq'">
+    <ng-container *ngFor="let service of appService.statusServ">
+      <label *ngIf="service.value === 'Critical' || service.value === 'Unknown'"> Erreur service {{ service.key }}
+        status: {{ service.value }} </label>
+    </ng-container>
+  </div> -->
+
+  <!-- gestion des erreurs profil marketing + user-->
+  <!-- <div class="criticalService" *ngIf="appService.currentView === 'marketing' || appService.currentView === 'user'">
+    <ng-container *ngFor="let service of appService.statusServ | keyvalue">
+      <label *ngIf="service.value === 'Critical' || service.value === 'Unknown'"> Erreur service {{ service.key }}
+        status: {{ service.value }} </label><br>
+    </ng-container>
+  </div> -->
+
+
+
+
+
+</div>

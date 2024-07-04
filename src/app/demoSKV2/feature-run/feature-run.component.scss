@@ -1,0 +1,352 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Google Sans";
+}
+
+body {
+  width: 100%;
+  height: fit-content !important;
+}
+
+.icons {
+  width: 70px;
+}
+
+.hamburgerIcon {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 100;
+}
+
+#title {
+  display: flex;
+  align-items: center;
+  left: 50%;
+  font-size: 2em;
+  width: 50%;
+  justify-content: space-around;
+  top: 50px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.mainContent {
+  display: flex;
+  justify-content: space-around;
+}
+
+.documentation {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+}
+.documentation p {
+  font-size: 1.5em;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  height: 77vh;
+  width: 98vw;
+  gap: 7%;
+}
+
+#right {
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  gap: 6%;
+}
+
+#left {
+  width: 40%;
+  padding-left: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 5%;
+}
+
+#backIcon {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+}
+
+#parametre {
+  width: 100%;
+  border: solid 1px #000;
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  gap: 20px;
+}
+
+.accordion {
+  color: #444;
+  cursor: pointer;
+  padding: 18px;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+  transition: 0.4s;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border-bottom: solid 1px #000;
+}
+
+.active {
+  border-radius: 0;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+
+.panel {
+  transition: max-height 0.2s ease-out;
+  display: none;
+  overflow: hidden;
+}
+
+.active .fleche {
+  transform: rotate(0deg);
+}
+
+.fleche {
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 10px solid #666;
+  transition: transform 0.3s ease;
+  margin-top: 5px;
+  transform: rotate(-90deg);
+}
+
+#status {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  gap: 5%;
+}
+
+.logStatus {
+  width: 45%;
+}
+
+.listStatus {
+  display: flex;
+  gap: 10%;
+  height: 180px;
+}
+
+.btnStatus {
+  color: #444;
+  cursor: pointer;
+  padding: 18px;
+  /* width: 100%; */
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+  transition: 0.4s;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border-bottom: solid 1px #000;
+}
+
+.CancelDebit {
+  background-color: white;
+  border: #666 solid 1px;
+  padding: 5px;
+  font-size: 1em;
+  cursor: pointer;
+  border-radius: 7px;
+}
+
+input {
+  width: 100px;
+  text-align: center;
+  font-size: 1em;
+}
+
+.editParam {
+  display: flex;
+  width: 80%;
+  justify-content: center;
+  align-items: center;
+  margin-right: auto;
+  margin-left: auto;
+  align-content: center;
+  text-align: center;
+  gap: 20px;
+}
+
+#btnRead {
+  display: flex;
+  justify-content: space-around;
+  border: none;
+  height: 35px;
+  font-size: 0.7em;
+  align-items: center;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 20px;
+}
+
+#popUpDescritionPage {
+  display: none;
+  position: absolute;
+  width: 99vw;
+  height: 98vh;
+  background-color: white;
+  top: 0;
+  border-radius: 25px;
+  opacity: 0.7;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+#popUpDescrition {
+  display: none;
+  position: absolute;
+  width: 60%;
+  height: 60%;
+  background-color: white;
+  top: 0;
+  border: solid 1px #000;
+  border-radius: 25px;
+  transform: translate(-50%, -50%);
+  margin-left: 50%;
+  margin-top: 25%;
+  text-align: center;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+#titlePopUpDescription {
+  margin: 33px;
+  font-size: 2.2em;
+}
+
+#idDescription {
+  font-size: 1.5em;
+  overflow: scroll;
+  height: 70%;
+  overflow-x: hidden;
+  padding: 15px;
+}
+
+#crossPopUp {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 2em;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+}
+
+#startAndStop {
+  display: flex;
+  justify-content: space-around;
+  border: none;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.panelInformations {
+  height: 50px;
+  overflow-y: auto;
+  height: 90px;
+}
+
+.stateInformations {
+  border-bottom: solid 1px #000;
+  padding: 5px;
+}
+
+.stateInformations:nth-child(odd) {
+  background-color: #ccc;
+}
+
+.logo {
+  width: 4vw;
+  position: absolute;
+  z-index: 100;
+}
+
+#panel_Logs {
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.section_test {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.playBtn,
+.stopBtn {
+  border: none;
+  color: #fff;
+  padding: 4px 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 8px;
+  width: 195px;
+}
+
+.playBtn {
+  background-color: #04aa6d;
+}
+
+.stopBtn {
+  background-color: #f44336;
+}
+
+.btnSection {
+  display: flex;
+  width: 46%;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: 27px;
+}
+
+.LogTestAccordion {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.ResultsLog_Results,
+.testLog_test {
+  width: 48%;
+}
+
+.stopSession {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.formio-form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}

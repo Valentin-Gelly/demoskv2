@@ -1,0 +1,124 @@
+<!--
+ [formGroup]="checkoutForm"
+<form (ngSubmit)="onSubmit()" [formGroup]="form">
+     left form-->
+    <div class="leftdiv formDiv" *ngIf="state === 'left'">
+        <fieldset>
+            <div class="nameForm">
+                Inscrivez votre nom et prénom(s)
+                <input type="text" formControlName="name">
+            </div>
+            <p> <label> Quelle est votre date de naissance ? </label> <br /> -->
+                <input id="date" type="date" value="2022-09-01" required formControlName="birthdate">
+            </p>
+            <br>
+            <div class="leftGender">
+                Veuillez indiquer votre genre:<br />
+                <input type="radio" value="homme"  formControlName="gender"/> <label for="homme">Masculin</label><br />
+                <input type="radio" value="femme" formControlName="gender"/> <label for="femme">Féminin</label><br />
+                Quel métier exercez-vous ?
+                <input type="text" formControlName="work">
+            </div>
+            <br>
+            <label id="socialSituation" required> Inscrivez votre situation sociale </label> <br />
+            <select class="firstSelect" formControlName="socialSituation">
+                <optgroup *ngFor="let work of arrayWorks" label="{{work.group}}">
+                    <option *ngFor="let status of work.values" value="{{status}}"> {{status}} </option>
+                </optgroup>
+            </select>
+
+            <p>
+                <label> Age à partir duquel vous avez commencé à travailler </label>
+                <input type="range" id="ageRange" name="ageRange" min="14" max="70" step="1" formControlName="ageWork" />
+                <label> {{form.get("ageWork")?.value}} </label>
+            </p>
+            <label for="pays">Dans quel pays habitez-vous ?</label><br />
+            <select name="pays" id="pays" formControlName="country">
+                <optgroup *ngFor="let continent of arrayCountries" label="{{continent.group}}">
+                    <option *ngFor="let country of continent.values" value="{{country}}"> {{country}} </option>
+                </optgroup>
+            </select>
+        </fieldset>
+    </div>
+
+
+    <button type="submit" mat-button (click)="setState()"> {{textButton}} </button>
+
+
+
+    <!-- middle form-->
+    <div class="middle formDiv" *ngIf="state === 'middle'">
+        <legend> Vos préférences </legend> <br>
+        <p>
+            <label> Votre couleur préférée: </label> <br>
+            <input type="color" formControlName="color">
+        </p>
+        <p>
+            <label> Votre animal préféré: </label> <br>
+            <ng-container *ngFor="let animals of arrayAnimals">
+                <input type="radio" formControlName="animal" value="{{animals}}">
+                <label> <img src="{{'../../assets/animals/' + animals}}" > </label>
+            </ng-container>
+        </p>
+    </div>
+
+    <!-- right form -->
+    <div class="right formDiv" *ngIf="state === 'right'">
+        <legend> Votre avenir </legend>
+        <p>
+            Dans 10 ans:
+            <br><br>
+            <ng-container *ngFor="let future of arrayFuture">
+                <input type="radio" value="{{future}}" formControlName="future"/> <label for="{{future}}">
+                    {{future}}</label><br>
+            </ng-container>
+        </p>
+        <p>
+            <ng-container>
+                <label for="autre"> Autre</label><input type="checkbox" name="souhait" value="autre" id="autre" />
+                <select formControlName="otherFuture" >
+                    <option *ngFor="let otherfuture of arrayOtherFuture" > {{otherfuture}}</option>
+                </select>
+            </ng-container>
+        </p>
+    </div>
+
+    <div class="printing formDiv" *ngIf="state === 'printing'">
+        <div class="container">
+            <table class="table table-striped">
+                <caption> Voici les données renseignées: </caption>
+                <thead>
+                    <tr>
+                        <th> Champ de données</th>
+                        <th> Données entrées </th>
+                    </tr>
+                </thead>
+                <tbody >
+                    <ng-container *ngFor="let element of mainArray">
+                        <tr *ngIf="!(element.ischecked) || form.value[element.control]" class="TR">
+                            <td> {{element.name}}</td>
+                            <td> {{form.value[element.control]}}</td>
+                        </tr>
+                    </ng-container>
+                </tbody>
+            </table>
+        </div>
+        <br>
+        <p> Vous souhaitez prendre rendez-vous avec quelqu'un ? </p>
+        <div>
+            <select>
+                <optgroup *ngFor="let person of arrayEmployees" label="{{person.group}}">
+                    <option *ngFor="let employee of person.values" type="radio" value="{{employee}}">
+                        {{employee}}</option>
+                </optgroup>
+            </select>
+            <br>
+        </div>
+        <button (click)="documentPrinting()"> imprimez facilement </button>
+    </div>
+
+
+<!--    <app-printing class="formDiv" [data]="form.value" *ngIf="state === 'printing'"></app-printing>
+</form>
+-->
+

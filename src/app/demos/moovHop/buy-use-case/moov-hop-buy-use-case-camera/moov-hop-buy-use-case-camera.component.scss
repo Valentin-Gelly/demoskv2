@@ -1,0 +1,81 @@
+h1 {
+    font-size: 4.5vw;
+    position: fixed;
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  h3{
+    font-size: 2.5vw;
+    position: fixed;
+    top: 32%;
+    font-family: 'GothamLight';
+    width: 100%;
+    text-align: center;
+  }
+  
+  #capture {
+    position: fixed;
+    top: 65%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 35%;
+    height: 35%;
+    border: 1px solid black;
+  }
+  
+  .nextStep{
+    background-color: #A6ED8E;
+    height: 5%;
+    width: fit-content;
+    padding-left: 1vw;
+    font-family: 'GothamLight';
+    padding-right: 1vw;
+    position: fixed;
+    top: 90%;
+    transform: translate(-50%, -50%);
+    border-radius: 0.5vw;
+    text-align: center;
+    line-height: 2.5vw;
+    font-size: 1.4vw;
+    color: #ffffff;
+  }
+  
+  #confirmButton{
+    left: 42.5%;
+  }
+  
+  #restartButton{
+    left: 57.5%;
+  }
+  
+  #countdownAnimation{
+    display: block;
+    position: absolute;
+    width: 100px;
+    z-index: 1;
+  }
+  
+  #countdown{
+    position: absolute;
+    font-size: 5vh;
+    z-index: 2;
+    font-family: LemonMilkMedium;
+    width: 100%;
+    margin: 0;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .countdownSection{
+    
+    left: 22.5%;
+    top: 54%;
+    position: fixed;
+  
+    width: 100px;
+    height: 100px;
+  }

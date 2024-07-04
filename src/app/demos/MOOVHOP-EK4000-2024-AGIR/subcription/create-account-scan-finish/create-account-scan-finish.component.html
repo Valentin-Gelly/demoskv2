@@ -1,0 +1,22 @@
+<moov-hop-all-pages></moov-hop-all-pages>
+<div>
+  <h1> CRÉER UN COMPTE </h1>
+  <h3 *ngIf="scanVisited==2 || scanVisited==1">Scan terminé</h3>
+  <h3 *ngIf="scanVisited==3" class="captureFaceResultTitle">Photo Prise</h3>
+  <img *ngIf="scanVisited==1" id="capture"  class="img-fluid" src="{{previewImageScanIdA}}" />
+  <img *ngIf="scanVisited==2" id="capture"  class="img-fluid" src="{{previewImageScanIdB}}" />
+  <img *ngIf="scanVisited==3" id="capture"  class="img-fluid faceCapture" src="{{previewImageProfile}}" />
+
+
+  <div class="nextStep" id="restartButton" (click)="resetVisits()">
+    Recommencer
+  </div>
+  <div class="nextStep" id="confirmButton" (click)="nextStep()"   >
+    Confirmer
+  </div>
+</div>
+
+<div id="loadingSection">
+
+</div>
+<img src="./assets/MOOVHOP-EK4000-2023-RNTP/countdown.gif" alt="" id="loadingLogo" loading="lazy">

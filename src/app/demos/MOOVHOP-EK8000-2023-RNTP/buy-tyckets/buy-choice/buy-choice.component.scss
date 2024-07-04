@@ -1,0 +1,49 @@
+h1 {
+    font-size: 4.5vw;
+    position: fixed;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  .container{
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: -moz-fit-content;
+    height: fit-content;
+    width: 60%;
+    gap: 5px;
+    transform: translate(-50%, -50%);
+    top: 63%;
+    left: 50%;
+  
+  }
+  
+  .row{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    gap: 5px;
+  }
+  
+  img{
+    width: 100%;
+  }
+  h3 {
+    font-size: 2.5vw;
+    position: fixed;
+    top: 26%;
+    font-family: GothamLight;
+    width: 100%;
+    text-align: center;
+  }
+    
+  body{
+    width: fit-content !important;
+  }

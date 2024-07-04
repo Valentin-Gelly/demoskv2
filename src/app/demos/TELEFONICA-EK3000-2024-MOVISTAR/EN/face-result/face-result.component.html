@@ -1,0 +1,49 @@
+<en-app-all-page-movistar></en-app-all-page-movistar>
+<span class="title" *ngIf="scanVisited==1">Is everything OK?</span>
+<h1 *ngIf="scanVisited==2">The front of the document is scanned</h1>
+<h1 *ngIf="scanVisited==3">The reverse side of the document is scanned</h1>
+<h3 *ngIf="scanVisited==1">Check that the photo is clear</h3>
+<h3 *ngIf="scanVisited==2 || scanVisited==3 ">Continue or start again?</h3>
+
+<h3 style="color: red; display: none; z-index: 5;" id="error" class="erreur">Error capturing your {{documentName}}. Please try again</h3>
+
+<img *ngIf="scanVisited==1" src="{{ profileImage }}" alt="" id="resultCapture"  loading="lazy">
+<img *ngIf="scanVisited==2" src="{{ imgScanIdA }}" alt="" id="resultCapture" loading="lazy">
+<img *ngIf="scanVisited==3" src="{{ imgScanIdB }}" alt="" id="resultCapture" loading="lazy">
+
+
+
+<div id="btnValidRetry" *ngIf="scanVisited==1">
+    <div (click)="resetScan()" id="retryFoto">
+        <img src="./assets/TELEFONICA-EK3000-2024-MOVISTAR/EN/Bouton-take-another-photo.png" alt=""  loading="lazy">
+    </div>
+
+    <div (click)="nextStep()" id="validFoto">
+        <img src="./assets/TELEFONICA-EK3000-2024-MOVISTAR/EN/Bouton-photo-fine.png" alt="" loading="lazy">
+    </div>
+</div>
+
+<div id="btnValidRetry" *ngIf="scanVisited==2">
+    <div  (click)="resetScan()" id="retryFoto">
+        <img src="./assets/TELEFONICA-EK3000-2024-MOVISTAR/EN/Bouton-new.png" alt="" loading="lazy">
+    </div>
+
+    <div (click)="nextStep()" id="validFoto">
+        <img src="./assets/TELEFONICA-EK3000-2024-MOVISTAR/EN/Bouton-continue.png" alt="" loading="lazy">
+    </div>
+</div>
+
+<div id="btnValidRetry" *ngIf="scanVisited==3">
+    <div  (click)="resetScan()" id="retryFoto">
+        <img src="./assets/TELEFONICA-EK3000-2024-MOVISTAR/EN/Bouton-new.png" alt="" loading="lazy">
+    </div>
+
+    <div  (click)="nextStep()" id="validFoto">
+        <img src="./assets/TELEFONICA-EK3000-2024-MOVISTAR/EN/Bouton-continue.png" alt="" loading="lazy">
+    </div>
+</div>
+
+<div id="loadingSection">
+
+</div>
+<img src="./assets/TELEFONICA-EK3000-2024-MOVISTAR/countdown.gif" alt="" id="loading" loading="lazy">

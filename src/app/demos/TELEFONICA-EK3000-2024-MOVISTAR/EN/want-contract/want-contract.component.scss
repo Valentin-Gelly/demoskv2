@@ -1,0 +1,83 @@
+main{
+    display: flex;
+    flex-direction: row;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+h1 {
+    font-size: 4.5vw;
+    position: fixed;
+    top: 15%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  h3{
+    font-size: 2.5vw;
+    position: fixed;
+    top: 20%;
+    font-family: 'GothamLight';
+    width: 100%;
+    text-align: center;
+    margin-top: 1vw;
+  }
+
+li{
+    font-family: GothamLight;
+    font-size: 1.5em;
+    color: #275278;
+}
+
+
+#right{
+    width: 50%;
+}
+
+#left{
+    width: 50%;
+    padding-right: 160px;
+}
+
+#right img{
+    width: 68%;
+    margin-top: 7%;
+}
+
+h2{
+    text-align: left !important;
+}
+
+
+#Bienvenidos{
+    margin-top: 25px;
+    color: #51C6D9;
+    font-family:GothamLight;
+    font-weight: 100;
+    width: 100%;
+    text-align: center;
+    font-size: 1.2em;
+    font-style: italic;
+    position: fixed;
+    top: 70%;
+}
+
+
+#loquieroBtn{
+    text-align: center;
+    width: 10%;
+    margin-top: 4%;
+}
+
+#loquieroSection {
+    position: fixed;
+    top: 80%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    text-align: center;
+}

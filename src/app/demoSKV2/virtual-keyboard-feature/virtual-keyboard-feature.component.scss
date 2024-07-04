@@ -1,0 +1,121 @@
+/* Style pour la page de formulaire */
+.page {
+    font-family: Arial,sans-serif;
+    background-color: #f7f7f7;
+    width: 100vw;
+    height: 100%;
+}
+
+/* Style pour l'en-tête */
+header h1 {
+    text-align: center;
+    color: #333;
+    font-size: 2em;
+    margin-bottom: 20px;
+    margin-top: 0;
+}
+
+
+
+/* Style pour le formulaire principal */
+.mainForm {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px #0000001a;
+    padding: 20px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.mainForm h2 {
+    font-size: 1.5em;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.form-item {
+    margin-bottom: 15px;
+}
+
+.form-item label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.form-item input[type="text"],
+.form-item input[type="date"],
+.form-item input[type="email"],
+.form-item input[type="password"],
+.form-item input[type="number"],
+.form-item input[type="time"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 1em;
+}
+
+.form-item input[type="text"]:focus,
+.form-item input[type="date"]:focus,
+.form-item input[type="email"]:focus,
+.form-item input[type="password"]:focus,
+.form-item input[type="number"]:focus,
+.form-item input[type="time"]:focus {
+    border-color: #007BFF;
+    outline: none;
+}
+
+/* Style pour le bouton de soumission */
+.button.form-submit {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.button.form-submit a {
+    display: inline-block;
+    background: #007BFF;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 1em;
+    transition: background 0.3s;
+}
+
+.button.form-submit a:hover {
+    background: #0056b3;
+}
+
+/* Style spécifique pour les inputs avec sk-layout */
+input[sk-layout="simpleText"],
+input[sk-layout="email"],
+input[sk-layout="number"],
+input[sk-layout="tel"],
+input[sk-layout="date"],
+input[sk-layout="switch_number"],
+input[sk-layout="switch_symbol"] {
+    background-color: #e8f0fe;
+    border-color: #d0e3ff;
+}
+
+input[sk-layout="simpleText"]:focus,
+input[sk-layout="email"]:focus,
+input[sk-layout="number"]:focus,
+input[sk-layout="tel"]:focus,
+input[sk-layout="date"]:focus,
+input[sk-layout="switch_number"]:focus,
+input[sk-layout="switch_symbol"]:focus {
+    background-color: #d0e3ff;
+    border-color: #a0c3ff;
+}
+
+
+#backIcon{
+    position: absolute;
+    bottom: 20px;
+    width: 70px;
+    right: 20px;
+}
