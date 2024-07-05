@@ -1,0 +1,15 @@
+{
+    "title": "ContactLessReading_Calypso",
+    "description": "Détection et lecture d'une carte RFID Calypso sans contact",
+    "serviceUsed": [
+        {
+            "name": "ContactlessReading"
+        }
+    ],
+    "perifUsed": [
+        {
+            "name": "ContactlessReader"
+        }
+    ]
+  }
+

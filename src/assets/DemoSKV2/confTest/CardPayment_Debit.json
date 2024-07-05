@@ -7,7 +7,7 @@
        
       }
     ],
-    "serviceUSed": [
+    "serviceUsed": [
       {
         "name": "CardPayment"
       },

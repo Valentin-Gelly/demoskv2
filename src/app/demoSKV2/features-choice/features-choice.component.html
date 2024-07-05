@@ -1,7 +1,11 @@
 <div class="featuresChoice featureSettings scrollable-container">
   <p *ngIf="missing.length != 0">
-    Les features suivante n'ont pas été trouvés :
-    <span id="notVerifiedElement">{{missing_text}}</span>
+    Les features suivante n'ont pas été trouvés  :
+    <span class="notVerifiedElement">{{missing_text}}</span>
+  </p>
+  <p *ngIf="serviceNotFound.length != 0">
+    Les features suivante ne peuvent pas être lancés (service indisponible) :
+    <span class="notVerifiedElement">{{serviceNotFoundtext}}</span>
   </p>
   <div *ngFor="let item of verifiedFeatureList" class="containDemo testChoice" (click)="ChooseScript(item)">
     <img src="./assets/DemoSKV2/all-pages-icon/codeIcons.png" class="demoImage" />

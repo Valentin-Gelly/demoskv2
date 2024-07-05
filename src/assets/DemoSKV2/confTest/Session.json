@@ -2,7 +2,7 @@
     "title": "Session",
     "description": "Observation de l'évolution du statu d'une session",
     
-    "serviceUSed": [
+    "serviceUsed": [
       {
         "name": "Session"
       }

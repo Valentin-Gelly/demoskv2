@@ -75,7 +75,7 @@ Pour ajouter un test il faut :
      {
          "title": "nom du test",
          "description": "description du test",
-         "serviceUSed": [
+         "serviceUsed": [
              {
                  "name": "nom du service"
              },
@@ -96,7 +96,7 @@ Pour ajouter un test il faut :
      {
        "title": "Lecture d'un code barre",
        "description": "Lecture d'un code barre",
-       "serviceUSed": [
+       "serviceUsed": [
          {
            "name": "BarcodeReading"
          }
@@ -223,7 +223,7 @@ Ci dessous les deux fichier qui ont permis de réaliser ce test:
 ### Ajout d'un type de log
 
 Pour ajouter un type de log il faut créer une condition dans la redéfintion du `console.log` dans le fichier `feature-run.component.ts` à la ligne 340.  
-Le code ci-dessous est un exemple de condition pour un nouveau type de log . Le contenu du log est affiché dans une balise `<p>` dans la section Logs du test.
+- **Ajout d'un log simple** : Le code ci-dessous est un exemple de condition pour un nouveau type de log . Le contenu du log est affiché dans une balise `<p>` dans la section Logs du test.
 
 ```typescript
     else if (logType == nouveauTypeDeLog) {
@@ -234,7 +234,7 @@ Le code ci-dessous est un exemple de condition pour un nouveau type de log . Le 
 }
 ```
 
-Le code ci-dessous est un exemple de condition pour un nouveau type de log . Le contenu du log est affiché dans une balise `<p>` dans la section Results du test.
+- **Ajout d'un log de fin de test** : Le code ci-dessous est un exemple de condition pour un nouveau type de log . Le contenu du log est affiché dans une balise `<p>` dans la section Results du test.
 
 ```typescript
     else if (logType == nouveauTypeDeLog) {
@@ -252,3 +252,6 @@ Le code ci-dessous est un exemple de condition pour un nouveau type de log . Le 
 ```
 
 Avec `nouveauTypeDeLog` le nouveau type de log.
+
+
+### 

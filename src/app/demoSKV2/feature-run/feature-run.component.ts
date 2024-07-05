@@ -17,7 +17,7 @@ export class FeatureRunComponent extends GenericComponent implements OnInit {
   json: any;
 
   // Information de l'application
-  nomApp:string = "";
+  nomApp: string = "";
   description: string = "";
   perifUsed: any;
   nbPerif: any;
@@ -47,7 +47,7 @@ export class FeatureRunComponent extends GenericComponent implements OnInit {
 
   actualLogLocation: string = "";
 
-  
+
   //firstPreview: boolean = true;
   // Compteur pour récupérer que certains image des previews
   compteurImageTampon: number = 0;
@@ -74,7 +74,7 @@ export class FeatureRunComponent extends GenericComponent implements OnInit {
         setTimeout(function () {
           document.getElementById("popUpDescritionPage")!.style.display = "none";
           document.getElementById("popUpDescrition")!.style.display = "none";
-        }, 500); 
+        }, 500);
       });
     });
 
@@ -84,7 +84,7 @@ export class FeatureRunComponent extends GenericComponent implements OnInit {
       setTimeout(function () {
         document.getElementById("popUpDescritionPage")!.style.display = "none";
         document.getElementById("popUpDescrition")!.style.display = "none";
-      }, 500); 
+      }, 500);
     });
     this.getjsonScript(this.fileName);
   }
@@ -133,12 +133,13 @@ export class FeatureRunComponent extends GenericComponent implements OnInit {
         this.description = this.json.description;
         this.perifUsed = this.json.perifUsed;
         this.nbPerif = this.perifUsed.length;
-        this.serviceUsed = this.json.serviceUSed;
+        this.serviceUsed = this.json.serviceUsed;
         this.perifUsed = this.json.perifUsed;
         this.nbService = this.serviceUsed.length;
         this.actualStatusAllService = Array(this.nbService).fill("");
         this.actualStatusAllDevice = Array(this.nbPerif).fill("");
         this.lastHourStatus = Array(this.nbService).fill("");
+
         // création des historiques des status et des states des services et des péiphériques
         // avec les heures et les valeurs
         for (let i = 0; i < this.nbService; i++) {
@@ -154,39 +155,49 @@ export class FeatureRunComponent extends GenericComponent implements OnInit {
           if (!this.historicStateService.hasOwnProperty(service)) {
             this.historicStateService[service] = [];
           }
-          let status = this.skService.getStatus(service);
-          let state = this.skService.getState(service);
-          this.historicStatusService[service].unshift({ time: hourformated, status: status });
-          this.historicStateService[service].unshift({ time: hourformated, state: state });
-          this.actualStatusAllService[i] = status;
-          this.actualStateAllService[i] = state;
-          this.lastHourStatus[i] = hourformated;
-          // écoute d'un changement de status pour mettre à jour l'historique
-          this.skService.addEventListener(service, "statusChange", (e: any) => {
-            let hour = new Date();
-            const heure = hour.getHours().toString().padStart(2, "0");
-            const minutes = hour.getMinutes().toString().padStart(2, "0");
-            const secondes = hour.getSeconds().toString().padStart(2, "0");
-            const hourformated = `${heure}:${minutes}:${secondes}`;
-            this.historicStatusService[service].unshift({ time: hourformated, status: e.data.status });
-            //document.getElementById("panel_" + service)!.innerHTML += '<p>'+ hourformated + '   ' + e.data.status + '</p>';
-            document.getElementById("status_" + service)!.innerHTML = hourformated + "   " + e.data.status;
-            this.actualStatusAllService[i] = e.data.status;
+          console.info("service", service);
+          console.info("Kiosk[service]", Kiosk[service]);
+          if (Kiosk[service] == undefined) {
+            this.historicStatusService[service].unshift({ time: hourformated, status: "inconnu" });
+            this.historicStateService[service].unshift({ time: hourformated, state: "inconnu" });
+            this.actualStatusAllService[i] = "inconnu";
+            this.actualStateAllService[i] = "inconnu";
             this.lastHourStatus[i] = hourformated;
-          });
-          // écoute d'un changement de state pour mettre à jour l'historique
-          this.skService.addEventListener(service, "stateChange", (e: any) => {
-            let hour = new Date();
-            const heure = hour.getHours().toString().padStart(2, "0");
-            const minutes = hour.getMinutes().toString().padStart(2, "0");
-            const secondes = hour.getSeconds().toString().padStart(2, "0");
-            const hourformated = `${heure}:${minutes}:${secondes}`;
-            this.historicStateService[service].unshift({ time: hourformated, state: e.data.state });
-            //document.getElementById("panel_" + service)!.innerHTML += '<p>'+ hourformated + '   ' + e.data.status + '</p>';
-            document.getElementById("state_" + service)!.innerHTML = hourformated + "   " + e.data.state;
-            this.actualStateAllService[i] = e.data.state;
-            this.lastHourState[i] = hourformated;
-          });
+          } else {
+            let status = this.skService.getStatus(service);
+            let state = this.skService.getState(service);
+            this.historicStatusService[service].unshift({ time: hourformated, status: status });
+            this.historicStateService[service].unshift({ time: hourformated, state: state });
+            this.actualStatusAllService[i] = status;
+            this.actualStateAllService[i] = state;
+            this.lastHourStatus[i] = hourformated;
+            // écoute d'un changement de status pour mettre à jour l'historique
+            this.skService.addEventListener(service, "statusChange", (e: any) => {
+              let hour = new Date();
+              const heure = hour.getHours().toString().padStart(2, "0");
+              const minutes = hour.getMinutes().toString().padStart(2, "0");
+              const secondes = hour.getSeconds().toString().padStart(2, "0");
+              const hourformated = `${heure}:${minutes}:${secondes}`;
+              this.historicStatusService[service].unshift({ time: hourformated, status: e.data.status });
+              //document.getElementById("panel_" + service)!.innerHTML += '<p>'+ hourformated + '   ' + e.data.status + '</p>';
+              document.getElementById("status_" + service)!.innerHTML = hourformated + "   " + e.data.status;
+              this.actualStatusAllService[i] = e.data.status;
+              this.lastHourStatus[i] = hourformated;
+            });
+            // écoute d'un changement de state pour mettre à jour l'historique
+            this.skService.addEventListener(service, "stateChange", (e: any) => {
+              let hour = new Date();
+              const heure = hour.getHours().toString().padStart(2, "0");
+              const minutes = hour.getMinutes().toString().padStart(2, "0");
+              const secondes = hour.getSeconds().toString().padStart(2, "0");
+              const hourformated = `${heure}:${minutes}:${secondes}`;
+              this.historicStateService[service].unshift({ time: hourformated, state: e.data.state });
+              //document.getElementById("panel_" + service)!.innerHTML += '<p>'+ hourformated + '   ' + e.data.status + '</p>';
+              document.getElementById("state_" + service)!.innerHTML = hourformated + "   " + e.data.state;
+              this.actualStateAllService[i] = e.data.state;
+              this.lastHourState[i] = hourformated;
+            });
+          }
         }
       })
       .catch(error => {
@@ -229,135 +240,133 @@ export class FeatureRunComponent extends GenericComponent implements OnInit {
    * @param functionName nom du test à lancer
    * @param idSection nom de la section à compléter avec les logs
    */
-  async callFunctionFromScript( functionName: string, idSection: string) {
+  async callFunctionFromScript(functionName: string, idSection: string) {
     try {
       let scriptUrl = `http://localhost:5000/demoSKV2/application/assets/DemoSKV2/confTest/script/${this.fileName}.js`;
       this.actualLogLocation = "test_" + idSection.split("_")[2];
-
-
       fetch(scriptUrl)
-      .then(response => response.text())
-      .then(scriptContent => {
-        let allInput = document.getElementsByTagName("input");
-        // Modifier les variables dans le script
-        for (let i = 0; i < allInput.length; i++) {
-          const variableName = allInput[i].id.split("-")[1];
-          let variableValue = "";
-          if (allInput[i].value != "") {
-            variableValue = JSON.stringify(allInput[i].value);
-          } else {
-            variableValue = JSON.stringify(allInput[i].placeholder);
-          }
-          const variablePattern = new RegExp(`(var|let|const)\\s+${variableName}\\s*=\\s*[^;]+;`);
-          // Remplacement de la première occurrence seulement
-          scriptContent = scriptContent.replace(variablePattern, (match, p1) => {
-            if (!match.includes(`// REPLACED: ${variableName}`)) {
-              return `${p1} ${variableName} = ${variableValue}; // REPLACED: ${variableName}`;
+        .then(response => response.text())
+        .then(scriptContent => {
+          let allInput = document.getElementsByTagName("input");
+          // Modifier les variables dans le script
+          for (let i = 0; i < allInput.length; i++) {
+            const variableName = allInput[i].id.split("-")[1];
+            let variableValue = "";
+            if (allInput[i].value != "") {
+              variableValue = JSON.stringify(allInput[i].value);
+            } else {
+              variableValue = JSON.stringify(allInput[i].placeholder);
             }
-            return match;
-          });
-        }
-    
-        if (document.getElementById('scriptElement') != null) {
-          document.getElementById('scriptElement')!.remove();
-        }
-
-        const scriptElement = document.createElement('script');
-        scriptElement.id = "scriptElement";
-        scriptElement.text = scriptContent;
-        document.body.appendChild(scriptElement);
-        let _this = this;
-        let actualLogLocationLocal = this.actualLogLocation;
-        
-
-        /**
-         * Redéfinition de la fonction console.log pour afficher les logs dans le panneau de logs
-         */
-        console.log = function () {
-          let panel = 'panel_Logs';
-          if (actualLogLocationLocal !== "") {
-            panel = 'panel_Logs_' + actualLogLocationLocal;
-          } else {
-            panel = 'panel_Logs';
+            const variablePattern = new RegExp(`(var|let|const)\\s+${variableName}\\s*=\\s*[^;]+;`);
+            // Remplacement de la première occurrence seulement
+            scriptContent = scriptContent.replace(variablePattern, (match, p1) => {
+              if (!match.includes(`// REPLACED: ${variableName}`)) {
+                return `${p1} ${variableName} = ${variableValue}; // REPLACED: ${variableName}`;
+              }
+              return match;
+            });
           }
-          //Rcupération du contenu du console.log
-          const logMessage = Array.prototype.slice.call(arguments).join(' ');
-          //Affichage du contenu du console.log dans le panneau de logs
-          if (logMessage.split("-") != null) {
-            const logParts = logMessage.split("-");
-            const logType = logParts[0].replace(/[^a-zA-Z]/g, '');
-            const logContent = logParts.slice(1).join('-');
-            // cas de logType = "END" ou "ERROR" ==> fin de l'exécution du script (affichage dans la console Results)
-            if (logType == "END" || logType == "ERROR") {
-              let hour = new Date();
-              const heure = hour.getHours().toString().padStart(2, "0");
-              const minutes = hour.getMinutes().toString().padStart(2, "0");
-              const secondes = hour.getSeconds().toString().padStart(2, "0");
-              const hourFormatted = `${heure}:${minutes}:${secondes}`;
-              document.getElementById("panel_Logs_Results_" + actualLogLocationLocal)!.innerHTML += '<p class="stateInformations">' +hourFormatted+ " : "+ logContent + '</p>';
-              document.getElementById("last_Result_" + actualLogLocationLocal)!.innerHTML = hourFormatted + "   " + logContent;
-              panel = 'panel_Logs';
-              /*_this.firstPreview = true;
-              _this.isRunning = false;*/
-              document.getElementById("playBtn_" + actualLogLocationLocal)!.style.opacity = "1";
-              (document.getElementById("playBtn_" + actualLogLocationLocal) as HTMLButtonElement)!.disabled = false;
-            } 
-            // cas de logType = "CAPTURE" ==> capture d'un QRCode ou d'une image (affichage dans la console Results)
-            else if (logType == "CAPTURE") {
-              let hour = new Date();
-              const heure = hour.getHours().toString().padStart(2, "0");
-              const minutes = hour.getMinutes().toString().padStart(2, "0");
-              const secondes = hour.getSeconds().toString().padStart(2, "0");
-              const hourFormatted = `${heure}:${minutes}:${secondes}`;
-              document.getElementById("panel_Logs_Results_" + actualLogLocationLocal)!.innerHTML += "<p>" +hourFormatted+ " : "+ logContent.slice(0, 20) + "...</p>";
-              document.getElementById("playBtn_" + actualLogLocationLocal)!.style.opacity = "1";
-              (document.getElementById("playBtn_" + actualLogLocationLocal) as HTMLButtonElement)!.disabled = false;
-             /* _this.firstPreview = true;
-              _this.isRunning = false;*/
 
-            } 
-            // cas de logType = "PREVIEW" ==> affichage d'un aperçu (affichage dans la console log)
-            else if (logType == "PREVIEW") {
-              if (_this.compteurImageTampon <= 7) {
-                _this.compteurImageTampon++;
-              } else {
-                var logElement = document.getElementById("panel_Logs_" + actualLogLocationLocal);
-                /*if (!_this.firstPreview) {
-                  logElement!.innerHTML += "<p>" + logContent.slice(0, 20) + "...</p>";
-                } else {*/
+          if (document.getElementById('scriptElement') != null) {
+            document.getElementById('scriptElement')!.remove();
+          }
+
+          const scriptElement = document.createElement('script');
+          scriptElement.id = "scriptElement";
+          scriptElement.text = scriptContent;
+          document.body.appendChild(scriptElement);
+          let _this = this;
+          let actualLogLocationLocal = this.actualLogLocation;
+
+
+          /**
+           * Redéfinition de la fonction console.log pour afficher les logs dans le panneau de logs
+           */
+          console.log = function () {
+            let panel = 'panel_Logs';
+            if (actualLogLocationLocal !== "") {
+              panel = 'panel_Logs_' + actualLogLocationLocal;
+            } else {
+              panel = 'panel_Logs';
+            }
+            //Rcupération du contenu du console.log
+            const logMessage = Array.prototype.slice.call(arguments).join(' ');
+            //Affichage du contenu du console.log dans le panneau de logs
+            if (logMessage.split("-") != null) {
+              const logParts = logMessage.split("-");
+              const logType = logParts[0].replace(/[^a-zA-Z]/g, '');
+              const logContent = logParts.slice(1).join('-');
+              // cas de logType = "END" ou "ERROR" ==> fin de l'exécution du script (affichage dans la console Results)
+              if (logType == "END" || logType == "ERROR") {
+                let hour = new Date();
+                const heure = hour.getHours().toString().padStart(2, "0");
+                const minutes = hour.getMinutes().toString().padStart(2, "0");
+                const secondes = hour.getSeconds().toString().padStart(2, "0");
+                const hourFormatted = `${heure}:${minutes}:${secondes}`;
+                document.getElementById("panel_Logs_Results_" + actualLogLocationLocal)!.innerHTML += '<p class="stateInformations">' + hourFormatted + " : " + logContent + '</p>';
+                document.getElementById("last_Result_" + actualLogLocationLocal)!.innerHTML = hourFormatted + "   " + logContent;
+                panel = 'panel_Logs';
+                /*_this.firstPreview = true;
+                _this.isRunning = false;*/
+                document.getElementById("playBtn_" + actualLogLocationLocal)!.style.opacity = "1";
+                (document.getElementById("playBtn_" + actualLogLocationLocal) as HTMLButtonElement)!.disabled = false;
+              }
+              // cas de logType = "CAPTURE" ==> capture d'un QRCode ou d'une image (affichage dans la console Results)
+              else if (logType == "CAPTURE") {
+                let hour = new Date();
+                const heure = hour.getHours().toString().padStart(2, "0");
+                const minutes = hour.getMinutes().toString().padStart(2, "0");
+                const secondes = hour.getSeconds().toString().padStart(2, "0");
+                const hourFormatted = `${heure}:${minutes}:${secondes}`;
+                document.getElementById("panel_Logs_Results_" + actualLogLocationLocal)!.innerHTML += "<p>" + hourFormatted + " : " + logContent.slice(0, 20) + "...</p>";
+                document.getElementById("playBtn_" + actualLogLocationLocal)!.style.opacity = "1";
+                (document.getElementById("playBtn_" + actualLogLocationLocal) as HTMLButtonElement)!.disabled = false;
+                /* _this.firstPreview = true;
+                 _this.isRunning = false;*/
+
+              }
+              // cas de logType = "PREVIEW" ==> affichage d'un aperçu (affichage dans la console log)
+              else if (logType == "PREVIEW") {
+                if (_this.compteurImageTampon <= 7) {
+                  _this.compteurImageTampon++;
+                } else {
+                  var logElement = document.getElementById("panel_Logs_" + actualLogLocationLocal);
+                  /*if (!_this.firstPreview) {
+                    logElement!.innerHTML += "<p>" + logContent.slice(0, 20) + "...</p>";
+                  } else {*/
                   //_this.firstPreview = false;
                   logElement!.innerHTML += "<p>" + logContent.slice(0, 20) + "...</p>";
-               // }
-                _this.compteurImageTampon = 0;
+                  // }
+                  _this.compteurImageTampon = 0;
+                }
               }
-            } 
-            // cas de logType = "CONSOLE" ==> affichage d'un message dans la console de log 
-            else if (logType == "START" || logType == "USER") {
-              var logElement = document.getElementById("panel_Logs_" + actualLogLocationLocal);
-              logElement!.innerHTML += '<p class="stateInformations">' + logContent + '</p>';
-              /*_this.firstPreview = true;
-              _this.isRunning = true;*/
+              // cas de logType = "CONSOLE" ==> affichage d'un message dans la console de log 
+              else if (logType == "START" || logType == "USER") {
+                var logElement = document.getElementById("panel_Logs_" + actualLogLocationLocal);
+                logElement!.innerHTML += '<p class="stateInformations">' + logContent + '</p>';
+                /*_this.firstPreview = true;
+                _this.isRunning = true;*/
+              }
             }
           }
-        }
-        // Mettre à jour l'interface utilisateur
-        document.getElementById("panel_Logs_test_" + idSection.split("_")[2])!.innerHTML = "";
-        document.getElementById("last_Result_test_" + idSection.split("_")[2])!.innerHTML = "";
-        
-        if (functionName.includes("start")) {
-          document.getElementById("playBtn_test_" + idSection.split("_")[2])!.style.opacity = "0.5";
-          (document.getElementById("playBtn_test_" + idSection.split("_")[2]) as HTMLInputElement)!.disabled = true;
-        } else if (functionName.includes("stop")) {
-          (document.getElementById("playBtn_test_" + idSection.split("_")[2]) as HTMLInputElement)!.style.opacity = "1";
-          (document.getElementById("playBtn_test_" + idSection.split("_")[2]) as HTMLInputElement)!.disabled = false;
-        }
-        
-        // Lancement de la fonction appelée
-        // @ts-ignore: Ignorer l'erreur car la fonction peut ne pas exister dans le contexte TypeScript
-        window[functionName]();
-      })
-      .catch(error => console.error('Error fetching script:', error));
-    
+          // Mettre à jour l'interface utilisateur
+          document.getElementById("panel_Logs_test_" + idSection.split("_")[2])!.innerHTML = "";
+          document.getElementById("last_Result_test_" + idSection.split("_")[2])!.innerHTML = "";
+
+          if (functionName.includes("start")) {
+            document.getElementById("playBtn_test_" + idSection.split("_")[2])!.style.opacity = "0.5";
+            (document.getElementById("playBtn_test_" + idSection.split("_")[2]) as HTMLInputElement)!.disabled = true;
+          } else if (functionName.includes("stop")) {
+            (document.getElementById("playBtn_test_" + idSection.split("_")[2]) as HTMLInputElement)!.style.opacity = "1";
+            (document.getElementById("playBtn_test_" + idSection.split("_")[2]) as HTMLInputElement)!.disabled = false;
+          }
+
+          // Lancement de la fonction appelée
+          // @ts-ignore: Ignorer l'erreur car la fonction peut ne pas exister dans le contexte TypeScript
+          window[functionName]();
+        })
+        .catch(error => console.error('Error fetching script:', error));
+
       // Mettre à jour l'interface utilisateur
       document.getElementById("panel_Logs_test_" + idSection.split("_")[2])!.innerHTML = "";
       document.getElementById("last_Result_test_" + idSection.split("_")[2])!.innerHTML = "";
@@ -369,7 +378,7 @@ export class FeatureRunComponent extends GenericComponent implements OnInit {
         (document.getElementById("playBtn_test_" + idSection.split("_")[2]) as HTMLInputElement)!.style.opacity = "1";
         (document.getElementById("playBtn_test_" + idSection.split("_")[2]) as HTMLInputElement)!.disabled = false;
       }
-      
+
     } catch (error) {
       console.error('Erreur lors du chargement ou de l\'exécution du script :', error);
     }
@@ -437,7 +446,7 @@ export class FeatureRunComponent extends GenericComponent implements OnInit {
    * Construire le formulaire à partir du texte du fichier javascript
    * @param text text du fichier javascript
    */
-    buildFormFromText(text: string) {
+  buildFormFromText(text: string) {
     this.parameters = this.extractParameterDetails(text);
     for (let i = 0; i < this.parameters.length; i++) {
       let jsonElement = {

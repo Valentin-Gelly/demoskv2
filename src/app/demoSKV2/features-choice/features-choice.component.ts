@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AppService } from '../../app.service';
 
+declare var Kiosk: any;
+
 @Component({
   selector: 'app-features-choice',
   templateUrl: './features-choice.component.html',
@@ -17,13 +19,15 @@ export class FeaturesChoiceComponent implements OnInit {
   allScript: Array<string> = [];
   files = [];
 
-  // Liste des features affichées dans la page
+  // Liste des tests a affichés dans la page
   featuresList = [
     'Barcode_Reading',
     'Document_Scanning',
     'CardPayment_Debit',
     'Document_Printing',
     'Session',
+    'ContactlessReading',
+    'ContactLessReading_Calypso',
   ];
 
   // liste des features qui existe dans les assets de l'application
@@ -31,6 +35,12 @@ export class FeaturesChoiceComponent implements OnInit {
   // liste des features qui n'existe pas dans les assets de l'application
   missing: string[] = [];
   missing_text: string = '';
+
+  serviceNotFound: string[]= [];
+  serviceNotFoundtext: string='';
+  isUndefined: boolean = false;
+
+
 
   ngOnInit(): void {
     // vérification de la présence des features dans les assets de l'application
@@ -46,12 +56,36 @@ export class FeaturesChoiceComponent implements OnInit {
           return response.json();
         })
         .then((json: any) => {
-          // s'il existe alors on affiche la feature
-          this.verifiedFeatureList.push(this.featuresList[i]);
-          
+          let j =0;
+          this.isUndefined = false;
+          console.info(json.serviceUsed);
+          console.info(json.serviceUsed.length);
+          while(json.serviceUsed.length > j && !this.isUndefined) {
+            if ( Kiosk[json.serviceUsed[j].name] == undefined) {
+              this.isUndefined = true;
+              this.serviceNotFound.push(this.featuresList[i]);
+            }
+            j++;
+          }
+          if (!this.isUndefined){
+            this.verifiedFeatureList.push(this.featuresList[i]);
+          }
+          this.verifiedFeatureList.sort();
+          this.missing_text = this.missing.join(', ');
+          this.serviceNotFoundtext = this.serviceNotFound.join(', ');
+          console.info("serviceNotFoundtext")
+          console.info(this.serviceNotFoundtext);
+          console.info("missing_text");
+          console.info(this.missing_text);
+          console.info("verifiedFeatureList");
+          console.info(this.verifiedFeatureList);
+          console.info("serviceNtFound");
+          console.info(this.serviceNotFound);
+      
         });
     }
-    this.missing_text = this.missing.join(', ');
+
+
   }
 
   /**
