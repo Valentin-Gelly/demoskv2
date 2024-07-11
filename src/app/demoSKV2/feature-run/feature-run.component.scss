@@ -1,7 +1,7 @@
 * {
   margin: 0;
   padding: 0;
-  font-family: "Google Sans";
+  font-family: "Poppins", sans-serif;
 }
 
 body {
@@ -46,6 +46,7 @@ body {
   height: 100%;
   overflow: auto;
 }
+
 .documentation p {
   font-size: 1.5em;
 }
@@ -59,7 +60,7 @@ main {
 }
 
 #right {
-  width: 40%;
+  width: 56%;
   display: flex;
   flex-direction: column;
   gap: 6%;
@@ -67,7 +68,6 @@ main {
 
 #left {
   width: 40%;
-  padding-left: 25px;
   display: flex;
   flex-direction: column;
   gap: 5%;
@@ -83,11 +83,10 @@ main {
   width: 100%;
   border: solid 1px #000;
   border-radius: 12px;
-  padding: 20px;
+  padding: 6px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  gap: 20px;
 }
 
 .accordion {
@@ -103,6 +102,12 @@ main {
   flex-direction: row;
   justify-content: space-between;
   border-bottom: solid 1px #000;
+}
+
+.accordion h3{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
 }
 
 .active {
@@ -139,14 +144,33 @@ main {
   gap: 5%;
 }
 
+.logEventStatusElement {
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+  width: 95%;
+}
+
 .logStatus {
-  width: 45%;
+  width:85%;
+}
+
+.actualStatusService{
+  display: flex;
+  justify-content: space-around;
+  width: 35%;
+}
+
+.actualStatusService span{
+  width: 33%;
+  text-align: center;
 }
 
 .listStatus {
   display: flex;
+  flex-direction: column;
   gap: 10%;
-  height: 180px;
+  height: 100%;
 }
 
 .btnStatus {
@@ -164,6 +188,26 @@ main {
   justify-content: space-between;
   border-bottom: solid 1px #000;
 }
+
+.hourEventSpan,
+.hourReceipSpan {
+  width: 20%;
+}
+
+.componentSpan {
+  width: 30%;
+}
+
+.statusHistorySection {
+  width: 30%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.changeEventSpan {
+  width: 50%;
+}
+
 
 .CancelDebit {
   background-color: white;
@@ -192,7 +236,21 @@ input {
   gap: 20px;
 }
 
-#btnRead {
+.titleServiceDeviceTest{
+  display: flex;
+  flex-direction: column;
+  width: 95%;
+}
+
+#showSection {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+
+#btnRead,
+#btnCode {
   display: flex;
   justify-content: space-around;
   border: none;
@@ -204,7 +262,9 @@ input {
   padding: 20px;
 }
 
-#popUpDescritionPage {
+
+#popUpDescritionPage,
+#popUpCodePage {
   display: none;
   position: absolute;
   width: 99vw;
@@ -216,11 +276,12 @@ input {
   transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
-#popUpDescrition {
+#popUpDescrition,
+#popUpCode {
   display: none;
   position: absolute;
-  width: 60%;
-  height: 60%;
+  width: 75%;
+  height: 85%;
   background-color: white;
   top: 0;
   border: solid 1px #000;
@@ -228,16 +289,19 @@ input {
   transform: translate(-50%, -50%);
   margin-left: 50%;
   margin-top: 25%;
-  text-align: center;
   transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
-#titlePopUpDescription {
+#titlePopUpDescription,
+#titlePopUpCode {
   margin: 33px;
   font-size: 2.2em;
+  text-align: center;
+
 }
 
-#idDescription {
+#idDescription,
+#idCode {
   font-size: 1.5em;
   overflow: scroll;
   height: 70%;
@@ -245,7 +309,8 @@ input {
   padding: 15px;
 }
 
-#crossPopUp {
+#crossPopUp,
+#crossPopUpCode {
   position: absolute;
   top: 10px;
   right: 10px;
@@ -264,9 +329,9 @@ input {
 }
 
 .panelInformations {
-  height: 50px;
   overflow-y: auto;
-  height: 90px;
+  height: 190px;
+  width: 96%;
 }
 
 .stateInformations {
@@ -297,7 +362,8 @@ input {
 }
 
 .playBtn,
-.stopBtn {
+.stopBtn,
+.restBtn {
   border: none;
   color: #fff;
   padding: 4px 15px;
@@ -315,6 +381,10 @@ input {
 
 .stopBtn {
   background-color: #f44336;
+}
+
+.restBtn {
+  background-color: orange;
 }
 
 .btnSection {
@@ -349,4 +419,149 @@ input {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+}
+
+
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+
+/**
+ * Mise en forme du code
+ */
+
+pre {
+  overflow-x: auto;
+  height: 78%;
+}
+
+/**
+ * GHColors theme by Avi Aryan (http://aviaryan.in)
+ * Inspired by Github syntax coloring
+ */
+
+code[class*="language-"],
+pre[class*="language-"] {
+  color: #393A34;
+  font-family: "Consolas", "Bitstream Vera Sans Mono", "Courier New", Courier, monospace;
+  direction: ltr;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  font-size: .9em;
+  line-height: 1.2em;
+
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+pre>code[class*="language-"] {
+  font-size: 1em;
+}
+
+pre[class*="language-"]::-moz-selection,
+pre[class*="language-"] ::-moz-selection,
+code[class*="language-"]::-moz-selection,
+code[class*="language-"] ::-moz-selection {
+  background: #b3d4fc;
+}
+
+pre[class*="language-"]::selection,
+pre[class*="language-"] ::selection,
+code[class*="language-"]::selection,
+code[class*="language-"] ::selection {
+  background: #b3d4fc;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+  padding: 1em;
+  margin: .5em 0;
+  overflow: auto;
+  border: 1px solid #dddddd;
+  background-color: white;
+}
+
+/* Inline code */
+:not(pre)>code[class*="language-"] {
+  padding: .2em;
+  padding-top: 1px;
+  padding-bottom: 1px;
+  background: #f8f8f8;
+  border: 1px solid #dddddd;
+}
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+  color: #999988;
+  font-style: italic;
+}
+
+.token.namespace {
+  opacity: .7;
+}
+
+.token.string,
+.token.attr-value {
+  color: #e3116c;
+}
+
+.token.punctuation,
+.token.operator {
+  color: #393A34;
+  /* no highlight */
+}
+
+.token.entity,
+.token.url,
+.token.symbol,
+.token.number,
+.token.boolean,
+.token.variable,
+.token.constant,
+.token.property,
+.token.regex,
+.token.inserted {
+  color: #36acaa;
+}
+
+.token.atrule,
+.token.keyword,
+.token.attr-name,
+.language-autohotkey .token.selector {
+  color: #00a4db;
+}
+
+.token.function,
+.token.deleted,
+.language-autohotkey .token.tag {
+  color: #9a050f;
+}
+
+.token.tag,
+.token.selector,
+.language-autohotkey .token.keyword {
+  color: #00009f;
+}
+
+.token.important,
+.token.function,
+.token.bold {
+  font-weight: bold;
+}
+
+.token.italic {
+  font-style: italic;
 }

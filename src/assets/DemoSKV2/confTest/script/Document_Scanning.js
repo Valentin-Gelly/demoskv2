@@ -1,9 +1,12 @@
-var timeout;
 
 /**
  * @title  SCANNER DE DOCUMENT
  * @description Transaction bancaire standard
+ * @service DocumentScanning (DocumentScanner)
 */
+
+
+var timeout;
 
 /**
  * simple capture du document 

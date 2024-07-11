@@ -1,3 +1,7 @@
+*{
+  font-family: "Poppins", sans-serif;;
+}
+
 .demoChoice {
     position: relative;
     display: flex;
@@ -16,3 +20,33 @@
   .notVerifiedElement{
     color: red;
   }
+
+.description{
+  display: flex;
+  flex-direction: column;
+}
+
+.containDemo div {
+  width: 33%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.serviceTestSection{
+  display: flex;
+  align-items: center;
+}
+
+.serviceTest {
+  height: fit-content;
+}
+
+.playButton{
+  width: 22% !important; 
+  height: unset !important; 
+  transform: unset !important;
+}

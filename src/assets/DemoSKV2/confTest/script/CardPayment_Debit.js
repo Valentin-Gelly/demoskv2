@@ -1,6 +1,8 @@
 /**
  * @title  PAIEMENT PAR CARTE BANCAIRE
  * @description Transaction bancaire standard
+ * @service CardPayment (CardTPA)
+ * @service ReceiptPrinting 
 */
 
 /**
@@ -33,7 +35,7 @@ function stop1() {
 function onCardDebit(e) {
     switch (e.data.dataType) {
         case "CardDebitError":
-            console.log("ERROR - " + e.data.dataType);
+            console.log("ERROR - " + e.data.dataType + " " + e.data.code);
             Kiosk.CardPayment.removeEventListener("cardDebit", onCardDebit);
             break;
         case "CardDebited":
@@ -41,7 +43,7 @@ function onCardDebit(e) {
             Kiosk.CardPayment.removeEventListener("cardDebit", onCardDebit);
             break;
         default:
-            console.log("END - " + e.data.dataType);
+            console.log("END - " + e.data.dataType + " " + e.data.code);
             break;
     }
 }
@@ -98,7 +100,7 @@ function onTransactionConfirm(e) {
     // Pour le cas d'erreur de désynchro applicative, sinon géré dans onCardDebit
     switch (e.data.dataType) {
         case "TransactionConfirmError":
-            console.log("ERROR - " + e.code + " " + e.data.dataType);
+            console.log("ERROR - " + e.data.code + " " + e.data.dataType);
             break;
     }
 

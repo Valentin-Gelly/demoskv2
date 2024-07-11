@@ -13,6 +13,7 @@ import { TestIvqChoiceComponent } from './test-ivq-choice/test-ivq-choice.compon
 import { AppDemoChoiceComponent } from './app-demo-choice/app-demo-choice.component';
 import { FeatureRunComponent } from './feature-run/feature-run.component';
 
+ 
 @NgModule({
   declarations: [
     HomepageComponent,
@@ -23,8 +24,7 @@ import { FeatureRunComponent } from './feature-run/feature-run.component';
     FeaturesChoiceComponent,
     TestIvqChoiceComponent,
     AppDemoChoiceComponent,
-    FeatureRunComponent
-    
+    FeatureRunComponent,
   ],
   imports: [
     BrowserModule,
@@ -32,8 +32,8 @@ import { FeatureRunComponent } from './feature-run/feature-run.component';
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-
   ],
-  providers: []
+  providers: [
+  ]
 })
 export class DemoSKV2Module { }

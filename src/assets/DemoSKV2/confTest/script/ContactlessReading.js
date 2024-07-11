@@ -1,6 +1,7 @@
 /**
- * LECTURE SANS CONTACT
- * Détection et lecture de carte RFID
+ * @title LECTURE SANS CONTACT
+ * @description Détection et lecture de carte RFID sans contact
+ * @service ContactlessReading (ContactlessReader)
  */
 
 

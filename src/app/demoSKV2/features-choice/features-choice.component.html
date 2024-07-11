@@ -1,25 +1,34 @@
 <div class="featuresChoice featureSettings scrollable-container">
   <p *ngIf="missing.length != 0">
-    Les features suivante n'ont pas été trouvés  :
+    Les features suivante n'ont pas été trouvés :
     <span class="notVerifiedElement">{{missing_text}}</span>
   </p>
   <p *ngIf="serviceNotFound.length != 0">
     Les features suivante ne peuvent pas être lancés (service indisponible) :
     <span class="notVerifiedElement">{{serviceNotFoundtext}}</span>
   </p>
-  <div *ngFor="let item of verifiedFeatureList" class="containDemo testChoice" (click)="ChooseScript(item)">
-    <img src="./assets/DemoSKV2/all-pages-icon/codeIcons.png" class="demoImage" />
-    <div class="description">
-      <h3>{{ item }}</h3>
+  <div *ngFor="let item of verifiedFeatureList" class="containDemo testChoice" (click)="ChooseScript(item.feature)">
+    <div class="serviceTestSection">
+      <h3 class="serviceTest">{{item.service}}</h3>
     </div>
-    <img class="playButton" src="./assets/DemoSKV2/all-pages-icon/play-button-arrowhead.png" />
+    <div class="description">
+      <h3>{{ item.title }}</h3>
+      <h4>{{item.description}}</h4>
+    </div>
+    <div>
+      <img class="playButton" src="./assets/DemoSKV2/all-pages-icon/play-button-arrowhead.png" />
+    </div>
   </div>
 
-  <div class="containerDemo testChoice" routerLink="/virtualKeyboardFeature">
-    <img src="./assets/DemoSKV2/all-pages-icon/keyboard.png" class="demoImage" />
+  <div class="containDemo testChoice" routerLink="/virtualKeyboardFeature">
+    <div class="serviceTestSection">
+      <img src="./assets/DemoSKV2/all-pages-icon/keyboard.png" class="demoImage" />
+    </div>
     <div class="description">
       <h3>Virtual_Keyboard</h3>
     </div>
-    <img class="playButton" src="./assets/DemoSKV2/all-pages-icon/play-button-arrowhead.png" />
+    <div>
+      <img class="playButton" src="./assets/DemoSKV2/all-pages-icon/play-button-arrowhead.png" />
+    </div>
   </div>
 </div>

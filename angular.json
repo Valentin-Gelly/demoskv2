@@ -33,9 +33,13 @@
               }
             ],
             "styles": [
+              "./node_modules/prismjs/themes/prism.css",
+              "./node_modules/prismjs/themes/prism-okaidia.css",
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "./node_modules/prismjs/prism.js"
+            ]
           },
           "configurations": {
             "production": {
