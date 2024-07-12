@@ -196,10 +196,11 @@ export class FeatureRunComponent extends GenericComponent implements OnInit {
       if (this.serviceUsed[i].device != 'N/A') {
         this.device = this.serviceUsed[i].device;
       }
-      console.log("service : " + service + " device : " + this.device)
       let actualStatusService = this.skService.getStatus(service);
       let actualStateService = this.skService.getState(service);
       let statusDetailService = this.skService.getServiceStatusDetail(service);
+      console.log(this.serviceUsed[i].device);
+      console.log("this.serviceUsed[i].device != 'N/A' : " + this.serviceUsed[i].device != 'N/A')
       if (this.serviceUsed[i].device != 'N/A') {
         let actualStatusDevice = Kiosk[service][this.device].status;
         let actualStateDevice = Kiosk[service][this.device].state;
@@ -220,9 +221,6 @@ export class FeatureRunComponent extends GenericComponent implements OnInit {
         this.actualStatusAllService[service] = { "status": Kiosk[service].status, "state": Kiosk[service].state, "statusDetail": Kiosk[service].statusDetail };
         this.historicStatusAllService[service].unshift({ "hourEvent": this.tickToHour(e.tick), "hourReceiptEvent": this.getFormattedTime(), "status": Kiosk[service].status, "statusDetail": Kiosk[service].statusDetail, "component": service });
         this.historicEvent[service].unshift({ "hourEvent": this.tickToHour(e.tick), "hourReceiptEvent": this.getFormattedTime(), "status": Kiosk[service].status, "statusDetail": Kiosk[service].statusDetail, "component": service });
-        console.info("statusChange for " + service);
-        console.info("this.historicEvent");
-        console.info(this.historicEvent);
         this.cdr.detectChanges();
       });
       this.skService.addEventListener(service, "stateChange", (e: any) => {
@@ -231,9 +229,6 @@ export class FeatureRunComponent extends GenericComponent implements OnInit {
         this.actualStatusAllService[service] = { "status": Kiosk[service].status, "state": Kiosk[service].state, "statusDetail": Kiosk[service].statusDetail };
         this.historicStatusAllService[service].unshift({ "hourEvent": this.tickToHour(e.tick), "hourReceiptEvent": this.getFormattedTime(), "state": Kiosk[service].state, "component": service });
         this.historicEvent[service].unshift({ "hourEvent": this.tickToHour(e.tick), "hourReceiptEvent": this.getFormattedTime(), "state": Kiosk[service].state, "component": service });
-        console.info("stateChange for " + service);
-        console.info("this.historicEvent");
-        console.info(this.historicEvent);
         this.cdr.detectChanges();
       });
       if (this.device !== 'N/A') {
@@ -242,8 +237,6 @@ export class FeatureRunComponent extends GenericComponent implements OnInit {
           console.info("evenement status change for " + service);
           console.info(e);
           this.historicEvent[service].unshift({ "hourEvent": this.tickToHour(e.tick), "hourReceiptEvent": this.getFormattedTime(), "status": Kiosk[service][this.device].status, "statusDetail": Kiosk[service][this.device].statusDetail, "component": this.device });
-          console.info("this.historicEvent");
-          console.info(this.historicEvent);
           this.cdr.detectChanges();
         });
         Kiosk[service][this.device].addEventListener("stateChange", (e: any) => {
@@ -251,8 +244,6 @@ export class FeatureRunComponent extends GenericComponent implements OnInit {
           console.info("evenement state change for " + service);
           console.info(e);
           this.historicEvent[service].unshift({ "hourEvent": this.tickToHour(e.tick), "hourReceiptEvent": this.getFormattedTime(), "state": Kiosk[service][this.device].state, "component": this.device });
-          console.info("this.historicEvent");
-          console.info(this.historicEvent);
           this.cdr.detectChanges();
         });
       }
@@ -440,7 +431,7 @@ export class FeatureRunComponent extends GenericComponent implements OnInit {
         // cas de logType = "END" ou "ERROR" ==> fin de l'exécution du script (affichage dans la console Results)
         if (logType == "END" || logType == "ERROR") {
           const hourformated = _this.getFormattedTime();
-          document.getElementById("panel_Logs_Results_" + actualLogLocationLocal)!.innerHTML += '<p class="stateInformations">' + hourformated + " : " + logContent + '</p>';
+          document.getElementById("panel_Logs_Results_" + actualLogLocationLocal)!.innerHTML = '<p class="stateInformations">' + hourformated + " : " + logContent + '</p>'+ document.getElementById("panel_Logs_Results_" + actualLogLocationLocal)!.innerHTML;
           document.getElementById("last_Result_" + actualLogLocationLocal)!.innerHTML = hourformated + "   " + logContent;
           panel = 'panel_Logs';
           document.getElementById("playBtn_" + actualLogLocationLocal)!.style.opacity = "1";
@@ -449,7 +440,7 @@ export class FeatureRunComponent extends GenericComponent implements OnInit {
         // cas de logType = "CAPTURE" ==> capture d'un QRCode ou d'une image (affichage dans la console Results)
         else if (logType == "CAPTURE") {
           const hourformated = _this.getFormattedTime();
-          document.getElementById("panel_Logs_Results_" + actualLogLocationLocal)!.innerHTML += "<p>" + hourformated + " : " + logContent.slice(0, 20) + "...</p>";
+          document.getElementById("panel_Logs_Results_" + actualLogLocationLocal)!.innerHTML = "<p>" + hourformated + " : " + logContent.slice(0, 20) + "...</p>" + document.getElementById("panel_Logs_Results_" + actualLogLocationLocal)!.innerHTML ;
           document.getElementById("playBtn_" + actualLogLocationLocal)!.style.opacity = "1";
           (document.getElementById("playBtn_" + actualLogLocationLocal) as HTMLButtonElement)!.disabled = false;
         }
@@ -459,14 +450,16 @@ export class FeatureRunComponent extends GenericComponent implements OnInit {
             _this.compteurImageTempo++;
           } else {
             var logElement = document.getElementById("panel_Logs_" + actualLogLocationLocal);
-            logElement!.innerHTML += "<p>" + logContent.slice(0, 20) + "...</p>";
+            const hourformated = _this.getFormattedTime(); 
+            logElement!.innerHTML =  "<div>"+hourformated + " : "  + logContent.slice(0, 20) + "... </div>" + logElement!.innerHTML;
             _this.compteurImageTempo = 0;
           }
         }
         // cas de logType = "CONSOLE" ==> affichage d'un message dans la console de log 
         else if (logType == "START" || logType == "USER") {
-          var logElement = document.getElementById("panel_Logs_" + actualLogLocationLocal);
-          logElement!.innerHTML = logContent;
+            const hourformated = _this.getFormattedTime(); 
+            var logElement = document.getElementById("panel_Logs_" + actualLogLocationLocal);
+          logElement!.innerHTML = "<div>"+hourformated + " : " +logContent+"</div>" ;
         }
       }
     };
@@ -525,7 +518,6 @@ export class FeatureRunComponent extends GenericComponent implements OnInit {
         } else if (element.type === "boolean") {
           allInput[i].type = "checkbox";
         }
-
         i++;
       });
     });
@@ -620,6 +612,17 @@ export class FeatureRunComponent extends GenericComponent implements OnInit {
   resetLogs(i: number) {
     document.getElementById("panel_Logs_Results_test_" + i)!.innerHTML = "";
     document.getElementById("panel_Logs_test_" + i)!.innerHTML = "";
+  }
+
+
+  /**
+   * Réinitialiser tous les logs
+   */
+  resetHistoricEvent() {
+    for (let i = 0; i < this.nbService; i++) {
+      this.historicEvent[this.serviceUsed[i].service] = [];
+    }
+    this.cdr.detectChanges();
   }
 }
 

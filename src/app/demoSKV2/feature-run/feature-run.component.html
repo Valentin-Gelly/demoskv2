@@ -6,7 +6,7 @@
     <section id="title">
       <h1>{{ nomApp }}</h1>
       <section id="showSection">
-        <button id="btnRead" (click)="showPopUp('Descirption')">Description ></button>
+        <button id="btnRead" (click)="showPopUp('Description')">Description ></button>
         <button id="btnCode" (click)="showPopUp('Code')">Code ></button>
       </section>
     </section>
@@ -22,7 +22,6 @@
           <section>
             <h3 id="userCaseTest1">{{ listComments[i] }}</h3>
           </section>
-
           <section class="btnSection">
             <button class="playBtn" id="playBtn_test_{{ i }}"
               (click)="callFunctionFromScript('start' + (i + 1), 'playBtn_test_' + i)">
@@ -32,10 +31,7 @@
               (click)="callFunctionFromScript('stop' + (i + 1), 'stopBtn_test_' + i)">
               Stop
             </button>
-            <button class="restBtn" id="stopBtn_test_{{ i }}"
-              (click)="resetLogs(i)">
-              Reset Logs
-            </button>
+            <img src="./assets/DemoSKV2/all-pages-icon/resetLog.png" alt="" (click)="resetLogs(i)" class="resetImage">
           </section>
           <section class="LogTestAccordion log_test_{{ i }}">
             <section class="testLog_test">
@@ -50,6 +46,7 @@
                 (click)="showPanel('Logs_Results_test_' + i)">
                 <h2>Results : <span id="last_Result_test_{{ i }}"></span></h2>
                 <div class="fleche fleche_Logs_Results_test_{{ i }}"></div>
+
               </section>
               <div class="panel" id="panel_Logs_Results_test_{{ i }}"></div>
             </section>
@@ -59,11 +56,12 @@
     </div>
 
     <div id="right">
-      <section>
+      <section class="StopSessionReset">
         <button class="stopSession stopBtn" id="stopSession" (click)="stopSession()">
           Arret de la Session
         </button>
-        
+        <img src="./assets/DemoSKV2/all-pages-icon/resetLog.png" alt="" (click)="resetHistoricEvent()">
+
       </section>
       <section>
         <h2>Surveillance De Status :</h2>
@@ -115,7 +113,7 @@
                   </section>
                 </h3>
               </section>
-              
+
               <div [attr.class]="'fleche fleche_' + item.service"></div>
             </section>
             <div [attr.id]="'panel_' + item.service" class="panel panelInformations">
@@ -147,60 +145,11 @@
           </section>
         </div>
       </section>
-      
-      <!--<section id="status">
-        <section>
-          <h2>State Services :</h2>
-          <div class="listStatus">
-            <section *ngFor="let item of serviceUsed; let i = index" class="logStatus">
-              <section class="btnStatus accordion" [attr.id]="'accordion_' + item.name + '_state'"
-                (click)="showPanel(item.name + '_state')">
-                <h3>
-                  {{ item.name }} :
-                  <span [attr.id]="'state_' + item.name">{{ historicStateService[item.name][0].time }}
-                    {{ actualStateAllService[i] }}</span>
-                </h3>
-                <div [attr.class]="'fleche fleche_' + item.name + '_state'"></div>
-              </section>
-              <div [attr.id]="'panel_' + item.name + '_state'" class="panel panelInformations">
-                <div *ngFor="let hour of historicStateService[item.name]">
-                  <p class="stateInformations">
-                    {{ hour.time }} {{ hour.state }}
-                  </p>
-                </div>
-              </div>
-            </section>
-          </div>
-        </section>
-        <section>
-          <h2>Status Périphériques :</h2>
-          <div class="listStatus">
-            <section *ngFor="let item of perifUsed; let i = index" class="logStatus">
-              <section class="btnStatus accordion" [attr.id]="'accordion_' + item.name+'_periph'" (click)="showPanel(item.name+'_periph')">
-                <h3>
-                  {{ item.name }} :
-                  <span [attr.id]="'status_' + item.name">{{actualStatusAllDevice[i]}}</span>
-                </h3>
-                <div [attr.class]="'fleche fleche_' + item.name+'_periph'"></div>
-              </section>
-              <div [attr.id]="'panel_' + item.name+ '_periph'" class="panel panelInformations">
-                <div *ngFor="let statusHistory of historicStatusDevice[item.name]">
-                  <div *ngFor="let key of getStatusKeys(statusHistory)">
-                    <p class="stateInformations">
-                      {{ key }} - {{ statusHistory[key] }}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </section>
-          </div>
-        </section>
-      </section>-->
     </div>
   </section>
 </main>
-<div id="popUpDescritionPage"></div>
-<div id="popUpDescrition">
+<div id="popUpDescriptionPage"></div>
+<div id="popUpDescription">
   <h2 id="titlePopUpDescription">Description</h2>
   <p id="idDescription">
     {{ description }}

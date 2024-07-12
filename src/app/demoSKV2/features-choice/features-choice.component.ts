@@ -15,7 +15,6 @@ declare var Kiosk: any;
 
 
 
-
 export class FeaturesChoiceComponent implements OnInit {
   constructor(private appService: AppService, private router: Router) {}
 
@@ -64,25 +63,17 @@ export class FeaturesChoiceComponent implements OnInit {
 
           const titleRegex = /@title\s+(.*)/;
           const descriptionRegex = /@description\s+(.*)/;
-          const serviceRegex = /@service\s+([^\s]+)\s+\(([^)]+)\)/;
-  
+          const serviceRegex = /@service\s+([^\s]+)(?:\s+\(([^)]*)\))?/;
+
           const titleMatch = text.match(titleRegex);
           const descriptionMatch = text.match(descriptionRegex);
           const serviceMatch = text.match(serviceRegex);
-  
+
           const title = titleMatch ? titleMatch[1] : 'N/A';
-          const description = descriptionMatch ? descriptionMatch[1] : 'N/A';
+          const description = descriptionMatch ? descriptionMatch[1].slice(0, 50) + "..." : 'N/A';
           const service = serviceMatch ? serviceMatch[1] : 'N/A';
-          const component = serviceMatch ? serviceMatch[2] : 'N/A';
+          const component = serviceMatch && serviceMatch[2] ? serviceMatch[2] : 'N/A';
   
-          console.log('feature:', this.featuresList[i]);
-          console.log('title:', title);
-          console.log('description:', description);
-          console.log('service:', service);
-          console.log('component:', component);
-
-          
-
           // Vous pouvez maintenant utiliser ces valeurs dans votre application
           this.verifiedFeatureList.push({
             feature: this.featuresList[i],
@@ -91,7 +82,7 @@ export class FeaturesChoiceComponent implements OnInit {
             service,
             component,
           });
-  
+          console.log('verifiedFeatureList', this.verifiedFeatureList)
           this.verifiedFeatureList.sort();
           this.missing_text = this.missing.join(', ');
           this.serviceNotFoundtext = this.serviceNotFound.join(', ');
@@ -108,6 +99,7 @@ export class FeaturesChoiceComponent implements OnInit {
    */
   ChooseScript(testName: string) {
     this.appService.filename = testName;
+    console.log("filename", this.appService.filename)
     this.router.navigate(['/featureRun']);
   }
 }

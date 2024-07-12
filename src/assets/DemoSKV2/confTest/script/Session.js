@@ -1,7 +1,7 @@
 /**
  * @title SESSION
  * @descritpion Détection de fin de session
- * @service Session (Session)
+ * @service Session
  */
 
 

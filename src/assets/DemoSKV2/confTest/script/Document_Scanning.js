@@ -2,7 +2,7 @@
 /**
  * @title  SCANNER DE DOCUMENT
  * @description Transaction bancaire standard
- * @service DocumentScanning (DocumentScanner)
+ * @service DocumentScanning (Scanner)
 */
 
 

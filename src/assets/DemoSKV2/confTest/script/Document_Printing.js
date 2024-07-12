@@ -1,7 +1,7 @@
 /**
  * @title  IMPRESSION D'UN DOCUMENT
  * @description Impression d'un fichier sous format HTML
- * @service DocumentPrinting (DocumentPrinter)
+ * @service DocumentPrinting (Printer)
  * 
 */
 

@@ -4,6 +4,14 @@
   font-family: "Poppins", sans-serif;
 }
 
+p{
+  margin: 0;
+}
+
+h2{
+  font-size : 125%
+}
+
 body {
   width: 100%;
   height: fit-content !important;
@@ -60,14 +68,14 @@ main {
 }
 
 #right {
-  width: 56%;
+  width: 50%;
   display: flex;
   flex-direction: column;
   gap: 6%;
 }
 
 #left {
-  width: 40%;
+  width: 50%;
   display: flex;
   flex-direction: column;
   gap: 5%;
@@ -121,6 +129,34 @@ main {
   display: none;
   overflow: hidden;
 }
+.panel p {
+  margin: 0;
+}
+
+.resetAndOpenLogs{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 27%;
+}
+
+.resetImage{
+  width: 50px;
+  height: 50px;
+}
+.accordion h2{
+  display: flex;
+  align-items: center;
+}
+
+.StopSessionReset{
+  display: flex;
+  gap: 7%;
+}
+
+.StopSessionReset img{
+  width: 5%;
+}
 
 .active .fleche {
   transform: rotate(0deg);
@@ -152,7 +188,7 @@ main {
 }
 
 .logStatus {
-  width:85%;
+  width:100%;
 }
 
 .actualStatusService{
@@ -263,7 +299,7 @@ input {
 }
 
 
-#popUpDescritionPage,
+#popUpDescriptionPage,
 #popUpCodePage {
   display: none;
   position: absolute;
@@ -276,7 +312,7 @@ input {
   transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
-#popUpDescrition,
+#popUpDescription,
 #popUpCode {
   display: none;
   position: absolute;
@@ -385,11 +421,12 @@ input {
 
 .restBtn {
   background-color: orange;
+  width: 250px;
 }
 
 .btnSection {
   display: flex;
-  width: 46%;
+  width: 75%;
   flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
@@ -399,14 +436,18 @@ input {
 .LogTestAccordion {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-around;
   width: 100%;
 }
 
-.ResultsLog_Results,
 .testLog_test {
-  width: 48%;
+  width: 40%;
 }
+
+.ResultsLog_Results{
+  width: 58%;
+}
+
 
 .stopSession {
   display: flex;

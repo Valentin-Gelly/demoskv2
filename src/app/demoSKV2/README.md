@@ -65,51 +65,24 @@ Cette page permet de lancer les tests de fonctionnalités et de surveiller leurs
 
 Pour ajouter un test il faut :
 
-1. Créer deux fichiers : le premier un fichier `.json` qui contient les informations telles que le titre du test, la description, les périphériques et les services utilisés par le test. Le deuxième fichier est un fichier `.js` qui contient les méthodes de test. Ces deux fichiers ont le même nom (exemple : BarcodeReading.js et BarcordReading.json).
+1. Créer un fichier : n fichier `.js` qui va contenir l'entièreté des informations du test.
 
-   - Le fichier JSON :
+    - Il doit contenir les informations suivantes :
+    
+      - `@title` : Le titre du test.
+      - `@description` : La description du test.
+      - `@service` : suivi du nom d'un service à surveiller dans le test. Ilpeut aussi contennir un périphérique marqué entre parentheses. Exemple : `@service BarcodeReading (BarcodeReader)`.
 
-     - Il doit avoir pour squelette :
+      Exemple :
 
-     ```json
-     {
-         "title": "nom du test",
-         "description": "description du test",
-         "serviceUsed": [
-             {
-                 "name": "nom du service"
-             },
-               ...
-         ],
-         "perifUsed": [
-             {
-                 "name": "nom du periphérique"
-             },
-             ...
-         ]
-     }
-     ```
-
-     - Exemple de fichier JSON :
-
-     ```json
-     {
-       "title": "Lecture d'un code barre",
-       "description": "Lecture d'un code barre",
-       "serviceUsed": [
-         {
-           "name": "BarcodeReading"
-         }
-       ],
-       "perifUsed": [
-         {
-           "name": "BarcodeScanner"
-         }
-       ]
-     }
-     ```
-
-   - Le fichier JS :
+      ``` javascript
+        /**
+        * @title  SCANNER DE DOCUMENT
+        * @description Transaction bancaire standard
+        * @service DocumentScanning (Scanner)
+        * @service TicketPrinting 
+        */
+        ```
 
      - Il doit contenir les méthodes suivantes :
 
