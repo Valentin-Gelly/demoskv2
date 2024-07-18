@@ -23,16 +23,8 @@ export class FeaturesChoiceComponent implements OnInit {
   files = [];
 
   // Liste des tests a affichés dans la page
-  featuresList = [
-    'Barcode_Reading',
-    'Document_Scanning',
-    'CardPayment_Debit',
-    'Document_Printing',
-    'Session',
-    'ContactlessReading',
-    'ContactLessReading_Calypso',
-    'Ticket_Printing',
-  ];
+  featuresList : string[] = [];
+ 
 
   // liste des features qui existe dans les assets de l'application
 
@@ -48,6 +40,29 @@ export class FeaturesChoiceComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.getAllScript();
+    
+  }
+
+  getAllScript(){
+    fetch(
+      `http://localhost:5000/demoSKV2/application/assets/DemoSKV2/confTest/script/toc.txt`
+    )
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.text();
+      })
+      .then((text: string) => {
+        const items = text.split('\n').map(item => item.trim());
+        this.featuresList = items;
+        console.log('featuresList', this.featuresList);
+        this.createAllElement();
+      });
+  }
+
+  createAllElement() {
     for (let i = 0; i < this.featuresList.length; i++) {
       fetch(
         `http://localhost:5000/demoSKV2/application/assets/DemoSKV2/confTest/script/${this.featuresList[i]}.js`
@@ -69,7 +84,7 @@ export class FeaturesChoiceComponent implements OnInit {
           const descriptionMatch = text.match(descriptionRegex);
           const serviceMatch = text.match(serviceRegex);
 
-          const title = titleMatch ? titleMatch[1] : 'N/A';
+          const title = titleMatch ? titleMatch[1].toUpperCase() : 'N/A';
           const description = descriptionMatch ? descriptionMatch[1].slice(0, 50) + "..." : 'N/A';
           const service = serviceMatch ? serviceMatch[1] : 'N/A';
           const component = serviceMatch && serviceMatch[2] ? serviceMatch[2] : 'N/A';

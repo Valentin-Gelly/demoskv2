@@ -2,12 +2,14 @@
 
 <div data-role="page" id="page-form" class="page">
   <header>
-    <h1>Formulaire</h1>
+    <h1>Démonstration du clavier virtuel</h1>
   </header>
 
   <main class="mainForm">
+    
     <form>
-      <h2>clavier en fonction du type de l'input :</h2>
+      <h2>Clavier en fonction du type de l'input :</h2>
+      <p>Exemple : </p><pre><code>&lt;input type="text" name="firstname" /&gt;</code></pre>
       <div class="form-item">
         <label>Prénom</label>
         <input type="text" name="firstname" />
@@ -38,7 +40,9 @@
       </div>
     </form>
     <form>
-      <h2>clavier en fonction de sk-input :</h2>
+      <h2>Clavier en fonction de sk-input : </h2>
+      <p>Exemple :  </p>
+      <pre><code>&lt;input type="text" sk-layout="simpleText" /&gt;</code></pre>
       <div class="form-item">
         <label>input text + sk-layout=simpleText</label>
         <input type="text" sk-layout="simpleText" />
@@ -73,10 +77,6 @@
       </div>
     </form>
   </main>
-  <div class="button form-submit" id="formButton">
-    <a routerLink="/demoSKV2AllPagesApp">Confirmer</a>
-  </div>
-
   <img
     src="./assets/DemoSKV2/back.png"
     alt=""

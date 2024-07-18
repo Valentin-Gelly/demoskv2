@@ -12,6 +12,7 @@ import { FeaturesChoiceComponent } from './features-choice/features-choice.compo
 import { TestIvqChoiceComponent } from './test-ivq-choice/test-ivq-choice.component';
 import { AppDemoChoiceComponent } from './app-demo-choice/app-demo-choice.component';
 import { FeatureRunComponent } from './feature-run/feature-run.component';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
  
 @NgModule({
@@ -25,6 +26,7 @@ import { FeatureRunComponent } from './feature-run/feature-run.component';
     TestIvqChoiceComponent,
     AppDemoChoiceComponent,
     FeatureRunComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -32,6 +34,7 @@ import { FeatureRunComponent } from './feature-run/feature-run.component';
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
+    DragDropModule
   ],
   providers: [
   ]

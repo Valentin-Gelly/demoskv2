@@ -48,7 +48,8 @@ DemoSKV2 est un outils multi-tasking. Il sert de support de test pour différent
 
 Chaque applications est séparées dans un dossier. Pour ajouter une nouvelle application il suffit de créer un dossier dans le dossier `demos`.  et de rajouter un bouton dans le fichier `app-demo-choice.html`. 
 
-- A l'intérieur de ce dossier il faut créer les différents composants de l'application. (commande pour créer un composant `ng g c nomDuComposant`)
+- A l'intérieur de ce dossier il faut créer les différents composants de l'application. (commande pour créer un composant : `ng g c nomDuComposant`)
+- Chaque composant doit être importé dans le module de l'application. (voir [exemple de fichier app.module.ts](/src/app/demos/MOOVHOP-EK8000-2024-AGIR/moovhop.module.ts))
 - Les composant doivent ensuite être assigné à une route dans le fichier de routing du dossier/ application . (voir [exemple de fichier app-routing.module.ts](/src/app/demos/MOOVHOP-EK8000-2024-AGIR/moovhop-routing.module.ts))
 - Enfin il faut importer le fichier de routing dans le fichier de routing de l'applications DEMOSKV2. (voir [le fichier app-routing.module.ts](/src/app/app-routing.module.ts)).
 
@@ -71,7 +72,7 @@ Chaque applications est séparées dans un dossier. Pour ajouter une nouvelle ap
         </div>
         ```
 
-##### Consignes pour les applications de démonstration
+##### Conseil pour les applications de démonstration
 
 Certaines fonctionnalités présentes sur les applications de démo devront toujours être présentes, mais ne seront pas précisées dans le cahier des charges. Voici une liste des fonctionnalités à intégrer dans les applications de démonstration :
 
@@ -121,15 +122,21 @@ Quelque étapes sont à suivre pour intégrer SoftKiosk dans une application de 
     ```
     Il est aussi conseilé de reset les différents timeout ou interval qui ont été lancé dans le composant.
 
+Une autre méthode consiste à déclarer une variable `Kiosk` au niveau des imports de bibliothèque et l'utiliser pour faire les appel à SoftKiosk. 
+```typescript	
+declare var Kiosk: any;
+Kiosk.CardDispensing.dispenseCard();
+```
 
 Le mieux pour comprendre le fonctionement d'une application de démonstration est de regarder le code des applications déjà existantes. Les applications les plus à jours sont celles réalisé pour les journées AGIR (MOOVHOP-EK8000-2024 et MOOVHOP-EK4000-2024)
 
 
 ### Installation sur une borne
 
-1. build le projet complet avec la commande `ng build ` en étant dans le dossier `DEMOSKV3`. 
+1. build le projet complet avec la commande `ng build ` en étant dans le dossier `DEMOSKV2`. 
 
-2. Copier le contenu du dossier `dist` dans le dossier application du .zip de l'application.
+2. Copier le contenu du dossier `dist` ou `application`(en fonction de la version d'angular) dans le dossier application du .zip de l'application.
 
-3. lancer l'installation de l'application sur la borne au travers de l'application de maintenance.
+3. Lancer l'installation de l'application sur la borne au travers de l'application de maintenance. 
 
+4. entrer dans les customers-data le nom de l'application de démonstration à lancer. Mettre en autolog l'application demoSKV2.

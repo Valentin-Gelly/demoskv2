@@ -1,13 +1,18 @@
 <script src="https://cdn.form.io/js/formio.embed.js"></script>
 <img src="./assets/DemoSKV2/logoIPM.png" class="logo" routerLink="/demoSKV2ChooseView" />
-<img src="./assets/DemoSKV2/back.png" alt="" routerLink="/demoSKV2AllPagesApp" class="icons" id="backIcon" />
+
 <main>
   <section id="doc">
     <section id="title">
       <h1>{{ nomApp }}</h1>
       <section id="showSection">
-        <button id="btnRead" (click)="showPopUp('Description')">Description ></button>
-        <button id="btnCode" (click)="showPopUp('Code')">Code ></button>
+        <section>
+          <button id="btnRead" (click)="showPopUp('Description')">Description ></button>
+          <p class="descriptionParsed">{{parsedDescription}}</p>
+        </section>
+        <section>
+          <button id="btnCode" (click)="showPopUp('Code')">Code ></button>
+        </section>
       </section>
     </section>
   </section>
@@ -32,6 +37,10 @@
               Stop
             </button>
             <img src="./assets/DemoSKV2/all-pages-icon/resetLog.png" alt="" (click)="resetLogs(i)" class="resetImage">
+            <button class="showImage" id="showImage_test_{{ i }}" (click)="showImageSection(i)"
+              *ngIf="imageCapture[i]!=''">
+              <img src="./assets/DemoSKV2/all-pages-icon/camera-video.png" alt="">
+            </button>
           </section>
           <section class="LogTestAccordion log_test_{{ i }}">
             <section class="testLog_test">
@@ -46,7 +55,6 @@
                 (click)="showPanel('Logs_Results_test_' + i)">
                 <h2>Results : <span id="last_Result_test_{{ i }}"></span></h2>
                 <div class="fleche fleche_Logs_Results_test_{{ i }}"></div>
-
               </section>
               <div class="panel" id="panel_Logs_Results_test_{{ i }}"></div>
             </section>
@@ -58,20 +66,32 @@
     <div id="right">
       <section class="StopSessionReset">
         <button class="stopSession stopBtn" id="stopSession" (click)="stopSession()">
-          Arret de la Session
+          Fin de Session
         </button>
         <img src="./assets/DemoSKV2/all-pages-icon/resetLog.png" alt="" (click)="resetHistoricEvent()">
-
+      </section>
+      <section class="notFoundSection">
+        <section id="serviceNotFound" *ngIf="undefinedServices.length!=0">
+          <p>Service non trouvé : </p>
+          <section>
+            <span class="serviceNotFoundItem" *ngFor="let item of undefinedServices">{{ item }}</span>
+          </section>
+        </section>
+        <section id="serviceNotFound" *ngIf="undefinedDevices.length!=0">
+          <p>Device non trouvé : </p>
+          <section>
+            <span class="serviceNotFoundItem" *ngFor="let item of undefinedDevices">{{ item }}</span>
+          </section>
+        </section>
       </section>
       <section>
-        <h2>Surveillance De Status :</h2>
         <div class="listStatus">
           <section *ngFor="let item of serviceUsed ; let i = index" class="logStatus">
             <section class="btnStatus accordion" [attr.id]="'accordion_' + item.service"
               (click)="showPanel(item.service)">
               <section class="titleServiceDeviceTest">
                 <h3>
-                  Service / Device
+                  <span class="invisibleTitle">t</span>
                   <section class="actualStatusService">
                     <span>
                       status
@@ -84,8 +104,8 @@
                     </span>
                   </section>
                 </h3>
-                <h3>
-                  {{ item.service }} :
+                <h3 *ngIf="Kiosk[item.service].status!=undefined">
+                  <span class="titleService">{{ item.service }} </span>
                   <section class="actualStatusService">
                     <span [attr.id]="'status_' + item.service">
                       {{ actualStatusAllService[item.service].status }}
@@ -98,8 +118,8 @@
                     </span>
                   </section>
                 </h3>
-                <h3 *ngIf="item.device!= 'N/A'">
-                  {{item.device}}
+                <h3 *ngIf="item.device!= 'N/A' && Kiosk[item.service][item.device]!=undefined">
+                  <span class="titleService">{{item.device}}</span>
                   <section class="actualStatusService">
                     <span [attr.id]="'status_' + item.service">
                       {{ actualStatusAllDevice[item.device].status }}
@@ -154,7 +174,7 @@
   <p id="idDescription">
     {{ description }}
   </p>
-  <img src="./assets/DemoSKV2/all-pages-icon/cross.png" alt="" srcset="" id="crossPopUp" />
+  <img class="crossPopUp" src="./assets/DemoSKV2/all-pages-icon/cross.png" alt="" (click)="closePopUp('Description')" />
 </div>
 
 <div id="popUpCodePage"></div>
@@ -163,5 +183,13 @@
   <pre><code class="language-js">
     {{code}}
   </code></pre>
-  <img src="./assets/DemoSKV2/all-pages-icon/cross.png" alt="" srcset="" id="crossPopUpCode" />
+  <img class="crossPopUp" src="./assets/DemoSKV2/all-pages-icon/cross.png" alt="" (click)="closePopUp('Code')" />
 </div>
+
+<img src="./assets/DemoSKV2/back.png" alt="" (click)="backToChooseView()" class="icons" id="backIcon" />
+<section class="section_test" *ngFor="let item of listStopFunction; let i = index">
+  <div class="resultImageClass" id="resultImage{{i}}" cdkDrag *ngIf="imageCapture[i]!=''">
+    <h2>Retour de l'image du test : {{i+1}}</h2>
+    <img [src]=" imageCapture[i]" alt="">
+  </div>
+</section>

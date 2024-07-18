@@ -1,7 +1,7 @@
 
 /**
  * @title  SCANNER DE DOCUMENT
- * @description Transaction bancaire standard
+ * @description Scan d'un document
  * @service DocumentScanning (Scanner)
 */
 
@@ -27,7 +27,8 @@ function start2() {
 }
 /**
  * preview + capture du document
- * */
+ * 
+ */
 function start3() {
     console.log("START - Lancement de la preview du document + capture du document");
     Kiosk.DocumentScanning.addEventListener("previewStart", onPreview);
@@ -63,11 +64,12 @@ function onImageDocumentCapture(e) {
             Kiosk.DocumentScanning.removeEventListener("imageCapture", onImageDocumentCapture);
             break;
         case 'ImageCaptureError':
-            console.error(e.data.code + ": " + e.data.description);
+            console.error("ERROR - " + e.data.code + ": " + e.data.description);
             Kiosk.DocumentScanning.removeEventListener("imageCapture", onImageDocumentCapture);
             break;
     }
 }
+
 function timeoutCamera() {
     timeout = setTimeout(() => {
         Kiosk.DocumentScanning.stopPreview();

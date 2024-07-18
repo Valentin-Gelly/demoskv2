@@ -10,9 +10,9 @@
 ### 1. Choix du profil utilisateur
 
 **A faire :**
-Il faut que l'utilisateur, lorsqu'il ouvre l'application puisse choisir un profil. Ce profil défini les manipulation qu'il pourra effectuer dans l'application.
+Il faut que l'utilisateur, lorsqu'il ouvre l'application, puisse choisir un profil. Ce profil définit les manipulations qu'il pourra effectuer dans l'application.
 
-Pour le moment il n'y a que l'interface du choix qui est fait. Il faut donc ajouter les fonctionnalités qui permettront de définir les actions de l'utilisateur en fonction du profil choisi.
+Pour le moment il n'y a que l'interface du choix qui est faite. Il faut donc ajouter les fonctionnalités qui permettront de définir les actions de l'utilisateur en fonction du profil choisi.
 
 ---
 
@@ -23,7 +23,7 @@ Le but de cette fonctionnalité est de permettre à l'utilisateur de choisir des
 
 ---
 
-### Portail vers les applications de démonstration
+### 3. Portail vers les applications de démonstration
 
 Cette partie de l'application permet de lancer les applications de démonstration.
 
@@ -59,22 +59,20 @@ Lors de la création d'une nouvelle application de démonstration il faut :
 
 ---
 
-### Page de lancement et de surveillance des tests de fonctionnalités
+### 4. Page de lancement et de surveillance des tests de fonctionnalités
 
 Cette page permet de lancer les tests de fonctionnalités et de surveiller leurs évolution.
 
 Pour ajouter un test il faut :
 
-1. Créer un fichier : n fichier `.js` qui va contenir l'entièreté des informations du test.
+1. Créer un fichier un fichier `.js` qui va contenir l'entièreté des informations du test.
 
     - Il doit contenir les informations suivantes :
-    
       - `@title` : Le titre du test.
       - `@description` : La description du test.
-      - `@service` : suivi du nom d'un service à surveiller dans le test. Ilpeut aussi contennir un périphérique marqué entre parentheses. Exemple : `@service BarcodeReading (BarcodeReader)`.
+      - `@service` : suivi du nom d'un service à surveiller dans le test. Il peut aussi contennir un périphérique marqué entre parentheses. Exemple : `@service BarcodeReading (BarcodeReader)`.
 
       Exemple :
-
       ``` javascript
         /**
         * @title  SCANNER DE DOCUMENT
@@ -90,9 +88,11 @@ Pour ajouter un test il faut :
        - `stopn`: avec n le numéro du test. Ces méthodes permettent d'arrêter les tests. Elles contiennent les suppressions d'eventListeners et les appels à l'API SoftKiosk.
        - Différentes fonctions qui contiennent le code du test.
 
+        Les tests doivent contenir autant de start que de stop. Les différentes fonctions doivent être appelées dans les méthodes start et stop.
+
      - Les logs de chaque fonctions doivent être construit de la manière suivant pour qu'ils soient traités par l'application :
 
-       ```
+       ``` javascript
        console.log("TYPE - Message");
        ```
 
@@ -109,13 +109,13 @@ Pour ajouter un test il faut :
 
        - Le Message contient les informations que le dveloppeurs souhaite afficher. C'est la seul partie qui sera présente dans l'application.
 
-     - Il doit contenir les différentes variables qui peuvent être modifié par l'utilisateur.
+     - Le fichier doit contenir les différentes variables qui peuvent être modifié par l'utilisateur.
 
         ```javascript
         /**
-         * @param {number} amountInCents - Default: 100 - Montant en centimes
-        * @param {string} refTransaction - Default: ref-deb-0000 - Référence de la transaction
-        * @param {string} refShoppingCart - Default: ticket-1234 - Référence du panier
+          * @param {number} amountInCents - Default: 100 - Montant en centimes
+          * @param {string} refTransaction - Default: ref-deb-0000 - Référence de la transaction
+          * @param {string} refShoppingCart - Default: ticket-1234 - Référence du panier
         */
         ```
 
@@ -123,8 +123,8 @@ Pour ajouter un test il faut :
 
         ```javascript
         /**
-         * Confirmation de transaction
-        */
+          * Confirmation de transaction
+          */
         function start1() {}
         ```
 
@@ -132,82 +132,91 @@ Pour ajouter un test il faut :
 
         ```javascript
         /**
-         * @title  LECTURE D'UN CODE BARRE
-        * @description lecture d'un code barre
-        */
+          * @title  SCANNER DE DOCUMENT
+          * @description Transaction bancaire standard
+          * @service DocumentScanning (Scanner)
+          * @service TicketPrinting 
+          */
 
         /**
-        * lancement de la lecture de code barre
-        */
+          * lancement de la lecture de code barre
+          */
         function start1() {
-        console.log("START - Lancement de la lecture de code barre");
-        Kiosk.BarcodeReading.addEventListener("barcodeRead", onBarcodeRead);
-        Kiosk.BarcodeReading.readBarcode();
+          console.log("START - Lancement de la lecture de code barre");
+          Kiosk.BarcodeReading.addEventListener("barcodeRead", onBarcodeRead);
+          Kiosk.BarcodeReading.readBarcode();
         }
 
         function onBarcodeRead(e) {
-        switch (e.data.dataType) {
-            case "BarcodeRead":
-            console.log("CAPTURE - Code barre lu: " + e.data.barcode);
-            Kiosk.BarcodeReading.removeEventListener("barcodeRead", onBarcodeRead);
-            console.log("FIN - Arret de la lecture de code barre");
-            break;
-            default:
-            break;
-        }
+          switch (e.data.dataType) {
+              case "BarcodeRead":
+                console.log("CAPTURE - Code barre lu: " + e.data.barcode);
+                Kiosk.BarcodeReading.removeEventListener("barcodeRead", onBarcodeRead);
+                console.log("FIN - Arret de la lecture de code barre");
+                break;
+              default:
+                break;
+          }
         }
 
         function stop1() {
-        console.log("FIN - Arret de la lecture de code barre");
-        Kiosk.BarcodeReading.stopReadBarcode();
-        Kiosk.BarcodeReading.removeEventListener("barcodeRead", onBarcodeRead);
+          console.log("FIN - Arret de la lecture de code barre");
+          Kiosk.BarcodeReading.stopReadBarcode();
+          Kiosk.BarcodeReading.removeEventListener("barcodeRead", onBarcodeRead);
         }
         ```
 
-2. Ajouter le nom du scénario dans la liste _featuresList_ dans le fichier `app-demo-choice.html`
+2. Ajouter le nom du test dans le fichier poc.txt du dossier assets de DemoSKV2.
 
-   ```javascript
-   // Liste des features affiché dans le menu
-   featuresList = ["Barcode_Reading", "Document_Scanning", "CardPayment_Debit", "Document_Printing"];
+    - Il faut ajouter le nom du test dans la liste `featuresList` du fichier `poc.txt`.
+
+    Exemple :
+   ```txt
+    Barcode_Reading
+    Document_Scanning
+    CardPayment_Debit
+    Document_Printing
+    Session
+    ContactlessReading
+    ContactLessReading_Calypso
+    Ticket_Printing
    ```
 
    Chaque élément de la liste va créer un bouton dans l'interface de l'application.
 
-Exemple de bouton :
-!['../../assets/DemoSKV2/doc/btnFeatureChoice.PNG'](../../assets/DemoSKV2/doc/btnFeatureChoice.PNG "Bouton de choix de test")
+Exemple de boutons :
+!['bouton pour choisir un test']( ../../assets/DemoSKV2/doc/choix_feature.JPG "Bouton de choix de test")
 
-Interface résultat pour le test de paiement par carte bancaire:
+Interface résultat pour le test du scanner de document :
 
-!['../../assets/DemoSKV2/doc/cardPaiementInterface.PNG'](../../assets/DemoSKV2/doc/cardPaiementInterface.PNG "Interface de paiement par carte bancaire")
+![Interface_de_paiement_par_carte_bancaire]( ../../assets/DemoSKV2/doc/interfacebefore.JPG "Interface_de_paiement_par_carte_bancaire")
 
 Ci-dessous un exemple d'interface après le lancement d'un test :
 
-!['../../assets/DemoSKV2/doc/cardPaiementInterfaceLaunched.JPG'](../../assets/DemoSKV2/doc/cardPaiementInterfaceLaunched.JPG "Logs")
+![Interface_de_paiement_par_carte_bancaire_apres_lancement]( ../../assets/DemoSKV2/doc/interfaceAfter.JPG "Logs")
 
-Ci dessous les deux fichier qui ont permis de réaliser ce test:
+Ci dessous le fichier pour réaliser l'interface et le test :
 
-- [CardPayment.js](../../assets/DemoSKV2/confTest/script/CardPayment_Debit.js)
-- [CardPayment.json](../../assets/DemoSKV2/confTest/CardPayment_Debit.json)
+- [Barcode_Reading.js](../../assets/DemoSKV2/confTest/script/Document_Scanning.js)
 
----
 
-## Maintenance de DemoSKV2
+## DemoSKV2
 
 ### Ajout d'un type de log
 
 Pour ajouter un type de log il faut créer une condition dans la redéfintion du `console.log` dans le fichier `feature-run.component.ts` à la ligne 340.  
-- **Ajout d'un log simple** : Le code ci-dessous est un exemple de condition pour un nouveau type de log . Le contenu du log est affiché dans une balise `<p>` dans la section Logs du test.
+- **Ajout d'un log simple** : Le code ci-dessous est un exemple de condition pour un nouveau type de log . Le contenu du log est affiché dans une balise `<div>` dans la section Logs du test.
 
 ```typescript
     else if (logType == nouveauTypeDeLog) {
         var logElement = document.getElementById("panel_Logs_" + actualLogLocationLocal);
-        logElement!.innerHTML += "<p>" + logContent.slice(0, 20) + "...</p>";
+        logElement!.innerHTML += "<div>" + logContent.slice(0, 20) + "...</div>";
         _this.compteur = 0;
     }
 }
 ```
 
-- **Ajout d'un log de fin de test** : Le code ci-dessous est un exemple de condition pour un nouveau type de log . Le contenu du log est affiché dans une balise `<p>` dans la section Results du test.
+- **Ajout d'un log de fin de test** : Le code ci-dessous est un exemple de condition pour un nouveau type de log . Le contenu du log est affiché dans une balise `<div>` dans la section Results du test.
 
 ```typescript
     else if (logType == nouveauTypeDeLog) {
@@ -216,7 +225,7 @@ Pour ajouter un type de log il faut créer une condition dans la redéfintion du
         const minutes = hour.getMinutes().toString().padStart(2, "0");
         const secondes = hour.getSeconds().toString().padStart(2, "0");
         const hourFormatted = `${heure}:${minutes}:${secondes}`;
-        document.getElementById("panel_Logs_Results_" + actualLogLocationLocal)!.innerHTML += "<p>" +hourFormatted+ " : "+ logContent.slice(0, 20) + "...</p>";
+        document.getElementById("panel_Logs_Results_" + actualLogLocationLocal)!.innerHTML += "<div>" +hourFormatted+ " : "+ logContent.slice(0, 20) + "...</div>";
         document.getElementById("playBtn_" + actualLogLocationLocal)!.style.opacity = "1";
         (document.getElementById("playBtn_" + actualLogLocationLocal) as HTMLButtonElement)!.disabled = false;
         _this.firstPreview = true;
@@ -226,5 +235,3 @@ Pour ajouter un type de log il faut créer une condition dans la redéfintion du
 
 Avec `nouveauTypeDeLog` le nouveau type de log.
 
-
-### 

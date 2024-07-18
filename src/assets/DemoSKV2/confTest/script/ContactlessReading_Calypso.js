@@ -1,5 +1,5 @@
 /**
- * @title LECTURE SANS CONTACT
+ * @title LECTURE SANS CONTACT CALYPSO
  * @description Détection et lecture d'une carte RFID Calypso sans contact ContactLessReading_Calypso
  * @service ContactlessReading (ContactlessReader)
  */

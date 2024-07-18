@@ -2,8 +2,8 @@ import { Component, OnInit, AfterViewInit, Renderer2, ChangeDetectorRef } from '
 import { AppService } from '../../app.service';
 import { GenericComponent } from '../../demos/generic/generic.component';
 import { SoftKioskService } from '../../softkiosk.service';
+import { Router } from '@angular/router';
 import * as Prism from 'prismjs';
-
 
 declare var Formio: any;
 declare var Kiosk: any;
@@ -21,9 +21,13 @@ export class FeatureRunComponent extends GenericComponent implements OnInit {
   // Information de l'application
   nomApp: string = "";
   description: string = "";
+  parsedDescription: string = "";
   nbPerif: number = 0;
   nbService: number = 0;
   fileName: string = this.appService.filename;
+  imageCapture: string[] = [];
+  Kiosk = Kiosk;
+
 
   code: string = '';
   formattedCode: string = "";
@@ -44,7 +48,8 @@ export class FeatureRunComponent extends GenericComponent implements OnInit {
   listTestFunction: string[] = [];
   listStopFunction: string[] = [];
   listComments: string[] = [];
-
+  undefinedServices: string[] = [];
+  undefinedDevices: string[] = [];
   actualLogLocation: string = "";
 
   nameMainService: string = "";
@@ -57,28 +62,15 @@ export class FeatureRunComponent extends GenericComponent implements OnInit {
   compteurImageTempo: number = 0;
   //isRunning: boolean = false;
 
-  constructor(private cdr: ChangeDetectorRef, skService: SoftKioskService, private renderer: Renderer2, private appService: AppService) {
+  constructor(private cdr: ChangeDetectorRef, skService: SoftKioskService, private renderer: Renderer2, private appService: AppService, private router: Router) {
     super(skService);
   }
   override ngOnInit() {
-
-    this.fileName = this.appService.filename;
-    // Afficher la description du test
-    document.getElementById("crossPopUp")!.addEventListener("click", function () {
-      document.getElementById("popUpDescritionPage")!.style.opacity = "0";
-      document.getElementById("popUpDescrition")!.style.opacity = "0";
-      setTimeout(function () {
-        document.getElementById("popUpDescritionPage")!.style.display = "none";
-        document.getElementById("popUpDescrition")!.style.display = "none";
-      }, 500);
-    });
-
-    this.toggleRows();
-    this.buildPageWithJsFile(this.fileName);
+    this.buildPageWithJsFile(this.appService.filename);
   }
 
   /**
-   * Obtenir le script JS
+   * Obtenir le script JS + extraction des données 
    * @param scriptName nom du script
    */
   async buildPageWithJsFile(scriptName: string) {
@@ -90,14 +82,14 @@ export class FeatureRunComponent extends GenericComponent implements OnInit {
         return response.text();
       })
       .then(text => {
-
         const titleRegex = /@title\s+(.*)/;
         const descriptionRegex = /@description\s+(.*)/;
         const serviceRegex = /@service\s+([^\s]+)\s*(?:\(([^)]+)\))?/g;
         const titleMatch = text.match(titleRegex);
         const descriptionMatch = text.match(descriptionRegex);
-        const title = titleMatch ? titleMatch[1] : 'N/A';
+        const title = titleMatch ? titleMatch[1].toUpperCase() : 'N/A';
         const description = descriptionMatch ? descriptionMatch[1] : 'N/A';
+
         let serviceMatch;
         let i = 0;
         while ((serviceMatch = serviceRegex.exec(text)) !== null) {
@@ -110,9 +102,9 @@ export class FeatureRunComponent extends GenericComponent implements OnInit {
           i++;
           this.serviceUsed.push({ service, device });
         }
-        console.log(this.serviceUsed);
         this.nomApp = title;
         this.description = description;
+        this.parsedDescription = this.getShortenedDescription();
         this.nbService = this.serviceUsed.length;
         this.code = text;
 
@@ -124,21 +116,15 @@ export class FeatureRunComponent extends GenericComponent implements OnInit {
       });
   }
 
-  toggleRows() {
-    const collapsibleRows = document.querySelectorAll('.collapsible');
-    collapsibleRows.forEach(row => {
-      (row as HTMLElement).style.display = ((row as HTMLElement).style.display === 'none' || (row as HTMLElement).style.display === '') ? 'table-row' : 'none';
-    });
-  }
 
   /**
-   * retourne la description tronquée à 200 caractères
+   * Retourne la description tronquée à 50 caractères
    */
   getShortenedDescription(): string {
-    if (this.description.length <= 200) {
+    if (this.description.length <= 50) {
       return this.description;
     } else {
-      let string = this.description.slice(0, 200) + "...";
+      let string = this.description.slice(0, 50) + "...";
       return string
     }
   }
@@ -158,11 +144,10 @@ export class FeatureRunComponent extends GenericComponent implements OnInit {
       // Recherche des fonctions 'start' et 'stop' dans le contenu du fichier JS
       this.findTestFunctions(text);
 
-      // Recherche des commentaires juste au-dessus des fonctions 'start' et 'stop'
+      // Recherche des commentaires au-dessus des fonctions 'start' et 'stop'
       const functionCommentsFirst = text.match(/\/\*\*[^*]*\*+(?:[^/*][^*]*\*+)*\/(?=\s*(?:async\s+)?(?:function\s+)?(?:start\d*)\s*\()/g) || [];
 
-      // Nettoyer les commentaires
-      const functionCommentsFinish = functionCommentsFirst.map(comment => {
+      this.listComments = functionCommentsFirst.map(comment => {
         // Supprime les délimitations /** et */
         let cleanedComment = comment.replace(/^\/\*\*|\*\/$/g, '').trim();
 
@@ -174,10 +159,6 @@ export class FeatureRunComponent extends GenericComponent implements OnInit {
         return lines[0].split('@')[0].trim();
       }).filter(description => description.length > 0); // Filtre les chaînes vides
 
-      // Afficher les commentaires de description trouvés
-
-      this.listComments = functionCommentsFinish;
-
       this.buildFormFromText(text);
 
     } catch (error) {
@@ -185,67 +166,58 @@ export class FeatureRunComponent extends GenericComponent implements OnInit {
     }
   }
 
-  device: string = 'N/A';
   /**
    * Créer l'historique des status et des states des services
    * @param nbService nombre de service utilisé
    */
   async createHistoric(nbService: number) {
+    let device = 'N/A';
     for (let i = 0; i < nbService; i++) {
       let service = this.serviceUsed[i].service;
-      if (this.serviceUsed[i].device != 'N/A') {
-        this.device = this.serviceUsed[i].device;
-      }
-      let actualStatusService = this.skService.getStatus(service);
-      let actualStateService = this.skService.getState(service);
-      let statusDetailService = this.skService.getServiceStatusDetail(service);
-      console.log(this.serviceUsed[i].device);
-      console.log("this.serviceUsed[i].device != 'N/A' : " + this.serviceUsed[i].device != 'N/A')
-      if (this.serviceUsed[i].device != 'N/A') {
-        let actualStatusDevice = Kiosk[service][this.device].status;
-        let actualStateDevice = Kiosk[service][this.device].state;
-        let statusDetailDevice = Kiosk[service][this.device].statusDetail;
-        this.actualStatusAllDevice[this.device] = { "status": actualStatusDevice, "state": actualStateDevice, "statusDetail": statusDetailDevice };
-      }
-      this.actualStatusAllService[service] = { "status": actualStatusService, "state": actualStateService, "statusDetail": statusDetailService };
-      this.historicStatusAllService[service] = [];
-      let date = this.getFormattedTime();
-      this.historicStatusAllService[service].unshift({ "hourEvent": date, "hourReceiptEvent": date, "status": actualStatusService, "state": actualStateService, "statusDetail": statusDetailService, "component": service })
-      this.historicEvent[service] = [];
-      console.log(this.actualStatusAllService)
-      console.log(this.actualStatusAllDevice)
-      console.log(this.historicStatusAllService)
-      this.skService.addEventListener(service, "statusChange", (e: any) => {
-        console.info("evenement status change");
-        console.info(e);
-        this.actualStatusAllService[service] = { "status": Kiosk[service].status, "state": Kiosk[service].state, "statusDetail": Kiosk[service].statusDetail };
-        this.historicStatusAllService[service].unshift({ "hourEvent": this.tickToHour(e.tick), "hourReceiptEvent": this.getFormattedTime(), "status": Kiosk[service].status, "statusDetail": Kiosk[service].statusDetail, "component": service });
-        this.historicEvent[service].unshift({ "hourEvent": this.tickToHour(e.tick), "hourReceiptEvent": this.getFormattedTime(), "status": Kiosk[service].status, "statusDetail": Kiosk[service].statusDetail, "component": service });
-        this.cdr.detectChanges();
-      });
-      this.skService.addEventListener(service, "stateChange", (e: any) => {
-        console.info("evenement state change");
-        console.info(e);
-        this.actualStatusAllService[service] = { "status": Kiosk[service].status, "state": Kiosk[service].state, "statusDetail": Kiosk[service].statusDetail };
-        this.historicStatusAllService[service].unshift({ "hourEvent": this.tickToHour(e.tick), "hourReceiptEvent": this.getFormattedTime(), "state": Kiosk[service].state, "component": service });
-        this.historicEvent[service].unshift({ "hourEvent": this.tickToHour(e.tick), "hourReceiptEvent": this.getFormattedTime(), "state": Kiosk[service].state, "component": service });
-        this.cdr.detectChanges();
-      });
-      if (this.device !== 'N/A') {
-        Kiosk[service][this.device].addEventListener("statusChange", (e: any) => {
-          this.actualStatusAllDevice[this.device] = { "status": Kiosk[service][this.device].status, "state": Kiosk[service][this.device].state, "statusDetail": Kiosk[service][this.device].statusDetail };
-          console.info("evenement status change for " + service);
-          console.info(e);
-          this.historicEvent[service].unshift({ "hourEvent": this.tickToHour(e.tick), "hourReceiptEvent": this.getFormattedTime(), "status": Kiosk[service][this.device].status, "statusDetail": Kiosk[service][this.device].statusDetail, "component": this.device });
+      if (Kiosk[service] !== undefined) {
+        let actualStatusService = this.skService.getStatus(service);
+        let actualStateService = this.skService.getState(service);
+        let statusDetailService = this.skService.getServiceStatusDetail(service);
+        this.actualStatusAllService[service] = { "status": actualStatusService, "state": actualStateService, "statusDetail": statusDetailService };
+        this.historicStatusAllService[service] = [];
+        let date = this.getFormattedTime();
+        this.historicStatusAllService[service].unshift({ "hourEvent": date, "hourReceiptEvent": date, "status": actualStatusService, "state": actualStateService, "statusDetail": statusDetailService, "component": service })
+        this.historicEvent[service] = [];
+        this.skService.addEventListener(service, "statusChange", (e: any) => {
+          this.actualStatusAllService[service] = { "status": Kiosk[service].status, "state": Kiosk[service].state, "statusDetail": Kiosk[service].statusDetail };
+          this.historicStatusAllService[service].unshift({ "hourEvent": this.tickToHour(e.tick), "hourReceiptEvent": this.getFormattedTime(), "status": Kiosk[service].status, "statusDetail": Kiosk[service].statusDetail, "component": service });
+          this.historicEvent[service].unshift({ "hourEvent": this.tickToHour(e.tick), "hourReceiptEvent": this.getFormattedTime(), "status": Kiosk[service].status, "statusDetail": Kiosk[service].statusDetail, "component": service });
           this.cdr.detectChanges();
         });
-        Kiosk[service][this.device].addEventListener("stateChange", (e: any) => {
-          this.actualStatusAllDevice[this.device] = { "status": Kiosk[service][this.device].status, "state": Kiosk[service][this.device].state, "statusDetail": Kiosk[service][this.device].statusDetail };
-          console.info("evenement state change for " + service);
-          console.info(e);
-          this.historicEvent[service].unshift({ "hourEvent": this.tickToHour(e.tick), "hourReceiptEvent": this.getFormattedTime(), "state": Kiosk[service][this.device].state, "component": this.device });
+        this.skService.addEventListener(service, "stateChange", (e: any) => {
+          this.actualStatusAllService[service] = { "status": Kiosk[service].status, "state": Kiosk[service].state, "statusDetail": Kiosk[service].statusDetail };
+          this.historicStatusAllService[service].unshift({ "hourEvent": this.tickToHour(e.tick), "hourReceiptEvent": this.getFormattedTime(), "state": Kiosk[service].state, "component": service });
+          this.historicEvent[service].unshift({ "hourEvent": this.tickToHour(e.tick), "hourReceiptEvent": this.getFormattedTime(), "state": Kiosk[service].state, "component": service });
           this.cdr.detectChanges();
         });
+        if (this.serviceUsed[i].device != 'N/A') {
+          device = this.serviceUsed[i].device;
+          if (Kiosk[service][device] !== undefined) {
+            let actualStatusDevice = Kiosk[service][device].status;
+            let actualStateDevice = Kiosk[service][device].state;
+            let statusDetailDevice = Kiosk[service][device].statusDetail;
+            this.actualStatusAllDevice[device] = { "status": actualStatusDevice, "state": actualStateDevice, "statusDetail": statusDetailDevice };
+            Kiosk[service][device].addEventListener("statusChange", (e: any) => {
+              this.actualStatusAllDevice[device] = { "status": Kiosk[service][device].status, "state": Kiosk[service][device].state, "statusDetail": Kiosk[service][device].statusDetail };
+              this.historicEvent[service].unshift({ "hourEvent": this.tickToHour(e.tick), "hourReceiptEvent": this.getFormattedTime(), "status": Kiosk[service][device].status, "statusDetail": Kiosk[service][device].statusDetail, "component": device });
+              this.cdr.detectChanges();
+            });
+            Kiosk[service][device].addEventListener("stateChange", (e: any) => {
+              this.actualStatusAllDevice[device] = { "status": Kiosk[service][device].status, "state": Kiosk[service][device].state, "statusDetail": Kiosk[service][device].statusDetail };
+              this.historicEvent[service].unshift({ "hourEvent": this.tickToHour(e.tick), "hourReceiptEvent": this.getFormattedTime(), "state": Kiosk[service][device].state, "component": device });
+              this.cdr.detectChanges();
+            });
+          }else{
+            this.undefinedDevices.push(service);
+          }
+        }
+      }else{
+        this.undefinedServices.push(service);
       }
     }
   }
@@ -330,14 +302,16 @@ export class FeatureRunComponent extends GenericComponent implements OnInit {
    * @param idSection nom de la section à compléter avec les logs
    */
   async callFunctionFromScript(functionName: string, idSection: string) {
+    
+    
     try {
-      let scriptUrl = `http://localhost:5000/demoSKV2/application/assets/DemoSKV2/confTest/script/${this.fileName}.js`;
+      let scriptUrl = `http://localhost:5000/demoSKV2/application/assets/DemoSKV2/confTest/script/${this.appService.filename}.js`;
       this.actualLogLocation = "test_" + idSection.split("_")[2];
       fetch(scriptUrl)
         .then(response => response.text())
         .then(scriptContent => {
-
           let allInput = document.getElementsByTagName("input");
+          
           // Modifier les variables dans le script
           for (let i = 0; i < allInput.length; i++) {
             const variableName = allInput[i].id.split("-")[1];
@@ -357,22 +331,24 @@ export class FeatureRunComponent extends GenericComponent implements OnInit {
             });
           }
 
+          // Supprimer l'ancien script s'il existe
           if (document.getElementById('scriptElement') != null) {
             document.getElementById('scriptElement')!.remove();
           }
 
+          // Filtrage des variables déjà existante dans la page
+          let scriptContentCleaned = this.removeDeclarationsIfExists(scriptContent);
+        
           const scriptElement = document.createElement('script');
           scriptElement.id = "scriptElement";
-          scriptElement.text = scriptContent;
+          scriptElement.text = scriptContentCleaned;
           document.body.appendChild(scriptElement);
           let _this = this;
           let actualLogLocationLocal = this.actualLogLocation;
 
-
-          /**
-           * Redéfinition de la fonction console.log pour afficher les logs dans le panneau de logs
-           */
+          //Redéfinition de la fonction console.log pour afficher les logs dans le panneau de logs 
           this.redirectLogs(actualLogLocationLocal);
+
           // Mettre à jour l'interface utilisateur
           document.getElementById("panel_Logs_test_" + idSection.split("_")[2])!.innerHTML = "";
           document.getElementById("last_Result_test_" + idSection.split("_")[2])!.innerHTML = "";
@@ -407,8 +383,23 @@ export class FeatureRunComponent extends GenericComponent implements OnInit {
     } catch (error) {
       console.error('Erreur lors du chargement ou de l\'exécution du script :', error);
     }
+  }
 
+  // Fonction pour vérifier et enlever les déclarations let/const/var si la variable existe déjà
+  removeDeclarationsIfExists(code: string) {
+    // Expression régulière pour trouver les déclarations de variables
+    const varDeclarationRegex = /(let|const|var)\s+(\w+)\s*=/g;
 
+    // Fonction de remplacement
+    code = code.replace(varDeclarationRegex, function (match, keyword, varName) {
+      // Vérifie si la variable est déjà définie
+      if (typeof varName !== 'undefined') {
+        return varName + " =";
+      } else {
+        return match;
+      }
+    });
+    return code;
   }
 
 
@@ -431,39 +422,61 @@ export class FeatureRunComponent extends GenericComponent implements OnInit {
         // cas de logType = "END" ou "ERROR" ==> fin de l'exécution du script (affichage dans la console Results)
         if (logType == "END" || logType == "ERROR") {
           const hourformated = _this.getFormattedTime();
-          document.getElementById("panel_Logs_Results_" + actualLogLocationLocal)!.innerHTML = '<p class="stateInformations">' + hourformated + " : " + logContent + '</p>'+ document.getElementById("panel_Logs_Results_" + actualLogLocationLocal)!.innerHTML;
+          document.getElementById("panel_Logs_Results_" + actualLogLocationLocal)!.innerHTML = '<div>' + hourformated + " : " + logContent + '</div>' + document.getElementById("panel_Logs_Results_" + actualLogLocationLocal)!.innerHTML;
           document.getElementById("last_Result_" + actualLogLocationLocal)!.innerHTML = hourformated + "   " + logContent;
           panel = 'panel_Logs';
           document.getElementById("playBtn_" + actualLogLocationLocal)!.style.opacity = "1";
           (document.getElementById("playBtn_" + actualLogLocationLocal) as HTMLButtonElement)!.disabled = false;
         }
-        // cas de logType = "CAPTURE" ==> capture d'un QRCode ou d'une image (affichage dans la console Results)
+        // cas de logType = "CAPTURE" ==> capture d'un QRCode ou d'une image (affichage dans la console Results et dans un onglet dragagble)
         else if (logType == "CAPTURE") {
+          
+
+          if (!(logContent.includes("http://") || logContent.includes("https://"))) {
+            _this.imageCapture[Number(actualLogLocationLocal.split('_')[1])] = "data:image/png;base64," + logContent;
+          }
           const hourformated = _this.getFormattedTime();
-          document.getElementById("panel_Logs_Results_" + actualLogLocationLocal)!.innerHTML = "<p>" + hourformated + " : " + logContent.slice(0, 20) + "...</p>" + document.getElementById("panel_Logs_Results_" + actualLogLocationLocal)!.innerHTML ;
+          
+
+          document.getElementById("panel_Logs_Results_" + actualLogLocationLocal)!.innerHTML = "<div>" + hourformated + " : " + logContent.slice(0, 20) + "...</div>" + document.getElementById("panel_Logs_Results_" + actualLogLocationLocal)!.innerHTML;
           document.getElementById("playBtn_" + actualLogLocationLocal)!.style.opacity = "1";
           (document.getElementById("playBtn_" + actualLogLocationLocal) as HTMLButtonElement)!.disabled = false;
         }
-        // cas de logType = "PREVIEW" ==> affichage d'un aperçu (affichage dans la console log)
+        // cas de logType = "PREVIEW" ==> affichage d'un aperçu (affichage dans la console log et dans un onglet dragagble)
         else if (logType == "PREVIEW") {
+          _this.imageCapture[Number(actualLogLocationLocal.split('_')[1])] = "data:image/png;base64," + logContent;
           if (_this.compteurImageTempo <= 7) {
             _this.compteurImageTempo++;
           } else {
             var logElement = document.getElementById("panel_Logs_" + actualLogLocationLocal);
-            const hourformated = _this.getFormattedTime(); 
-            logElement!.innerHTML =  "<div>"+hourformated + " : "  + logContent.slice(0, 20) + "... </div>" + logElement!.innerHTML;
+            const hourformated = _this.getFormattedTime();
+            logElement!.innerHTML = "<div>" + hourformated + " : " + logContent.slice(0, 20) + "... </div>" + logElement!.innerHTML;
             _this.compteurImageTempo = 0;
           }
         }
         // cas de logType = "CONSOLE" ==> affichage d'un message dans la console de log 
         else if (logType == "START" || logType == "USER") {
-            const hourformated = _this.getFormattedTime(); 
-            var logElement = document.getElementById("panel_Logs_" + actualLogLocationLocal);
-          logElement!.innerHTML = "<div>"+hourformated + " : " +logContent+"</div>" ;
+          const hourformated = _this.getFormattedTime();
+          var logElement = document.getElementById("panel_Logs_" + actualLogLocationLocal);
+          logElement!.innerHTML = "<div>" + hourformated + " : " + logContent + "</div>";
         }
       }
+      _this.cdr.detectChanges();
     };
   }
+
+  isBase64(string: string) {
+    // Vérifie si la chaîne a une longueur qui est un multiple de 4 et contient uniquement des caractères Base64
+    const base64Regex = /^[A-Za-z0-9+/]+={0,2}$/;
+    return base64Regex.test(string) && string.length % 4 === 0;
+  }
+
+  isURL(string: string) {
+    // Vérifie si la chaîne commence par http:// ou https://
+    const urlRegex = /^(http|https):\/\/[^\s/$.?#].[^\s]*$/;
+    return urlRegex.test(string);
+  }
+
 
   /**
    * Afficher ou masquer la section accordéon
@@ -533,6 +546,11 @@ export class FeatureRunComponent extends GenericComponent implements OnInit {
     // Afficher les fonctions trouvées
     this.listTestFunction = testFunctions;
     this.listStopFunction = stopFunctions;
+
+    for (let i = 0; i < this.listStopFunction.length; i++) {
+      this.imageCapture.push("");
+    }
+    
   }
 
   /**
@@ -564,19 +582,24 @@ export class FeatureRunComponent extends GenericComponent implements OnInit {
   }
 
 
-  ngOnDestroy() {
+  backToChooseView() {
     this.actualLogLocation = "";
     for (let i = 0; i < this.nbService; i++) {
       let service = this.serviceUsed[i].service;
-      if (this.serviceUsed[i].device != 'N/A') {
-        let device = this.serviceUsed[i].device;
-        this.skService.removeEventListener(device, "statusChange", () => { });
-        this.skService.removeEventListener(device, "stateChange", () => { });
-      }
-      this.skService.removeEventListener(service, "statusChange", () => { });
-      this.skService.removeEventListener(service, "stateChange", () => { });
+      if (Kiosk[service] !== undefined) {
+        if (this.serviceUsed[i].device != 'N/A') {
+          if ( Kiosk[service][this.serviceUsed[i].device] !== undefined) {
+            let device = this.serviceUsed[i].device;
 
+            Kiosk[service][device].removeEventListener("statusChange", () => { });
+            Kiosk[service][device].removeEventListener("stateChange", () => { });
+          }
+        }
+        this.skService.removeEventListener(service, "statusChange", () => { });
+        this.skService.removeEventListener(service, "stateChange", () => { });
+      }
     }
+    this.router.navigate(['/demoSKV2AllPagesApp']);
   }
 
   stopSession() {
@@ -599,15 +622,17 @@ export class FeatureRunComponent extends GenericComponent implements OnInit {
         document.getElementById("popUp" + typePopUp + "")!.style.display = "none";
       }, 500);
     });
-    document.getElementById("crossPopUp")!.addEventListener("click", function () {
-      document.getElementById("popUp" + typePopUp + "Page")!.style.opacity = "0";
-      document.getElementById("popUp" + typePopUp + "")!.style.opacity = "0";
-      setTimeout(function () {
-        document.getElementById("popUp" + typePopUp + "Page")!.style.display = "none";
-        document.getElementById("popUp" + typePopUp + "")!.style.display = "none";
-      }, 500);
-    });
   }
+
+  closePopUp(typePopUp: string) {
+    document.getElementById("popUp" + typePopUp + "Page")!.style.opacity = "0";
+    document.getElementById("popUp" + typePopUp + "")!.style.opacity = "0";
+    setTimeout(function () {
+      document.getElementById("popUp" + typePopUp + "Page")!.style.display = "none";
+      document.getElementById("popUp" + typePopUp + "")!.style.display = "none";
+    }, 500);
+  }
+
 
   resetLogs(i: number) {
     document.getElementById("panel_Logs_Results_test_" + i)!.innerHTML = "";
@@ -623,6 +648,18 @@ export class FeatureRunComponent extends GenericComponent implements OnInit {
       this.historicEvent[this.serviceUsed[i].service] = [];
     }
     this.cdr.detectChanges();
+  }
+
+
+  /**
+   * Afficher la section dragable avec le retourn image 
+   */
+  showImageSection(i: number) {
+    if (document.getElementById("resultImage" + i)!.style.display === "flex") {
+      document.getElementById("resultImage" + i)!.style.display = "none";
+    } else {
+      document.getElementById("resultImage" + i)!.style.display = "flex";
+    }
   }
 }
 

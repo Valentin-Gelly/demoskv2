@@ -1,0 +1,8 @@
+Barcode_Reading
+Document_Scanning
+CardPayment_Debit
+Document_Printing
+Session
+ContactlessReading
+ContactLessReading_Calypso
+Ticket_Printing
