@@ -2,13 +2,28 @@
   font-family: "Poppins", sans-serif;;
 }
 
+main{
+  display: flex;
+  flex-direction: column;
+}
+
+.searchElement{
+  position: absolute;
+  transform: translate(-50%,-50%);
+  left: 50%;
+}
+
+.searchElement h2{
+  margin: 0;
+}
+
 .demoChoice {
     position: relative;
     display: flex;
     flex-direction: column;
     gap: 25%;
     height: 50%;
-    top: 40%;
+    top: 55%;
     left: 50%;
     width: 50%;
     transform: translate(-50%, -50%);
@@ -49,4 +64,14 @@
   width: 22% !important; 
   height: unset !important; 
   transform: unset !important;
+}
+
+.searchElement{
+  display: flex;
+  flex-direction: column;
+}
+
+.searchElement input{
+  margin-top: 10px;
+  border-radius: 10px;
 }

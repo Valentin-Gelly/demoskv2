@@ -1,8 +1,10 @@
 Barcode_Reading
 Document_Scanning
 CardPayment_Debit
-Document_Printing
+Document_Printing_PDF
+Document_Printing_HTML
 Session
 ContactlessReading
 ContactLessReading_Calypso
-Ticket_Printing
+Camera_Shooting
+Ticket_Printing_PDF

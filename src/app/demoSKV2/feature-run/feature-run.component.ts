@@ -212,11 +212,11 @@ export class FeatureRunComponent extends GenericComponent implements OnInit {
               this.historicEvent[service].unshift({ "hourEvent": this.tickToHour(e.tick), "hourReceiptEvent": this.getFormattedTime(), "state": Kiosk[service][device].state, "component": device });
               this.cdr.detectChanges();
             });
-          }else{
+          } else {
             this.undefinedDevices.push(service);
           }
         }
-      }else{
+      } else {
         this.undefinedServices.push(service);
       }
     }
@@ -240,7 +240,7 @@ export class FeatureRunComponent extends GenericComponent implements OnInit {
    * Get the hour from the tick
    * @param ticksInSecs .Net tick en secondes
    */
-  tickToHour(ticksInSecs: number) {
+  tickToHour(ticksInSecs : number) {
     // Nombre de ticks à convertir
     const epochOffset = 621355968000000000; // .NET start date - Unix epoch
     const ticksPerMillisecond = 10000; // .NET ticks in a millisecond
@@ -248,19 +248,20 @@ export class FeatureRunComponent extends GenericComponent implements OnInit {
     const millisecondsSinceEpoch = (ticksInSecs - epochOffset) / ticksPerMillisecond;
     const jsDate = new Date(millisecondsSinceEpoch); // convert milliseconds to seconds
 
-    const datePart = jsDate.toLocaleDateString('fr-FR'); // get date part
+    // Get date and time parts in UTC
+    const datePart = jsDate.toLocaleDateString('fr-FR', { timeZone: 'UTC' });
     const timePart = jsDate.toLocaleTimeString('fr-FR', {
       hour: '2-digit',
       minute: '2-digit',
-      second: '2-digit'
+      second: '2-digit',
+      timeZone: 'UTC'
     });
 
-    const milliseconds = jsDate.getMilliseconds(); // get milliseconds part
+    const milliseconds = jsDate.getUTCMilliseconds(); // get milliseconds part in UTC
     const formattedMilliseconds = milliseconds.toString().padStart(3, '0'); // ensure 3 digits
 
     return `${timePart},${formattedMilliseconds}`;
-
-  }
+}
 
   pad(n: number, width: number) {
     var n1: string = n + '';
@@ -302,8 +303,6 @@ export class FeatureRunComponent extends GenericComponent implements OnInit {
    * @param idSection nom de la section à compléter avec les logs
    */
   async callFunctionFromScript(functionName: string, idSection: string) {
-    
-    
     try {
       let scriptUrl = `http://localhost:5000/demoSKV2/application/assets/DemoSKV2/confTest/script/${this.appService.filename}.js`;
       this.actualLogLocation = "test_" + idSection.split("_")[2];
@@ -311,11 +310,14 @@ export class FeatureRunComponent extends GenericComponent implements OnInit {
         .then(response => response.text())
         .then(scriptContent => {
           let allInput = document.getElementsByTagName("input");
-          
+
           // Modifier les variables dans le script
           for (let i = 0; i < allInput.length; i++) {
             const variableName = allInput[i].id.split("-")[1];
             let variableValue = "";
+            //if (allInput[i].type === "file") {
+            //  variableValue = this.convertToBase64(allInput[i])
+            //}
             if (allInput[i].value != "") {
               variableValue = JSON.stringify(allInput[i].value);
             } else {
@@ -338,7 +340,7 @@ export class FeatureRunComponent extends GenericComponent implements OnInit {
 
           // Filtrage des variables déjà existante dans la page
           let scriptContentCleaned = this.removeDeclarationsIfExists(scriptContent);
-        
+
           const scriptElement = document.createElement('script');
           scriptElement.id = "scriptElement";
           scriptElement.text = scriptContentCleaned;
@@ -402,6 +404,47 @@ export class FeatureRunComponent extends GenericComponent implements OnInit {
     return code;
   }
 
+  /**
+   * Convertir un fichier en base 64 ( de préférence un fichier de type pdf)
+   * @param fileInput un objet input (ici on veut un input de type file)
+   * @returns la base 64 du fichier
+   */
+  convertToBase64(fileInput:HTMLInputElement) : any{
+    if (fileInput != null) {
+      const file = fileInput.files![0];
+      let base64String = "";
+      console.log("file");
+      console.log(file);
+      
+      if (file) {
+        const reader = new FileReader();
+        console.log("reader");
+        console.log(reader);
+        reader.onload = function (event) {
+          console.log("event");
+          console.log(event);
+          // Assert that event.target.result is a string
+          if (event.target){
+            console.log("event.target");
+            const result = event.target.result as string;
+            if (result) {
+              console.log("result");
+              console.log(result);
+              base64String = result.split(',')[1];
+
+              
+            }
+          }
+        };
+        console.log(base64String);
+        reader.readAsDataURL(file);
+        return base64String;
+      } else {
+        alert('Veuillez sélectionner un fichier.');
+      }
+    }
+
+  }
 
   redirectLogs(actualLogLocationLocal: string) {
     let _this = this;
@@ -430,14 +473,10 @@ export class FeatureRunComponent extends GenericComponent implements OnInit {
         }
         // cas de logType = "CAPTURE" ==> capture d'un QRCode ou d'une image (affichage dans la console Results et dans un onglet dragagble)
         else if (logType == "CAPTURE") {
-          
-
-          if (!(logContent.includes("http://") || logContent.includes("https://"))) {
+          if (!(logContent.includes("http://") || logContent.includes("https://")) && logContent.length > 20000) {
             _this.imageCapture[Number(actualLogLocationLocal.split('_')[1])] = "data:image/png;base64," + logContent;
           }
           const hourformated = _this.getFormattedTime();
-          
-
           document.getElementById("panel_Logs_Results_" + actualLogLocationLocal)!.innerHTML = "<div>" + hourformated + " : " + logContent.slice(0, 20) + "...</div>" + document.getElementById("panel_Logs_Results_" + actualLogLocationLocal)!.innerHTML;
           document.getElementById("playBtn_" + actualLogLocationLocal)!.style.opacity = "1";
           (document.getElementById("playBtn_" + actualLogLocationLocal) as HTMLButtonElement)!.disabled = false;
@@ -501,17 +540,27 @@ export class FeatureRunComponent extends GenericComponent implements OnInit {
   buildFormFromText(text: string) {
     this.parameters = this.extractParameterDetails(text);
     for (let i = 0; i < this.parameters.length; i++) {
-      let jsonElement = {
-        "type": this.parameters[i].type !== undefined ? this.parameters[i].type : "textfield",
-        "key": this.parameters[i].name !== undefined ? this.parameters[i].name : "",
-        "label": this.parameters[i].name !== undefined ? this.parameters[i].name : "",
-        "placeholder": this.parameters[i].default !== undefined ? this.parameters[i].default : "",
-        "value": this.parameters[i].default !== undefined ? this.parameters[i].default : "",
-        "tooltip": this.parameters[i].name !== undefined ? this.parameters[i].name : "",
-        "input": true,
-        "customId": this.parameters[i].name
-      };
-      this.FormJSON.push(jsonElement);
+      console.log((this.parameters[i].type === 'file'))
+      if (!(this.parameters[i].type === 'file')) {
+        let jsonElement = {
+          "type": this.parameters[i].type !== undefined ? this.parameters[i].type : "textfield",
+          "key": this.parameters[i].name !== undefined ? this.parameters[i].name : "",
+          "label": this.parameters[i].name !== undefined ? this.parameters[i].name : "",
+          "placeholder": this.parameters[i].default !== undefined ? this.parameters[i].default : "",
+          "value": this.parameters[i].default !== undefined ? this.parameters[i].default : "",
+          "tooltip": this.parameters[i].name !== undefined ? this.parameters[i].name : "",
+          "input": true,
+          "customId": this.parameters[i].name
+        };
+        this.FormJSON.push(jsonElement);
+      } else {
+        let form = document.getElementById("additionnalForm");
+        let input = document.createElement("input");
+        input.type = "file";
+        input.id = this.parameters[i].name;
+        input.name = "file";
+        form!.appendChild(input);
+      }
     }
     let _this = this;
 
@@ -533,6 +582,7 @@ export class FeatureRunComponent extends GenericComponent implements OnInit {
         }
         i++;
       });
+
     });
   }
 
@@ -550,7 +600,7 @@ export class FeatureRunComponent extends GenericComponent implements OnInit {
     for (let i = 0; i < this.listStopFunction.length; i++) {
       this.imageCapture.push("");
     }
-    
+
   }
 
   /**
@@ -588,7 +638,7 @@ export class FeatureRunComponent extends GenericComponent implements OnInit {
       let service = this.serviceUsed[i].service;
       if (Kiosk[service] !== undefined) {
         if (this.serviceUsed[i].device != 'N/A') {
-          if ( Kiosk[service][this.serviceUsed[i].device] !== undefined) {
+          if (Kiosk[service][this.serviceUsed[i].device] !== undefined) {
             let device = this.serviceUsed[i].device;
 
             Kiosk[service][device].removeEventListener("statusChange", () => { });

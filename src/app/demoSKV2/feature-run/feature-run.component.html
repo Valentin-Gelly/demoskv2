@@ -21,6 +21,7 @@
       <section id="parametre" *ngIf="parameters.length != 0">
         <h2>Paramètres :</h2>
         <div id="formio"></div>
+        <div id="additionnalForm"></div>
       </section>
       <section id="startAndStop">
         <section class="section_test" *ngFor="let item of listStopFunction; let i = index">
@@ -105,35 +106,92 @@
                   </section>
                 </h3>
                 <h3 *ngIf="Kiosk[item.service].status!=undefined">
-                  <span class="titleService">{{ item.service }} </span>
-                  <section class="actualStatusService">
-                    <span [attr.id]="'status_' + item.service">
-                      {{ actualStatusAllService[item.service].status }}
-                    </span>
-                    <span [attr.id]="'statusDetail_' + item.service">
-                      {{ actualStatusAllService[item.service].state }}
-                    </span>
-                    <span [attr.id]="'state_' + item.service">
+                  <span class="titleService">
+                    {{ item.service }}
+                  </span>
+                  <section class="actualStatusService">  
+                    <ng-container *ngIf="actualStatusAllService[item.service].status == 'Ok'; else tempUnavailable">
+                      <span [attr.id]="'status_' + item.service" class="serviceStatusTitleOk">
+                        {{ actualStatusAllService[item.service].status }}
+                      </span>
+                    </ng-container>
+                    <ng-template #tempUnavailable>
+                      <ng-container *ngIf="actualStatusAllService[item.service].status == 'TempUnavailable'; else warning">
+                        <span [attr.id]="'status_' + item.service" class="serviceStatusTitleTempUnavailable">
+                          {{ actualStatusAllService[item.service].status }}
+                        </span>
+                      </ng-container>
+                    </ng-template>
+                    <ng-template #warning>
+                      <ng-container *ngIf="actualStatusAllService[item.service].status == 'Warning'; else other">
+                        <span [attr.id]="'status_' + item.service" class="serviceStatusTitleWarning">
+                          {{ actualStatusAllService[item.service].status }}
+                        </span>
+                      </ng-container>
+                    </ng-template>
+                    <ng-template #other>
+                      <span [attr.id]="'status_' + item.service" class="serviceStatusTitleOther">
+                        {{ actualStatusAllService[item.service].status }}
+                      </span>
+                    </ng-template>
+                    
+                    <span class="changeEventSpan ReadyState" *ngIf="actualStatusAllService[item.service].state=='Ready'  ;else processingStateServiceTitle">{{ actualStatusAllService[item.service].state }} </span>
+                    <ng-template #processingStateServiceTitle >
+                      <span class="changeEventSpan ProcessingState" *ngIf="actualStatusAllService[item.service].state=='Processing'  ;else otherStateServiceTitle" >{{ actualStatusAllService[item.service].state }} </span>
+                      <ng-template #otherStateServiceTitle >
+                        <span class="changeEventSpan otherState">{{ actualStatusAllService[item.service].state }} </span>
+                      </ng-template>
+                    </ng-template>
+
+                    <span [attr.id]="'state_' + item.service" class="okStatusDetailTitle" *ngIf="actualStatusAllService[item.service].statusDetail == 'Ok';else otherStatusDetailTitle">
                       {{ actualStatusAllService[item.service].statusDetail }}
                     </span>
+                    <ng-template #otherStatusDetailTitle>
+                      <span [attr.id]="'state_' + item.service" class="otherStatusDetailTitle">
+                        {{ actualStatusAllService[item.service].statusDetail }}
+                      </span>
+                    </ng-template>
                   </section>
                 </h3>
                 <h3 *ngIf="item.device!= 'N/A' && Kiosk[item.service][item.device]!=undefined">
                   <span class="titleService">{{item.device}}</span>
                   <section class="actualStatusService">
-                    <span [attr.id]="'status_' + item.service">
+                    <span [attr.id]="'status_' + item.device" class="deviceStatusTitleOk" *ngIf="actualStatusAllDevice[item.device].status=='Ok';else deviceStatusTitleTempUnavailable">
                       {{ actualStatusAllDevice[item.device].status }}
                     </span>
-                    <span [attr.id]="'statusDetail_' + item.service">
-                      {{ actualStatusAllDevice[item.device].state }}
-                    </span>
-                    <span [attr.id]="'state_' + item.service">
+                    <ng-template #deviceStatusTitleTempUnavailable>
+                      <span [attr.id]="'status_' + item.device" class="deviceStatusTitleTempUnavailable" *ngIf="actualStatusAllDevice[item.device].status=='TempUnavailable';else deviceStatusTitleWarning">
+                        {{ actualStatusAllDevice[item.device].status }}
+                      </span>
+                      <ng-template #deviceStatusTitleWarning>
+                        <span [attr.id]="'status_' + item.device" class="deviceStatusTitleWarning" *ngIf="actualStatusAllDevice[item.device].status=='Warning';else deviceStatusTitleOther">
+                          {{ actualStatusAllDevice[item.device].status }}
+                        </span>
+                        <ng-template #deviceStatusTitleOther>
+                          <span [attr.id]="'status_' + item.device" class="deviceStatusTitleOther">
+                            {{ actualStatusAllDevice[item.device].status }}
+                          </span>
+                        </ng-template>
+                      </ng-template>
+                    </ng-template>
+                    <span class="changeEventSpan ReadyState" *ngIf="actualStatusAllDevice[item.device].state=='Ready'  ;else processingStateDeviceTitle">{{ actualStatusAllDevice[item.device].state }} </span>
+                    <ng-template #processingStateDeviceTitle>
+                      <span class="changeEventSpan ProcessingState" *ngIf="actualStatusAllDevice[item.device].state=='Processing';else otherStateDeviceTitle" >{{ actualStatusAllDevice[item.device].state }} </span>
+                    </ng-template>
+                    <ng-template #otherStateDeviceTitle>
+                      <span class="changeEventSpan otherState">{{ actualStatusAllDevice[item.device].state }} </span>
+                    </ng-template>
+                    <span [attr.id]="'state_' + item.service" class="okStatusDetailTitle" *ngIf="actualStatusAllDevice[item.device].statusDetail == 'Ok';else otherStatusDetailTitle">
                       {{ actualStatusAllDevice[item.device].statusDetail }}
                     </span>
+                    <ng-template #otherStatusDetailTitle>
+                      <span [attr.id]="'state_' + item.service" class="otherStatusDetailTitle">
+                        {{ actualStatusAllDevice[item.device].statusDetail }}
+                      </span>
+                    </ng-template>
                   </section>
                 </h3>
               </section>
-
               <div [attr.class]="'fleche fleche_' + item.service"></div>
             </section>
             <div [attr.id]="'panel_' + item.service" class="panel panelInformations">
@@ -144,7 +202,13 @@
                   <span class="componentSpan">{{statusHistory.component}}</span>
                   <section class="statusHistorySection">
                     <span class="changeEventSpan"></span>
-                    <span class="changeEventSpan">{{ statusHistory.state }} </span>
+                    <span class="changeEventSpan ReadyState" *ngIf="statusHistory.state=='Ready';else processingState">{{ statusHistory.state }} </span>
+                    <ng-template #processingState >
+                      <span class="changeEventSpan ProcessingState" *ngIf="statusHistory.state=='Processing';else otherState" >{{ statusHistory.state }} </span>
+                      <ng-template #otherState >
+                        <span class="changeEventSpan otherState">{{ statusHistory.state }} </span>
+                      </ng-template>
+                    </ng-template>
                     <span class="changeEventSpan"></span>
                   </section>
                 </div>
@@ -154,7 +218,16 @@
                     <span class="hourReceipSpan">{{ statusHistory.hourReceiptEvent }} </span>
                     <span class="componentSpan">{{statusHistory.component}}</span>
                     <section class="statusHistorySection">
-                      <span class="changeEventSpan">{{ statusHistory.status }} </span>
+                      <span class="changeEventSpan okStatus" *ngIf="statusHistory.status=='Ok' ;else TempAvailableStatus">{{ statusHistory.status }} </span>
+                      <ng-template #TempAvailableStatus>
+                        <span class="changeEventSpan tempAvailableStatus" *ngIf="statusHistory.status=='TempUnavailable' ;else WarningStatus">{{ statusHistory.status }} </span>
+                        <ng-template #WarningStatus>
+                          <span class="changeEventSpan warningStatus" *ngIf="statusHistory.status=='Warning' ;else OtherStatus">{{ statusHistory.status }} </span>
+                          <ng-template #OtherStatus>
+                            <span class="changeEventSpan otherStatus" >{{ statusHistory.status }} </span>
+                          </ng-template>
+                        </ng-template>
+                      </ng-template>
                       <span class="changeEventSpan"> </span>
                       <span class="changeEventSpan">{{ statusHistory.statusDetail }} </span>
                     </section>
@@ -189,7 +262,7 @@
 <img src="./assets/DemoSKV2/back.png" alt="" (click)="backToChooseView()" class="icons" id="backIcon" />
 <section class="section_test" *ngFor="let item of listStopFunction; let i = index">
   <div class="resultImageClass" id="resultImage{{i}}" cdkDrag *ngIf="imageCapture[i]!=''">
-    <h2>Retour de l'image du test : {{i+1}}</h2>
+    <h2>Retour de l'image du test n°{{i+1}}</h2>
     <img [src]=" imageCapture[i]" alt="">
   </div>
 </section>

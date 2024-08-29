@@ -16,15 +16,15 @@ declare var Kiosk: any;
 
 
 export class FeaturesChoiceComponent implements OnInit {
-  constructor(private appService: AppService, private router: Router) {}
+  constructor(private appService: AppService, private router: Router) { }
 
   baseUrl = 'http://localhost:5000/';
   allScript: Array<string> = [];
   files = [];
 
   // Liste des tests a affichés dans la page
-  featuresList : string[] = [];
- 
+  featuresList: string[] = [];
+
 
   // liste des features qui existe dans les assets de l'application
 
@@ -32,19 +32,16 @@ export class FeaturesChoiceComponent implements OnInit {
   missing: string[] = [];
   missing_text: string = '';
 
-  serviceNotFound: string[] = [];
-  serviceNotFoundtext: string = '';
 
-
-  verifiedFeatureList : Array<{feature: string, title: string, description: string, service: string, component: string}> = [];
-
+  verifiedFeatureList: Array<{ feature: string, title: string, description: string, service: string, component: string }> = [];
+  verifiedFeatureListFiltered: Array<{ feature: string, title: string, description: string, service: string, component: string }> = [];
 
   ngOnInit(): void {
     this.getAllScript();
-    
+
   }
 
-  getAllScript(){
+  getAllScript() {
     fetch(
       `http://localhost:5000/demoSKV2/application/assets/DemoSKV2/confTest/script/toc.txt`
     )
@@ -55,9 +52,7 @@ export class FeaturesChoiceComponent implements OnInit {
         return response.text();
       })
       .then((text: string) => {
-        const items = text.split('\n').map(item => item.trim());
-        this.featuresList = items;
-        console.log('featuresList', this.featuresList);
+        this.featuresList = text.split('\n').map(item => item.trim());
         this.createAllElement();
       });
   }
@@ -88,8 +83,7 @@ export class FeaturesChoiceComponent implements OnInit {
           const description = descriptionMatch ? descriptionMatch[1].slice(0, 50) + "..." : 'N/A';
           const service = serviceMatch ? serviceMatch[1] : 'N/A';
           const component = serviceMatch && serviceMatch[2] ? serviceMatch[2] : 'N/A';
-  
-          // Vous pouvez maintenant utiliser ces valeurs dans votre application
+          
           this.verifiedFeatureList.push({
             feature: this.featuresList[i],
             title,
@@ -97,15 +91,22 @@ export class FeaturesChoiceComponent implements OnInit {
             service,
             component,
           });
-          console.log('verifiedFeatureList', this.verifiedFeatureList)
-          this.verifiedFeatureList.sort();
+          this.verifiedFeatureList.sort((a, b) => a.feature.localeCompare(b.feature));
+          this.verifiedFeatureListFiltered =[...this.verifiedFeatureList];
           this.missing_text = this.missing.join(', ');
-          this.serviceNotFoundtext = this.serviceNotFound.join(', ');
         })
         .catch((error) => {
           console.error('Error fetching or processing the file:', error);
         });
     }
+  }
+
+
+  onSearch(event: Event): void {
+    let typeSelected = document.getElementById('typeResearch') as HTMLSelectElement;
+    let type :string = typeSelected.value;
+    const query = (event.target as HTMLInputElement).value.toLowerCase();
+    this.verifiedFeatureListFiltered = this.verifiedFeatureList.filter(item => (item as any)[type].toLowerCase().includes(query));
   }
 
   /**

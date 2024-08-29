@@ -134,6 +134,7 @@ main {
   transition: max-height 0.2s ease-out;
   display: none;
   overflow: hidden;
+  height: 200px;
 }
 .panel p {
   margin: 0;
@@ -255,6 +256,42 @@ main {
   display: flex;
   justify-content: space-around;
 }
+
+.ReadyState,
+.okStatus,
+.deviceStatusTitleOk,
+.serviceStatusTitleOk,
+.serviceStateOk,
+.okStatusDetailTitle{
+  background-color: rgb(0, 185, 0);
+  color: white;
+}
+
+.ProcessingState,
+.deviceStatusTitleWarning,
+.warningStatus,
+.serviceStatusTitleWarning{
+  background-color: rgb(255, 211, 91);
+}
+
+.otherState, 
+.otherStatus,
+.deviceStatusTitleOther,
+.serviceStatusTitleOther,
+.otherStatusDetailTitle{
+  background-color: rgb(255, 0, 0);
+  color: white;
+}
+
+.tempAvailableStatus,
+.deviceStatusTitleTempUnavailable,
+.serviceStatusTitleTempUnavailable{ 
+  background-color: rgb(212, 0, 255);
+  color: white;
+
+}
+
+
 
 .changeEventSpan {
   width: 33%;

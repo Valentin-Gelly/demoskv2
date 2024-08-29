@@ -77,6 +77,7 @@ function timeoutCamera() {
         console.log("END - preview du document arrete");
     }, 5000);
 }
+
 function timeoutCameraBeforeCapture(){
     timeout = setTimeout(() => {
         Kiosk.DocumentScanning.stopPreview();
